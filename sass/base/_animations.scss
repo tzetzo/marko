@@ -1,0 +1,14 @@
+@keyframes blur-text {
+	  0% { filter: blur(0rem); }
+	  100% { filter: blur(.3rem); }
+}
+@keyframes circleZ {
+    0% { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
+}
+@keyframes pulsate {
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 1rem 2rem 0rem rgba(102, 153, 255, .40);
+    }
+}

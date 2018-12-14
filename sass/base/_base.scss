@@ -1,0 +1,54 @@
+*,
+*::after,    /* include the pseudo element as well! */
+*::before {  /* include the pseudo element as well! */
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit; /* make use of inheritance - 2 steps see body below! */
+}
+
+html {
+    //this defines what 1rem is
+    font-size: 62.5%;  /* 1rem = 10px for 16px default browser font-size -> 0.625*16 = 10px */
+
+    // ////////////////////////////////////////////////////////////
+    // //    Media query mixin; source order matters!            //
+    // ////////////////////////////////////////////////////////////
+    // @include respond(tab-land) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+    //     font-size: 56.25%;  //1rem = 9px, 9/16 = 56.25%
+    // }
+    //
+    // @include respond(tab-port) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+    //     font-size: 50%;  //1rem = 8px, 8/16 = 50%
+    // }
+    //
+    // @include respond(phone) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+    //     font-size: 43.75%;  //1rem = 7px, 7/16 = 43.75%
+    // }
+    //
+    // @include respond(big-desktop) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+    //     font-size: 75%;  //1rem = 12px, 12/16 = 75%
+    // }
+}
+
+body {
+    //@import url(../../fonts/palatino.ttf);  /*will be inherited by all elements*/
+    @font-face {
+      font-family: 'Palatino Linotype';
+      src: url('PalatinoLinotype.woff') format('woff'), /* Modern Browsers */
+           url('PalatinoLinotype.ttf')  format('truetype'), /* Safari, Android, iOS */
+           url('PalatinoLinotype.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+    font-family: 'Palatino Linotype', serif;
+    box-sizing: border-box; /* make use of inheritance - 2 steps see * above! */
+    background-color: $color-black;
+    overflow: hidden;
+    //font-weight: 400;
+    //line-height: 1.7;
+    //color: $color-grey-medium;
+}
+
+//changes the style of selected text:
+::selection {
+  background-color: rgba($color-black,1);
+  color: $color-gold;
+}

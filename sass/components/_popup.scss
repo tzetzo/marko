@@ -1,0 +1,30 @@
+// .popup {
+//     background-color: rgba($color-black, .8);
+//     height: 100%;
+//     width: 100%;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     z-index: 3000;
+//     opacity: 0;
+//     visibility: hidden;
+//     transition: all .3s;
+//
+//
+//     &__content {
+//         @include center;
+//
+//         background-color: $color-white;
+//         width: 75%;
+//         position: absolute;
+//         box-shadow: 0 2rem 4rem rgba($color-black, .2);
+//         border-radius: .3rem;
+//         overflow: hidden;
+//         opacity: 0;
+//
+//         transform: translate(-50%, -50%) scale(0.2);
+//         transition: all .4s .2s;
+//
+//     }
+//
+// }

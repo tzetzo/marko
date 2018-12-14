@@ -1,0 +1,30 @@
+{
+  "name": "markovski",
+  "version": "1.0.0",
+  "description": "English version for Markovski Lawyers LLP",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass sass/main.scss css/style.css -w",
+    "devserver": "live-server --browser=firefox",
+    "startdev": "npm-run-all --parallel devserver watch:sass",
+    "compile:sass": "node-sass sass/main.scss css/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" css/style.comp.css -o css/style.prefix.css",
+    "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "10.2.1"
+  },
+  "author": "Tzvetan Marinov",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.3.1",
+    "node-sass": "^4.10.0",
+    "npm-run-all": "^4.1.3",
+    "postcss-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

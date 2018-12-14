@@ -1,0 +1,178 @@
+@keyframes blur-text {
+  0% {
+    filter: blur(0rem); }
+  100% {
+    filter: blur(0.3rem); } }
+
+@keyframes circleZ {
+  0% {
+    transform: rotateZ(0deg); }
+  100% {
+    transform: rotateZ(360deg); } }
+
+@keyframes pulsate {
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 1rem 2rem 0rem rgba(102, 153, 255, 0.4); } }
+
+*,
+*::after,
+*::before {
+  /* include the pseudo element as well! */
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* make use of inheritance - 2 steps see body below! */ }
+
+html {
+  font-size: 62.5%;
+  /* 1rem = 10px for 16px default browser font-size -> 0.625*16 = 10px */ }
+
+body {
+  font-family: 'Palatino Linotype', serif;
+  box-sizing: border-box;
+  /* make use of inheritance - 2 steps see * above! */
+  background-color: #0d0d0d;
+  overflow: hidden; }
+
+@font-face {
+  body {
+    font-family: 'Palatino Linotype';
+    src: url("PalatinoLinotype.woff") format("woff"), url("PalatinoLinotype.ttf") format("truetype"), url("PalatinoLinotype.svg#svgFontName") format("svg");
+    /* Legacy iOS */ } }
+
+::selection {
+  background-color: #0d0d0d;
+  color: #cca876; }
+
+/*make the initial & visited state the same*/
+.loading {
+  display: grid;
+  grid-template-rows: 1fr 30rem 1fr;
+  grid-template-columns: 1fr 30rem 1fr;
+  justify-items: center;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #cca876;
+  width: 100%;
+  height: 100vh;
+  background-image: radial-gradient(circle at center, #0d0d0d 0rem, #0d0d0d 15rem, #1a0d00 35rem, #0d0d0d 75rem, #0d0d0d 100rem);
+  background-position: 50% 50%;
+  z-index: 100; }
+  .loading__text {
+    grid-area: 2/2/3/3;
+    display: grid;
+    grid-template-columns: repeat(7, min-content);
+    align-items: center;
+    z-index: 101; }
+  .loading__letter {
+    display: inline-block;
+    cursor: url(../img/mallet45.svg), auto;
+    transition: all .1s ease-in 0s; }
+    .loading__letter:nth-child(1) {
+      animation: blur-text 1.3s 0s infinite linear alternate backwards; }
+    .loading__letter:nth-child(2) {
+      animation: blur-text 1.3s 0.2s infinite linear alternate backwards; }
+    .loading__letter:nth-child(3) {
+      animation: blur-text 1.3s 0.4s infinite linear alternate backwards; }
+    .loading__letter:nth-child(4) {
+      animation: blur-text 1.3s 0.6s infinite linear alternate backwards; }
+    .loading__letter:nth-child(5) {
+      animation: blur-text 1.3s 0.8s infinite linear alternate backwards; }
+    .loading__letter:nth-child(6) {
+      animation: blur-text 1.3s 1s infinite linear alternate backwards; }
+    .loading__letter:nth-child(7) {
+      animation: blur-text 1.3s 1.2s infinite linear alternate backwards; }
+    .loading__letter:not(:last-child) {
+      margin-right: .7rem; }
+    .loading__letter:nth-child(2), .loading__letter:nth-child(6) {
+      font-size: 1.8rem; }
+    .loading__letter:nth-child(3), .loading__letter:nth-child(5) {
+      font-size: 2.2rem; }
+    .loading__letter:nth-child(4) {
+      font-size: 2.6rem; }
+    @media not all and (hover: none) {
+      .loading__letter:hover {
+        transform: scale(2); } }
+    .loading__letter:active {
+      cursor: url(../img/mallet.svg), auto;
+      transform: translateY(5rem); }
+  .loading__circle {
+    grid-area: 2/2/3/3; }
+    .loading__circle img {
+      width: 30rem;
+      height: 30rem;
+      filter: saturate(700%);
+      animation: circleZ 13s linear 0s infinite;
+      animation-fill-mode: backwards; }
+
+.menu {
+  display: grid;
+  grid-template-columns: 8rem 8rem;
+  grid-row-gap: 2.25rem;
+  position: fixed;
+  font-size: 150%;
+  color: #cca876;
+  padding: 2.25rem;
+  visibility: hidden;
+  text-transform: uppercase;
+  z-index: 1000; }
+  .menu__logo {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: url(../img/mallet45.svg), auto;
+    padding: .5rem 0;
+    border-radius: 100rem; }
+    .menu__logo:hover {
+      animation: pulsate 2s infinite; }
+    .menu__logo img {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      justify-self: end;
+      height: 2.25rem; }
+    .menu__logo span {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      justify-self: start;
+      height: 2.25rem; }
+  .menu__nav {
+    grid-column-start: 1;
+    grid-column-end: 3; }
+  .menu__list {
+    display: grid;
+    grid-row-gap: 2.25rem;
+    list-style: none; }
+  .menu__item {
+    display: grid;
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+    .menu__item--1 {
+      top: -5.5rem; }
+    .menu__item--2 {
+      top: -11rem; }
+    .menu__item--3 {
+      top: -16.5rem; }
+    .menu__item--4 {
+      top: -22rem; }
+    .menu__item--5 {
+      top: -27.5rem; }
+    .menu__item--animate {
+      top: 0rem;
+      opacity: 1;
+      visibility: visible; }
+  .menu__link, .menu__link:link, .menu__link:visited {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.585rem 0;
+    border-radius: 100rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: url(../img/mallet45.svg), auto; }
+  .menu__link:hover {
+    animation: pulsate 2s infinite; }

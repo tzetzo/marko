@@ -1,0 +1,103 @@
+.menu {
+    display: grid;
+    grid-template-columns: 8rem 8rem;
+    grid-row-gap: 2.25rem;
+
+    position: fixed;
+    font-size: 150%;
+    color: $color-gold;
+    padding: 2.25rem;
+    visibility: hidden;
+    text-transform: uppercase;
+    z-index: 1000;
+
+    &__logo {
+        grid-column-start:1;
+        grid-column-end:3;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        cursor: url(../img/mallet45.svg), auto;
+        padding: .5rem 0;
+        border-radius: 100rem;
+
+        &:hover {
+            animation: pulsate 2s infinite;
+        }
+
+        img {
+            grid-column-start:1;
+            grid-column-end:2;
+            justify-self: end;
+
+            height: 2.25rem;
+        }
+
+        span {
+            grid-column-start:2;
+            grid-column-end:3;
+            justify-self: start;
+
+            height: 2.25rem;
+        }
+    }
+
+    &__nav {
+        grid-column-start:1;
+        grid-column-end:3;
+    }
+
+    &__list {
+        display: grid;
+        grid-row-gap: 2.25rem;
+
+        list-style: none;
+    }
+
+    &__item {
+        display:grid;
+
+        position: relative;
+        opacity: 0;  //animatable
+        visibility: hidden;  //needed so it is not detectable by the mouse: ;
+        transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                top: (-#{$i*5.5}rem);
+            }
+        }
+
+        &--animate {
+            top: 0rem;
+    				opacity: 1;
+    				visibility: visible;
+        }
+    }
+
+    &__link {
+        &,
+        &:link,
+        &:visited {
+            display: flex; //to center text vertically
+            justify-content: center;
+            align-items: center;
+
+            padding: 0.585rem 0;
+            border-radius: 100rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: url(../img/mallet45.svg), auto;
+        }
+
+        &:hover {
+            animation: pulsate 2s infinite;
+        }
+        &:active {
+            // cursor: url(../img/mallet.svg), auto;
+        }
+    }
+
+}

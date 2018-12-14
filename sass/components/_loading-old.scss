@@ -1,0 +1,73 @@
+.loading {
+    font-size: 1.4rem;
+    color: $color-gold;  //var(--color-grey-light);
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100vh;
+    background-repeat: no-repeat;
+  	// background-image: radial-gradient(circle at center, rgba($color-black,1) 0rem, rgba($color-black,1) 11rem, rgba($color-dark,1) 15.5rem, rgba($color-gold,1) 15.5rem, rgba($color-dark,1) 15.56rem, rgba($color-black,1) 20.05rem, rgba($color-black,1) 100rem); //var(--color-black);
+    background-image: radial-gradient(circle at center, rgba($color-black,1) 0rem, rgba($color-black,1) 11rem, rgba($color-dark,1) 15rem, rgba($color-black,1) 19rem, rgba($color-black,1) 100rem); //var(--color-black);
+    background-size: 100%;
+    background-position: 50% 50%;
+  	z-index: 100;
+    clip-path: polygon(6rem 0, 100% 0, 100% 100%, 0 100%, 0 6rem, 6rem 6rem);
+
+    &__text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index:101;
+        height: 5rem;
+    }
+
+    &__letter {
+        display: inline-block;
+        line-height: 5rem;
+        vertical-align: middle;
+        cursor: url(../img/mallet45.svg), auto;
+        transition: all .1s ease-in 0s;
+
+        @for $i from 0 through 6 {
+            &:nth-child(#{$i + 1}) {
+              animation-fill-mode: backwards;   //avoids having to set the initial value i.e. filter: blur(0rem);
+              animation: blur-text 1.3s (#{$i/5}s) infinite linear alternate;
+              //font-size: #{2.6 - $i/5}rem;
+            }
+        }
+        //have right margin on all but the last one:
+        &:not(:last-child) {
+            margin-right: .7rem;
+        }
+
+        &:nth-child(2), &:nth-child(6) {
+            font-size: 1.8rem;
+        }
+        &:nth-child(3), &:nth-child(5) {
+            font-size: 2.2rem;
+        }
+        &:nth-child(4) {
+            font-size: 2.6rem;
+        }
+
+        //do not apply to phones/tablets:
+        @media not all and (hover: none) {
+            &:hover { transform: scale(2); }
+        }
+        &:active { cursor: url(../img/mallet.svg), auto; transform: translateY(5rem); }
+    }
+
+    &__circle {
+      @include center;
+
+      img {
+          width: 30rem;
+          height: 30rem;
+          filter: saturate(700%);
+          animation: circleZ 13s linear 0s infinite;
+          animation-fill-mode: backwards;  //avoids having to set the initial value i.e. transform: rotateZ(0deg);
+      }
+    }
+}
