@@ -32,7 +32,7 @@ body {
   font-family: 'Palatino Linotype', serif;
   box-sizing: border-box;
   /* make use of inheritance - 2 steps see * above! */
-  background-color: #0d0d0d;
+  background-color: #000000;
   overflow: hidden; }
 
 @font-face {
@@ -42,10 +42,41 @@ body {
     /* Legacy iOS */ } }
 
 ::selection {
-  background-color: #0d0d0d;
+  background-color: black;
   color: #cca876; }
 
 /*make the initial & visited state the same*/
+.btn, .btn:link, .btn:visited {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-family: inherit;
+  font-style: inherit;
+  color: inherit;
+  border-radius: .3rem;
+  transition: all .2s;
+  /*all properties will be animated*/
+  backface-visibility: hidden;
+  border: none;
+  height: 3rem;
+  background-color: transparent;
+  cursor: url(../img/mallet45.svg), auto; }
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.btn:active, .btn:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+@media only screen and (max-width: 56.25em) {
+  .btn {
+    font-size: 100%;
+    height: 2rem; } }
+
 .loading {
   display: grid;
   grid-template-rows: 1fr 30rem 1fr;
@@ -56,7 +87,7 @@ body {
   color: #cca876;
   width: 100%;
   height: 100vh;
-  background-image: radial-gradient(circle at center, #0d0d0d 0rem, #0d0d0d 15rem, #1a0d00 35rem, #0d0d0d 75rem, #0d0d0d 100rem);
+  background-image: radial-gradient(circle at center, black 0rem, black 15rem, #1a0d00 35rem, black 75rem, black 100rem);
   background-position: 50% 50%;
   z-index: 100; }
   .loading__text {
@@ -105,6 +136,96 @@ body {
       filter: saturate(700%);
       animation: circleZ 13s linear 0s infinite;
       animation-fill-mode: backwards; }
+
+.location {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 7vh 44vh 44vh 7vh;
+  grid-template-columns: 1fr minmax(18rem, 57vh) 6vh minmax(18rem, 57vh) 1fr;
+  -webkit-perspective: 150rem;
+  /* Safari 4-8 */
+  perspective: 150rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 2s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
+  .location--animate {
+    opacity: 1;
+    visibility: visible; }
+  .location__map {
+    grid-column: 2/3;
+    grid-row: 2/4;
+    border-radius: .5rem;
+    transform: rotateY(-5deg); }
+    .location__map > div {
+      background-color: transparent !important; }
+  .location__details {
+    grid-column: 4/5;
+    grid-row: 2/4;
+    color: #0000cc;
+    font-size: 1.4rem;
+    font-style: italic;
+    transform: rotateY(5deg);
+    display: grid;
+    justify-items: center;
+    align-items: center; }
+    @media only screen and (max-width: 56.25em) {
+      .location__details {
+        font-size: 100%; } }
+  .location__heading {
+    font-weight: 700;
+    text-transform: uppercase; }
+  .location__address {
+    list-style: none; }
+    .location__address li {
+      text-align: center; }
+  .location__form {
+    justify-self: stretch;
+    display: grid;
+    grid-row-gap: 1rem; }
+    .location__form textarea {
+      resize: none;
+      width: 100%; }
+    .location__form-group {
+      display: grid; }
+    .location__form-input {
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-style: inherit;
+      color: inherit;
+      background-color: transparent;
+      border: none;
+      border-bottom: 0.3rem dotted #666;
+      width: 100%;
+      transition: all .2s; }
+      .location__form-input:focus {
+        border-bottom: 0.3rem dotted #000000;
+        outline: none; }
+      .location__form-input:required {
+        box-shadow: none; }
+      .location__form-input::placeholder {
+        color: #333;
+        opacity: 1;
+        /* Firefox */ }
+      @media only screen and (max-width: 56.25em) {
+        .location__form-input {
+          font-size: 100%; } }
+    .location__form-label {
+      color: #333;
+      display: block;
+      transition: all .3s; }
+    .location__form-input:placeholder-shown + .location__form-label {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-2rem); }
+    @media only screen and (max-width: 56.25em) {
+      .location__form {
+        grid-row-gap: .3rem; } }
+  .location__lawyer-list {
+    list-style: none; }
+    .location__lawyer-list li {
+      text-align: center; }
 
 .menu {
   display: grid;
@@ -173,6 +294,7 @@ body {
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    cursor: url(../img/mallet45.svg), auto; }
+    cursor: url(../img/mallet45.svg), auto;
+    outline: none; }
   .menu__link:hover {
     animation: pulsate 2s infinite; }

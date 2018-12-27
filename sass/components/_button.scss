@@ -1,55 +1,38 @@
-//anchor element styled as a button
 /*make the initial & visited state the same*/
+.btn {
+  &,
+  &:link,
+  &:visited {
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      font-family: inherit; //not inherited by button!
+      font-style: inherit;  //not inherited by button!
+      color: inherit;       //not inherited by button!
+      border-radius: .3rem;
+      transition: all .2s;  /*all properties will be animated*/
+      backface-visibility: hidden;
+      border: none;
+      height: 3rem;
+      background-color: transparent;
+      cursor: url(../img/mallet45.svg), auto;
+  }
 
-// .btn {  /*link & visited pseudo selector is a state of the .btn selector*/
-//   &,
-//   &:link,
-//   &:visited {
-//     text-transform: uppercase;
-//     text-decoration:none;
-//     padding: 1.5rem 4rem;
-//     display: inline-block; /*to take into account height, width, padding etc.*/
-//     border-radius: 10rem;
-//     transition: all .2s;  /*all properties will be animated*/
-//     position: relative;
-//     font-size: $default-font-size;
-//     backface-visibility: hidden;
-//
-//     //change for the <button> element
-//     border: none;
-//     cursor: pointer;
-//   }
-//
-//   &:hover {
-//       transform: translateY(-.3rem);
-//       -webkit-box-shadow: 0 1rem 2rem rgba($color-black,.2);
-//       box-shadow: 0 1rem 2rem rgba($color-black,.2);
-//
-//       &::after {
-//           transform: scaleX(1.4) scaleY(1.6);
-//           opacity: 0;
-//       }
-//   }
-//   &:active,
-//   &:focus {
-//     outline: none;
-//       transform: translateY(-.1rem);
-//       -webkit-box-shadow: 0 .5rem 1rem rgba($color-black,.2);
-//       box-shadow: 0 .5rem 1rem rgba($color-black,.2);
-//   }
-//
-//   &::after {  /*pseudo element after the selected .btn element*/
-//        content: "";  /*required if we want the pseudo element to appear*/
-//        display: inline-block;  /*required*/
-//        height: 100%; /*the pseudo element will be 100% of the height of the .btn element*/
-//        width:100%;
-//        border-radius: 10rem;
-//        position: absolute;
-//        top: 0;
-//        left: 0;
-//        z-index: -1;
-//        transition: all .4s;
-//   }
-//
-//
-// }
+  &:hover {
+      transform: translateY(-.3rem);
+      -webkit-box-shadow: 0 1rem 2rem rgba($color-black,.2);
+      box-shadow: 0 1rem 2rem rgba($color-black,.2);
+  }
+  &:active,
+  &:focus {
+      outline: none;
+      transform: translateY(-.1rem);
+      -webkit-box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+      box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+  }
+
+  @include respond(tab-port) {
+      font-size: 100%;
+      height: 2rem;
+  }
+
+}

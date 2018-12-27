@@ -13,20 +13,22 @@
 </head>
 
 <body class="container">
+
   <div class="menu">
     <div class="menu__logo">
         <img src="./img/M.svg" alt="Logo"><span>enu</span>
     </div>
     <nav class="menu__nav">
         <ul class="menu__list">
-            <li class="menu__item menu__item--1"><a class="menu__link" href="/">Home</a></li>
-            <li class="menu__item menu__item--2"><a class="menu__link" href="/">Lawyers</a></li>
-            <li class="menu__item menu__item--3"><a class="menu__link" href="/">Services</a></li>
-            <li class="menu__item menu__item--4"><a class="menu__link" href="/">News</a></li>
-            <li class="menu__item menu__item--5"><a class="menu__link" href="/">Location</a></li>
+            <li class="menu__item menu__item--1"><a class="menu__link" href="#home">Home</a></li>
+            <li class="menu__item menu__item--2"><a class="menu__link" href="#lawyers">Lawyers</a></li>
+            <li class="menu__item menu__item--3"><a class="menu__link" href="#services">Services</a></li>
+            <li class="menu__item menu__item--4"><a class="menu__link" href="#news">News</a></li>
+            <li class="menu__item menu__item--5"><a class="menu__link" href="#location">Location</a></li>
         </ul>
     </nav>
   </div>
+
   <div class="loading">
     	<div class="loading__text">
       		<span class="loading__letter">L</span>
@@ -39,7 +41,50 @@
     	</div>
       <div class="loading__circle"><img src="./img/circle.svg" alt=""></div>
   </div>
+
   <div id="webGLcontainer"></div>
+
+  <section class="location">
+      <div class="location__map"></div>
+      <div class="location__details">
+          <h3 class="location__heading">Contact Markovski Lawyers</h3>
+          <ul class="location__address">
+              <li>1000 Sofia, ul. "Tsar Asen" 1, Sofia</li>
+              <li>T +359 2 987 7970, office@markovski.bg</li>
+          </ul>
+          <form action="#" class="location__form" method="post" autocomplete="off">
+              <div class="location__form-group">
+                  <input type="text" class="location__form-input" name="generated_55" placeholder="Name" id="lable_55" required autofocus>
+                  <label for="lable_55" class="location__form-label">Name</label>
+              </div>
+              <div class="location__form-group">
+                  <input type="email" class="location__form-input" name="generated_56" placeholder="Email address" id="lable_56" required>
+                  <label for="lable_56" class="location__form-label">Email address</label>
+              </div>
+              <div class="location__form-group">
+                  <input type="tel" class="location__form-input" name="generated_57" placeholder="0881234567" id="lable_57" minlength="7" maxlength="15" pattern="[0-9]{7,15}" required>
+                  <label for="lable_57" class="location__form-label">Phone number (7-15 digits)</label>
+              </div>
+              <div class="location__form-group">
+                  <input type="text" class="location__form-input" name="generated_58" placeholder="Subject" id="lable_58" required>
+                  <label for="lable_58" class="location__form-label">Subject</label>
+              </div>
+              <div class="location__form-group">
+                  <textarea class="location__form-input" name="generated_59" placeholder="Enter your request" id="lable_59" maxlength="250" required></textarea>
+                  <label for="lable_59" class="location__form-label">Request (max 250 characters)</label>
+              </div>
+              <div class="location__form-group">
+                  <button class="btn">Send</button><!--we need button here since forms understand buttons and not links-->
+              </div>
+          </form>
+          <ul class="location__lawyer-list">
+              <li class="location__lawyer-item location__lawyer-item--1">Marin Markovski +359 888 055 005</li>
+              <li class="location__lawyer-item location__lawyer-item--2">Dimitar Markovski +359 888 444 988</li>
+              <li class="location__lawyer-item location__lawyer-item--3">Bojidar Terziiski +359 888 415 443</li>
+              <li class="location__lawyer-item location__lawyer-item--4">Elena Petrova +359 2 987 7970</li>
+          </ul>
+        </div>
+  </section>
 
   <script src="./js/three.min.js"></script>
   <script src="./js/WebGL.js"></script>
@@ -47,7 +92,7 @@
   <script src="./js/Reflector.js"></script>
   <script src="./js/tween.min.js"></script>
   <script src="./js/RectAreaLightUniformsLib.js"></script>
-  <!-- <script src="js/OrbitControls.js"></script> -->
-  <script src="./js/main.js"></script>
+  <!-- <script src="./js/OrbitControls.js"></script> -->
+  <script src="./js/main.js"></script>   <!-- ?<?php echo time(); ?> -->
 </body>
 </html>
