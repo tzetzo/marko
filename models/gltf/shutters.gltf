@@ -1255,101 +1255,6 @@
                 {
                     "sampler" : 0,
                     "target" : {
-                        "node" : 4,
-                        "path" : "translation"
-                    }
-                }
-            ],
-            "name" : "shutter2",
-            "samplers" : [
-                {
-                    "input" : 68,
-                    "interpolation" : "LINEAR",
-                    "output" : 69
-                }
-            ]
-        },
-        {
-            "channels" : [
-                {
-                    "sampler" : 0,
-                    "target" : {
-                        "node" : 3,
-                        "path" : "translation"
-                    }
-                }
-            ],
-            "name" : "shutter12",
-            "samplers" : [
-                {
-                    "input" : 66,
-                    "interpolation" : "LINEAR",
-                    "output" : 67
-                }
-            ]
-        },
-        {
-            "channels" : [
-                {
-                    "sampler" : 0,
-                    "target" : {
-                        "node" : 6,
-                        "path" : "translation"
-                    }
-                }
-            ],
-            "name" : "shutter4",
-            "samplers" : [
-                {
-                    "input" : 72,
-                    "interpolation" : "LINEAR",
-                    "output" : 73
-                }
-            ]
-        },
-        {
-            "channels" : [
-                {
-                    "sampler" : 0,
-                    "target" : {
-                        "node" : 1,
-                        "path" : "translation"
-                    }
-                }
-            ],
-            "name" : "shutter10",
-            "samplers" : [
-                {
-                    "input" : 62,
-                    "interpolation" : "LINEAR",
-                    "output" : 63
-                }
-            ]
-        },
-        {
-            "channels" : [
-                {
-                    "sampler" : 0,
-                    "target" : {
-                        "node" : 2,
-                        "path" : "translation"
-                    }
-                }
-            ],
-            "name" : "shutter11",
-            "samplers" : [
-                {
-                    "input" : 64,
-                    "interpolation" : "LINEAR",
-                    "output" : 65
-                }
-            ]
-        },
-        {
-            "channels" : [
-                {
-                    "sampler" : 0,
-                    "target" : {
                         "node" : 5,
                         "path" : "translation"
                     }
@@ -1369,17 +1274,17 @@
                 {
                     "sampler" : 0,
                     "target" : {
-                        "node" : 9,
+                        "node" : 8,
                         "path" : "translation"
                     }
                 }
             ],
-            "name" : "shutter7",
+            "name" : "shutter6",
             "samplers" : [
                 {
-                    "input" : 78,
+                    "input" : 76,
                     "interpolation" : "LINEAR",
-                    "output" : 79
+                    "output" : 77
                 }
             ]
         },
@@ -1407,36 +1312,17 @@
                 {
                     "sampler" : 0,
                     "target" : {
-                        "node" : 0,
+                        "node" : 6,
                         "path" : "translation"
                     }
                 }
             ],
-            "name" : "shutter1",
+            "name" : "shutter4",
             "samplers" : [
                 {
-                    "input" : 60,
+                    "input" : 72,
                     "interpolation" : "LINEAR",
-                    "output" : 61
-                }
-            ]
-        },
-        {
-            "channels" : [
-                {
-                    "sampler" : 0,
-                    "target" : {
-                        "node" : 10,
-                        "path" : "translation"
-                    }
-                }
-            ],
-            "name" : "shutter8",
-            "samplers" : [
-                {
-                    "input" : 80,
-                    "interpolation" : "LINEAR",
-                    "output" : 81
+                    "output" : 73
                 }
             ]
         },
@@ -1464,17 +1350,131 @@
                 {
                     "sampler" : 0,
                     "target" : {
-                        "node" : 8,
+                        "node" : 0,
                         "path" : "translation"
                     }
                 }
             ],
-            "name" : "shutter6",
+            "name" : "shutter1",
             "samplers" : [
                 {
-                    "input" : 76,
+                    "input" : 60,
                     "interpolation" : "LINEAR",
-                    "output" : 77
+                    "output" : 61
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 1,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "shutter10",
+            "samplers" : [
+                {
+                    "input" : 62,
+                    "interpolation" : "LINEAR",
+                    "output" : 63
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 3,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "shutter12",
+            "samplers" : [
+                {
+                    "input" : 66,
+                    "interpolation" : "LINEAR",
+                    "output" : 67
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 4,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "shutter2",
+            "samplers" : [
+                {
+                    "input" : 68,
+                    "interpolation" : "LINEAR",
+                    "output" : 69
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 2,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "shutter11",
+            "samplers" : [
+                {
+                    "input" : 64,
+                    "interpolation" : "LINEAR",
+                    "output" : 65
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 10,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "shutter8",
+            "samplers" : [
+                {
+                    "input" : 80,
+                    "interpolation" : "LINEAR",
+                    "output" : 81
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 9,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "shutter7",
+            "samplers" : [
+                {
+                    "input" : 78,
+                    "interpolation" : "LINEAR",
+                    "output" : 79
                 }
             ]
         }
@@ -1973,8 +1973,8 @@
     ],
     "images" : [
         {
-            "name" : "gold2_diffuse",
-            "uri" : "gold2_diffuse.jpg"
+            "name" : "gold_diffuse",
+            "uri" : "gold_diffuse.jpg"
         }
     ],
     "materials" : [
@@ -1995,7 +1995,7 @@
     ],
     "meshes" : [
         {
-            "name" : "shutter2",
+            "name" : "shutter3",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2010,7 +2010,7 @@
             ]
         },
         {
-            "name" : "shutter12",
+            "name" : "shutter6",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2025,7 +2025,7 @@
             ]
         },
         {
-            "name" : "shutter4",
+            "name" : "shutter5",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2040,7 +2040,7 @@
             ]
         },
         {
-            "name" : "shutter10",
+            "name" : "shutter4",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2055,7 +2055,7 @@
             ]
         },
         {
-            "name" : "shutter11",
+            "name" : "shutter9",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2070,7 +2070,7 @@
             ]
         },
         {
-            "name" : "shutter3",
+            "name" : "shutter1",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2085,7 +2085,7 @@
             ]
         },
         {
-            "name" : "shutter7",
+            "name" : "shutter10",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2100,7 +2100,7 @@
             ]
         },
         {
-            "name" : "shutter5",
+            "name" : "shutter12",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2115,7 +2115,7 @@
             ]
         },
         {
-            "name" : "shutter1",
+            "name" : "shutter2",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2130,7 +2130,7 @@
             ]
         },
         {
-            "name" : "shutter8",
+            "name" : "shutter11",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2145,7 +2145,7 @@
             ]
         },
         {
-            "name" : "shutter9",
+            "name" : "shutter8",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2160,7 +2160,7 @@
             ]
         },
         {
-            "name" : "shutter6",
+            "name" : "shutter7",
             "primitives" : [
                 {
                     "attributes" : {
@@ -2177,7 +2177,7 @@
     ],
     "nodes" : [
         {
-            "mesh" : 8,
+            "mesh" : 5,
             "name" : "shutter1",
             "rotation" : [
                 0.7071068286895752,
@@ -2192,7 +2192,7 @@
             ]
         },
         {
-            "mesh" : 3,
+            "mesh" : 6,
             "name" : "shutter10",
             "rotation" : [
                 0.5000000596046448,
@@ -2207,7 +2207,7 @@
             ]
         },
         {
-            "mesh" : 4,
+            "mesh" : 9,
             "name" : "shutter11",
             "rotation" : [
                 0.6123724579811096,
@@ -2222,7 +2222,7 @@
             ]
         },
         {
-            "mesh" : 1,
+            "mesh" : 7,
             "name" : "shutter12",
             "rotation" : [
                 0.6830127239227295,
@@ -2237,7 +2237,7 @@
             ]
         },
         {
-            "mesh" : 0,
+            "mesh" : 8,
             "name" : "shutter2",
             "rotation" : [
                 0.6830127239227295,
@@ -2252,7 +2252,7 @@
             ]
         },
         {
-            "mesh" : 5,
+            "mesh" : 0,
             "name" : "shutter3",
             "rotation" : [
                 0.6123724579811096,
@@ -2267,7 +2267,7 @@
             ]
         },
         {
-            "mesh" : 2,
+            "mesh" : 3,
             "name" : "shutter4",
             "rotation" : [
                 0.5000000596046448,
@@ -2282,7 +2282,7 @@
             ]
         },
         {
-            "mesh" : 7,
+            "mesh" : 2,
             "name" : "shutter5",
             "rotation" : [
                 0.3535534143447876,
@@ -2297,7 +2297,7 @@
             ]
         },
         {
-            "mesh" : 11,
+            "mesh" : 1,
             "name" : "shutter6",
             "rotation" : [
                 0.1830127090215683,
@@ -2312,7 +2312,7 @@
             ]
         },
         {
-            "mesh" : 6,
+            "mesh" : 11,
             "name" : "shutter7",
             "rotation" : [
                 -5.338508657359853e-08,
@@ -2327,7 +2327,7 @@
             ]
         },
         {
-            "mesh" : 9,
+            "mesh" : 10,
             "name" : "shutter8",
             "rotation" : [
                 0.1830127239227295,
@@ -2342,7 +2342,7 @@
             ]
         },
         {
-            "mesh" : 10,
+            "mesh" : 4,
             "name" : "shutter9",
             "rotation" : [
                 0.35355344414711,

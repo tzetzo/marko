@@ -14,7 +14,7 @@ const camera = new THREE.PerspectiveCamera( 40, WIDTH/HEIGHT, 0.1, 100 );
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 const loader = new THREE.GLTFLoader();
 
-const gold = new THREE.TextureLoader().load("./img/gold2_roughness.jpg", (map) => {});  //  './' for altervista
+const gold = new THREE.TextureLoader().load("./img/gold_roughness.jpg", (map) => {});  //  './' for altervista
 const wood = new THREE.TextureLoader().load("./img/wood_roughness.jpg");
 const book = new THREE.TextureLoader().load("./img/bookCover_roughness.jpg");
 
@@ -375,6 +375,7 @@ function render() {
             const intersects = raycaster.intersectObjects( targetList );
 
             if (mouseEvent ==='mousemove') {  //execute only for mousemove;
+                console.log('mousemove');
                 if ( intersects.length > 0 ) {
                       if (!mixer) {
                           playAnimation(scene.gltfTV.scene, scene.gltfTV.animations, null, intersects[ 0 ].object.parent.name); //parent name(the name of the Blender Empty) is the same as the animation clip name;
@@ -400,8 +401,6 @@ function render() {
                               INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex );
                               INTERSECTEDsibling.material.opacity = INTERSECTEDsibling.currentOpacity;
                           }
-                          //needed so the plane can become bright:
-                          intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`).material.side = THREE.DoubleSide;
 
                           INTERSECTEDsibling = intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`);
 
@@ -526,14 +525,15 @@ function closeMenu(){
             }
             if (link === '#lawyers' && scene.gltfTV.scene.getObjectByName('tvMMscreen').scale.z === 0.001) {
                 camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
-                window.addEventListener( 'mousemove', onMouse, false );
-                window.addEventListener( 'mousedown', onMouse, false );
-                // playAnimation(scene.gltfTV.scene, scene.gltfTV.animations, 'loop');
-                // mixer = null;
                 turnOnTV('tvMMscreen')
                 .then(() => { return turnOnTV('tvDMscreen'); })
                 .then(() => { return turnOnTV('tvBTscreen'); })
-                .then(() => { turnOnTV('tvEPscreen'); scene.video.play(); })
+                .then(() => {
+                  turnOnTV('tvEPscreen');
+                  scene.video.play();
+                  window.addEventListener( 'mousemove', onMouse, false );
+                  window.addEventListener( 'mousedown', onMouse, false );
+                })
             } else if (link === '#lawyers') {
                 camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
                 window.addEventListener( 'mousemove', onMouse, false );
@@ -546,9 +546,9 @@ function closeMenu(){
 function turnOnTV (which) {
     return new Promise ((resolve,reject) => {
         (function turnOn () {
-          scene.gltfTV.scene.getObjectByName(`${which}`).scale.z =  Math.round( (scene.gltfTV.scene.getObjectByName(`${which}`).scale.z + 0.004) * 1000) / 1000;
+          scene.gltfTV.scene.getObjectByName(`${which}`).scale.z =  Math.round( (scene.gltfTV.scene.getObjectByName(`${which}`).scale.z + 0.0729) * 1000) / 1000;
           if( scene.gltfTV.scene.getObjectByName(`${which}`).scale.z < 1.458 ) {
-              setTimeout( turnOn, 2 );
+              setTimeout( turnOn, 50 ); //overall 1sec per screen; 20fps
           } else { resolve(); }
         })();
     });
