@@ -15,6 +15,12 @@
     transform: scale(1.1);
     box-shadow: 0 1rem 2rem 0rem rgba(102, 153, 255, 0.4); } }
 
+@keyframes rotate {
+  0% {
+    transform: rotateY(180deg); }
+  100% {
+    transform: rotateY(0deg); } }
+
 *,
 *::after,
 *::before {
@@ -76,6 +82,45 @@ body {
   .btn {
     font-size: 100%;
     height: 2rem; } }
+
+.lawyers {
+  color: #cca876;
+  font-size: 1.3rem;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 2.25rem calc(100vh - 4.5rem) 2.25rem;
+  grid-template-columns: 1fr minmax(18rem, 55vh) 1fr;
+  perspective: 150rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
+  .lawyers--animate {
+    opacity: 1;
+    visibility: visible; }
+  @media only screen and (max-width: 43.75em) {
+    .lawyers {
+      font-size: 100%; } }
+  .lawyers__about {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    display: grid;
+    grid-row-gap: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
+    .lawyers__about--animate {
+      opacity: 1;
+      visibility: visible;
+      animation: rotate 1.3s 0s linear normal; }
+    .lawyers__about > h2 {
+      font-size: 1.5rem;
+      font-weight: initial;
+      text-transform: uppercase;
+      padding: .5rem 0;
+      /*so it is in the same line with the MENU*/ }
 
 .loading {
   display: grid;

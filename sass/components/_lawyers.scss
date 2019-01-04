@@ -1,0 +1,53 @@
+.lawyers {
+    color: #cca876;
+    font-size: 1.3rem;
+    text-align: center;
+
+    position: fixed;
+    top:0;
+    width: 100vw;
+
+    display: grid;
+    grid-template-rows: 2.25rem calc(100vh - 4.5rem) 2.25rem;
+    grid-template-columns: 1fr minmax(18rem, 55vh) 1fr;
+    // align-items: center;
+
+    perspective: 150rem;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s cubic-bezier(.44,-0.77,.57,1.89);
+
+    &--animate {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @include respond(phone) {
+        font-size: 100%;
+    }
+
+    &__about {
+        grid-row: 2/3;
+        grid-column: 2/3;
+        display: grid;
+        grid-row-gap: 1rem;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: all .5s cubic-bezier(.44,-0.77,.57,1.89);
+
+        &--animate {
+            opacity: 1;
+            visibility: visible;
+            animation: rotate 1.3s 0s linear normal;
+        }
+
+        & > h2 {
+            font-size: 1.5rem;
+            font-weight: initial;
+            text-transform: uppercase;
+            padding: .5rem 0; /*so it is in the same line with the MENU*/
+        }
+    }
+}

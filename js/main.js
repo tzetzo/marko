@@ -4,7 +4,7 @@ if ( WEBGL.isWebGLAvailable() === false ) { document.body.appendChild( WEBGL.get
 //set the hash to home:
 history.pushState ? history.pushState(null, null, '#home') : location.hash = '#home'
 
-let mixer, link = '#home', INTERSECTED, INTERSECTEDsibling, mouseEvent = null, targetList = [];
+let mixer, link = '#home', INTERSECTED, INTERSECTEDsibling, mouseEvent = null, targetList = [], lawyers__about = document.querySelector('.lawyers__about--us');;
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -374,8 +374,33 @@ function render() {
       	    raycaster.setFromCamera( mouse, camera );
             const intersects = raycaster.intersectObjects( targetList );
 
-            if (mouseEvent ==='mousemove') {  //execute only for mousemove;
-                console.log('mousemove');
+            if (mouseEvent ==='mousedown') {  //execute only for mousedown;
+                if ( intersects.length > 0 ) {
+                      if (INTERSECTEDsibling != intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`) ) {
+                          if ( INTERSECTEDsibling ) {
+                              INTERSECTEDsibling.remove( camera.rectLightLawyer );
+                              INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex );
+                              INTERSECTEDsibling.material.opacity = INTERSECTEDsibling.currentOpacity;
+                          }
+                          lawyers__about.classList.remove("lawyers__about--animate"); //remove the text
+
+                          INTERSECTEDsibling = intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`);
+                          lawyers__about = document.querySelector(`.lawyers__about--${intersects[ 0 ].object.parent.name}`); //save reference to the text DOM element
+
+                          INTERSECTEDsibling.currentHex = INTERSECTEDsibling.material.emissive.getHex();
+                          INTERSECTEDsibling.currentOpacity = INTERSECTEDsibling.material.opacity;
+
+                          INTERSECTEDsibling.add( camera.rectLightLawyer );
+                          INTERSECTEDsibling.material.emissive.setHex( 0xffffff );
+                          INTERSECTEDsibling.material.opacity = 1;
+                          lawyers__about.classList.add("lawyers__about--animate");
+                      }
+                } //else {  //executed only when clicking outside of the screens;
+                //       if ( INTERSECTEDsibling ) { INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex ); }
+                //       INTERSECTEDsibling = null;
+                // }
+                window.addEventListener( 'mousemove', onMouse, false );
+            } else if (mouseEvent ==='mousemove') {  //execute only for mousemove;
                 if ( intersects.length > 0 ) {
                       if (!mixer) {
                           playAnimation(scene.gltfTV.scene, scene.gltfTV.animations, null, intersects[ 0 ].object.parent.name); //parent name(the name of the Blender Empty) is the same as the animation clip name;
@@ -391,30 +416,6 @@ function render() {
                       INTERSECTED = null;
                       mixer = null; //so the animation can be played again;
                 }
-            }
-
-            if (mouseEvent ==='mousedown') {  //execute only for mousedown;
-                if ( intersects.length > 0 ) {
-                      if (INTERSECTEDsibling != intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`) ) {
-                          if ( INTERSECTEDsibling ) {
-                              INTERSECTEDsibling.remove( camera.rectLightLawyer );
-                              INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex );
-                              INTERSECTEDsibling.material.opacity = INTERSECTEDsibling.currentOpacity;
-                          }
-
-                          INTERSECTEDsibling = intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`);
-
-                          INTERSECTEDsibling.currentHex = INTERSECTEDsibling.material.emissive.getHex();
-                          INTERSECTEDsibling.currentOpacity = INTERSECTEDsibling.material.opacity;
-
-                          INTERSECTEDsibling.add( camera.rectLightLawyer );
-                          INTERSECTEDsibling.material.emissive.setHex( 0xffffff );
-                          INTERSECTEDsibling.material.opacity = 1;
-                      }
-                } //else {  //executed only when clicking outside of the screens;
-                //       if ( INTERSECTEDsibling ) { INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex ); }
-                //       INTERSECTEDsibling = null;
-                // }
             }
 
             mouseEvent = null;
@@ -456,6 +457,7 @@ function openMenu() {
     }
     if (link === "#lawyers") {
         camera.remove(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+        document.querySelector('.lawyers').classList.remove("lawyers--animate");
         window.removeEventListener( 'mousemove', onMouse, false );
         window.removeEventListener( 'mousedown', onMouse, false );
     }
@@ -531,11 +533,13 @@ function closeMenu(){
                 .then(() => {
                   turnOnTV('tvEPscreen');
                   scene.video.play();
+                  document.querySelector('.lawyers').classList.add("lawyers--animate");
                   window.addEventListener( 'mousemove', onMouse, false );
                   window.addEventListener( 'mousedown', onMouse, false );
                 })
             } else if (link === '#lawyers') {
                 camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+                document.querySelector('.lawyers').classList.add("lawyers--animate");
                 window.addEventListener( 'mousemove', onMouse, false );
                 window.addEventListener( 'mousedown', onMouse, false );
             }
@@ -559,7 +563,7 @@ document.querySelector('.menu__logo').addEventListener('click', () => {
 });
 //choose which 'scene' to show from menu
 document.querySelectorAll('.menu__link').forEach((anchorLink) => {
-    anchorLink.addEventListener("click", (e) => {
+    anchorLink.addEventListener("mouseup", (e) => { //so it doesnt duplicate the mousedown event listener in #lawyers!
         switch (e.target.hash) {
           case '#home':
             if (link !== '#home') {
@@ -716,9 +720,12 @@ function googleMapInit() {
 }
 
 function onMouse( event ) {
-    mouseEvent = event.type;
-  	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-  	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  mouseEvent = event.type;
+  if (mouseEvent === 'mousedown') {
+      window.removeEventListener( 'mousemove', onMouse, false );
+  }
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
 
 init()
