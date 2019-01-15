@@ -1,0 +1,54 @@
+.magnify {
+    position: fixed;
+    top:0;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 3vh 94vh 3vh;
+    grid-template-columns: 1fr 94vh 1fr;
+
+    &__glass {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        border-radius: 100%;
+        overflow: hidden;
+
+        display: grid;
+        grid-template-columns: 1fr 5rem;
+        justify-items: center;
+        align-items: center;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: all .2s;
+
+        &--animate {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &-remove {
+            grid-column: 2/3;
+            grid-row: 1/2;
+            height: 3rem;
+            width: 3rem;
+            background-color: $color-grey-medium;
+            opacity: 0.5;
+            -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+            clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+            transition: all .2s;
+
+            &:hover {
+                background-color: $color-gold;
+                cursor: url(../img/mallet45.svg), auto;
+            }
+        }
+
+        & > canvas {
+            width: 100%;
+            height: 100%;
+            grid-column: 1/3;
+            grid-row: 1/2;
+        }
+    }
+}

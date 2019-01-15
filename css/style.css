@@ -83,6 +83,61 @@ body {
     font-size: 100%;
     height: 2rem; } }
 
+.instruction {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 27rem 1fr;
+  grid-template-columns: 1fr 32rem 1fr;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .5s; }
+  .instruction--animate {
+    opacity: 1;
+    visibility: visible; }
+  .instruction__container {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: url("../img/paper.jpg") no-repeat;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: 1fr 5rem;
+    justify-items: center;
+    align-items: center; }
+  .instruction__text {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 100%;
+    height: 100%;
+    text-shadow: -1px -1px 0 #cca876, -1px 0 0 #cca876, 1px -1px 0 #cca876, 1px 0 0 #cca876, -1px 1px 0 #cca876, 1px 1px 0 #cca876, 0 -1px 0 #cca876, 0 1px 0 #cca876, 0 1px 0 rgba(0, 0, 0, 0.2);
+    display: grid;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    color: rgba(0, 0, 204, 0.8);
+    padding: 3rem 0 3rem 3rem; }
+  .instruction__remove {
+    background-color: yellow;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    height: 3rem;
+    width: 3rem;
+    background-color: rgba(102, 102, 102, 0.5);
+    -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    transition: all .2s; }
+    .instruction__remove:hover {
+      background-color: rgba(0, 0, 204, 0.5);
+      cursor: url(../img/mallet45.svg), auto; }
+
 .lawyers {
   color: #cca876;
   font-size: 1.3rem;
@@ -186,6 +241,7 @@ body {
   position: fixed;
   top: 0;
   width: 100vw;
+  z-index: 500;
   display: grid;
   grid-template-rows: 7vh 44vh 44vh 7vh;
   grid-template-columns: 1fr minmax(18rem, 57vh) 6vh minmax(18rem, 57vh) 1fr;
@@ -272,6 +328,47 @@ body {
     .location__lawyer-list li {
       text-align: center; }
 
+.magnify {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 3vh 94vh 3vh;
+  grid-template-columns: 1fr 94vh 1fr; }
+  .magnify__glass {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-radius: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 5rem;
+    justify-items: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .2s; }
+    .magnify__glass--animate {
+      opacity: 1;
+      visibility: visible; }
+    .magnify__glass-remove {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      height: 3rem;
+      width: 3rem;
+      background-color: #666;
+      opacity: 0.5;
+      -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      transition: all .2s; }
+      .magnify__glass-remove:hover {
+        background-color: #cca876;
+        cursor: url(../img/mallet45.svg), auto; }
+    .magnify__glass > canvas {
+      width: 100%;
+      height: 100%;
+      grid-column: 1/3;
+      grid-row: 1/2; }
+
 .menu {
   display: grid;
   grid-template-columns: 8rem 8rem;
@@ -290,7 +387,12 @@ body {
     grid-template-columns: 1fr 1fr;
     cursor: url(../img/mallet45.svg), auto;
     padding: .5rem 0;
-    border-radius: 100rem; }
+    border-radius: 100rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /*so the text cant be selected*/ }
     .menu__logo:hover {
       animation: pulsate 2s infinite; }
     .menu__logo img {

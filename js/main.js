@@ -4,22 +4,47 @@ if ( WEBGL.isWebGLAvailable() === false ) { document.body.appendChild( WEBGL.get
 //set the hash to home:
 history.pushState ? history.pushState(null, null, '#home') : location.hash = '#home'
 
-let mixer, link = '#home', INTERSECTED, INTERSECTEDsibling, mouseEvent = null, targetList = [], lawyers__about = document.querySelector('.lawyers__about--us');;
+let mixer,
+    link = '#home',
+    INTERSECTED,
+    INTERSECTEDsibling,
+    mouseEvent = null,
+    targetListLawyers = [],
+    menu__logo = document.querySelector('.menu__logo'),
+    lawyers__about = document.querySelector('.lawyers__about--us'),
+    services__mg = document.querySelector('.magnify__glass'),
+    services__mg_remove = document.querySelector('.magnify__glass-remove'),
+    timeCandle = 0,
+    targetListServices = [];
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
+const WIDTH_MG = HEIGHT_MG = document.querySelector(".magnify__glass").clientHeight;
+
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 40, WIDTH/HEIGHT, 0.1, 100 );
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const camera = new THREE.PerspectiveCamera( 40, WIDTH/HEIGHT, 0.1, 100 ); //camera.setLens(24); camera.setFov(40); camera.setZoom(1);
+const magnifyCamera = new THREE.PerspectiveCamera( 17, WIDTH_MG/HEIGHT_MG, 0.1, 100 );
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const magnifyRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 const loader = new THREE.GLTFLoader();
+
+const clock = new THREE.Clock(); //used by the animation mixer;
+const webGLcontainer = document.getElementById( 'webGLcontainer' );
+const magnifyWebGLcontainer = document.querySelector('.magnify__glass');
 
 const gold = new THREE.TextureLoader().load("./img/gold_roughness.jpg", (map) => {});  //  './' for altervista
 const wood = new THREE.TextureLoader().load("./img/wood_roughness.jpg");
 const book = new THREE.TextureLoader().load("./img/bookCover_roughness.jpg");
+const booksN = new THREE.TextureLoader().load("./img/booksN.png");
+book.wrapS = THREE.MirroredRepeatWrapping;  //horizontal
+book.wrapT = THREE.MirroredRepeatWrapping;  //THREE.RepeatWrapping, THREE.MirroredRepeatWrapping, THREE.ClampToEdgeWrapping
+book.repeat.set( 40, 1 ); //40,1
 
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
+
+const flameMaterials = [];
 
 // const envMap = new THREE.CubeTextureLoader().load([
 //   'img/posx.jpg', 'img/negx.jpg',
@@ -27,11 +52,9 @@ const mouse = new THREE.Vector2();
 //   'img/posz.jpg', 'img/negz.jpg'
 // ]);
 
-const clock = new THREE.Clock(); //used by the animation mixer;
-const webGLcontainer = document.getElementById( 'webGLcontainer' );
-
 function init() {
     return new Promise((resolve,reject) => {
+        //renderer.physicallyCorrectLights = true; renderer.gammaInput = true; renderer.shadowMap.bias = 0.0001; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         renderer.gammaOutput = true;    //required for glTF
         renderer.gammaFactor = 2.2;     //required for glTF; introduces 6 warnings X3571 in the console
@@ -46,15 +69,14 @@ function init() {
         //camera.rotation.set(0, 162*Math.PI/180, 0);
         //camera.rotation.set(0, 234*Math.PI/180, 0);
         //camera.rotation.set(0, 306*Math.PI/180, 0);
-        scene.add( camera ); //needed for the shutters
+        scene.add( camera, magnifyCamera ); //needed for the shutters
 
-        book.wrapS = THREE.MirroredRepeatWrapping;  //horizontal
-        book.wrapT = THREE.MirroredRepeatWrapping;  //THREE.RepeatWrapping, THREE.MirroredRepeatWrapping, THREE.ClampToEdgeWrapping
-        book.repeat.set( 40, 1 ); //40,1
-
-        // controls = new THREE.OrbitControls( camera, renderer.domElement );
-        // controls.target.set( 0, 7, 0 );
-        // controls.enablePan = true;
+        magnifyRenderer.gammaOutput = true;    //required for glTF
+        magnifyRenderer.gammaFactor = 2.2;     //required for glTF; introduces 6 warnings X3571 in the console
+        magnifyRenderer.setPixelRatio( window.devicePixelRatio );
+        magnifyRenderer.setSize( WIDTH, HEIGHT, false );  //same result as magnifyRenderer.setSize( WIDTH_MG, HEIGHT_MG, false );
+        magnifyRenderer.shadowMap.enabled = true;
+        magnifyWebGLcontainer.appendChild( magnifyRenderer.domElement );
 
         //used in the #home scene:
         scene.spotLightHome0 = new THREE.SpotLight( 0xffffff, 30, 70, Math.PI/8, 1, 0); //color, intensity, distance, angle, penumbra, decay; decay:2 required for renderer.physicallyCorwebGLcontainers = true;
@@ -89,12 +111,32 @@ function init() {
 
         //used in the #lawyers scene:
         camera.pointLightLawyer0 = new THREE.PointLight( 0xff3333, 20, 2, 2 );
-        camera.pointLightLawyer0.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.005, 16, 8 ), new THREE.MeshBasicMaterial( { color: 0xff3333 } ) ) );
+        camera.pointLightLawyer0.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.005, 16, 8 ), new THREE.MeshStandardMaterial( { emissive: 0xff3333, emissiveIntensity: 1, color: 0xff3333 } ) ) );
         camera.pointLightLawyer1 = new THREE.PointLight( 0xffff1a, 10, 2, 2 );
-        camera.pointLightLawyer1.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.005, 16, 8 ), new THREE.MeshBasicMaterial( { color: 0xffff1a } ) ) );
+        camera.pointLightLawyer1.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.005, 16, 8 ), new THREE.MeshStandardMaterial( { emissive: 0xffff1a, emissiveIntensity: 1, color: 0xffff1a } ) ) );
         camera.pointLightLawyer2 = new THREE.PointLight( 0x1a8cff, 10, 2, 2 );
-        camera.pointLightLawyer2.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.005, 16, 8 ), new THREE.MeshBasicMaterial( { color: 0x1a8cff } ) ) );
+        camera.pointLightLawyer2.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.005, 16, 8 ), new THREE.MeshStandardMaterial( { emissive: 0x1a8cff, emissiveIntensity: 1, color: 0x1a8cff } ) ) );
         camera.rectLightLawyer = new THREE.RectAreaLight( 0xffffff, 400, 0.44, 0.05 );
+
+        //used in the #services scene:
+        camera.pointLightServices = new THREE.PointLight( 0xff6600, 3, 5.5, 2 );
+        camera.pointLightServices.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.02, 16, 8 ), new THREE.MeshStandardMaterial( { emissive: 0xff6600, emissiveIntensity: 100, color: 0xff6600 } ) ) );
+        camera.pointLightServices.position.set( 0, 3.3, 0 );  //1.14*4 -> 0.25 scale in Blender
+        camera.pointLightServices.castShadow = true;
+        camera.pointLightServices.power = 600;  //375Lumen = 25 Watt bulb
+        camera.pointLightServices.shadow.radius = 2.5;  //blur
+      	camera.pointLightServices.shadow.camera.near = .45;
+      	camera.pointLightServices.shadow.camera.far = 8;
+        camera.pointLightServices.shadow.mapSize.height = 2000;  //makes the shadow finer; makes it appear
+      	camera.pointLightServices.shadow.mapSize.width = 2000;
+
+        scene.rectLightServices = new THREE.RectAreaLight( 0x1ab2ff, 10,  7, 2 );
+        scene.rectLightServices.position.set( 3, 10, 2 );
+        scene.rectLightServices.lookAt(new THREE.Vector3(12,6.5,3.27)); //looking exactly in the middle of the scene
+        var rectLightServicesMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshStandardMaterial( { emissive: 0x66ccff, emissiveIntensity: 100, color: 0x66ccff, side: THREE.FrontSide } ) );
+				rectLightServicesMesh.scale.x = scene.rectLightServices.width;
+				rectLightServicesMesh.scale.y = scene.rectLightServices.height;
+				scene.rectLightServices.add( rectLightServicesMesh );
 
         //used in the menu:
         camera.spotLightShutters = new THREE.SpotLight( 0xffffff, .5, 70, Math.PI/8, 1, 0); //color, intensity, distance, angle, penumbra, decay; decay:2 required for renderer.physicallyCorwebGLcontainers = true;
@@ -113,6 +155,7 @@ function init() {
 
             const shuttersModel = camera.gltfShutters.scene;
             shuttersModel.traverse((child) => { if ( child.isMesh ) meshSetup(child); } );
+
             shuttersModel.name = 'shutters';
             camera.add( shuttersModel );
             shuttersModel.position.set(0, 0, -1.3);
@@ -130,6 +173,21 @@ function init() {
             bookModel.rotateOnAxis( new THREE.Vector3( 1, 0, 0 ), 90*Math.PI/180 );
             scene.add(bookModel);
 
+            return loadGltf(loader, 'services');
+        })
+        .then((gltfServices) => {
+            scene.gltfServices = gltfServices;
+
+            const servicesModel = scene.gltfServices.scene;
+            servicesModel.traverse((child) => { if ( child.isMesh ) meshSetup(child); } );
+
+            servicesModel.getObjectByName('MGContainer').scale.set(0.95, 0.95, 0.95);
+            scene.pages = servicesModel.getObjectByName('pages');
+            scene.glassMG = servicesModel.getObjectByName('glass');
+            scene.add(servicesModel);
+
+            targetListServices = servicesModel.getObjectByName('MGContainer').children;
+
             return loadGltf(loader, 'tv');
         })
         .then((gltfTV) => {
@@ -140,7 +198,6 @@ function init() {
 
             tvModel.traverse((child) => { if ( child.isMesh ) meshSetup(child); } );
 
-            //tvModel.getObjectByName('ep');  //the object containing E.Petrova TV parts; mm, dm, bt
             tvModel.getObjectByName('tvMMscreen').scale.z = tvModel.getObjectByName('tvDMscreen').scale.z =  tvModel.getObjectByName('tvBTscreen').scale.z = tvModel.getObjectByName('tvEPscreen').scale.z = 0.001;  //hides the image completely
 
       			scene.video = document.createElement( 'video' );
@@ -149,12 +206,10 @@ function init() {
             scene.video.muted = 'muted';
             //make E.P. show TV static signal
             tvModel.getObjectByName('tvEPscreen').material.map = new THREE.VideoTexture( scene.video );
-            // console.log('scene.gltfTV.animations',scene.gltfTV.animations);
 
             scene.add(tvModel);
 
-            targetList = [tvModel.getObjectByName('tvMMframe'), tvModel.getObjectByName('tvDMframe'), tvModel.getObjectByName('tvBTframe'), tvModel.getObjectByName('tvEPframe')];
-            // targetListMouseDown = [tvModel.getObjectByName('tvMMlamp'), tvModel.getObjectByName('tvDMlamp'), tvModel.getObjectByName('tvBTlamp'), tvModel.getObjectByName('tvEPlamp')];
+            targetListLawyers = [tvModel.getObjectByName('tvMMframe'), tvModel.getObjectByName('tvDMframe'), tvModel.getObjectByName('tvBTframe'), tvModel.getObjectByName('tvEPframe')];
 
             return loadGltf(loader, 'home');
         })
@@ -242,10 +297,10 @@ function meshSetup (mesh) {
             mesh.castShadow = true;
             mesh.receiveShadow = true;
             //material setup:
-            material.color.setHex(0x0d0d0d);
-            material.metalness = 0.2;
-            material.reflectivity = 0.1;    //default=0.5; no effect when metalness=1;
-            material.roughness = 1;
+            material.color.setHex(0x4d1919);
+            // material.metalness = 0.5;
+            // material.reflectivity = .5;    //default=0.5; no effect when metalness=1;
+            // material.roughness = 0.5;
             material.roughnessMap = wood;
         } else if (/^backdrop/.test(m.name)){
             //mesh setup:
@@ -257,7 +312,7 @@ function meshSetup (mesh) {
             material.roughness = 0.1;
 
             material.bumpMap = book;
-            material.bumpScale = 0.005;//0.005
+            material.bumpScale = 0.005;
         } else if (/^glass/.test(m.name)){
             //mesh setup:
             mesh.castShadow = false;
@@ -267,7 +322,7 @@ function meshSetup (mesh) {
             material.metalness = 1;
             material.reflectivity = 10;
             material.roughness = 1;
-            material.opacity  = 0.2;
+            material.opacity  = .2;
             material.transparent = true;
         } else if (/^book/.test(m.name)){
             //mesh setup:
@@ -318,6 +373,49 @@ function meshSetup (mesh) {
             material.metalness = 0;
             material.roughness = 0;
             material.reflectivity = 50;
+        } else if (/^candle/.test(m.name)){
+            //mesh setup:
+            mesh.castShadow = true; //default=false;
+            mesh.receiveShadow = true; //default=false;
+            //material setup:
+            material.color.setHex(0x804000);
+            material.metalness = 0;
+            material.roughness = .5;
+            material.reflectivity = 1;
+            material.transparent = false;
+            material.opacity = 1;
+        } else if (/^stone/.test(m.name)){
+            //mesh setup:
+            mesh.castShadow = false; //default=false;
+            mesh.receiveShadow = true; //default=false;
+            //material setup:
+            material.color.setHex(0x333333);
+            material.metalness = .7;
+            material.roughness = 0; //1
+            material.reflectivity = 1;  //10
+            material.transparent = true;
+            material.opacity = .2;
+        } else if (/^page/.test(m.name)){ //for pageCriminal, pageAdmin, pageCivil & pageCorporate
+            //mesh setup:
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            //material setup:
+            material.color.setHex(0x262626);
+        } else if (/^textureBooks/.test(m.name)){
+            //mesh setup:
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            //material setup:
+            material.normalMap =  booksN;
+            material.normalMapType = THREE.TangentSpaceNormalMap;
+            material.normalScale = new THREE.Vector2( 5, 5 );
+            material.normalMap.flipY = false; //needed to make the normal map apply UV the right way
+        } else if (/^MGlass/.test(m.name)){
+            //material setup:
+            material.color.setHex(0xffffff);
+            material.reflectivity = 100000;
+            material.opacity  = .9;
+            material.transparent = true;
         }
         mesh.material = material;
 }
@@ -348,14 +446,66 @@ function render() {
     TWEEN.update();
     requestAnimationFrame( render );
 
-    const time = Date.now() * 0.0005;
+    let time = Date.now() * 0.0005;
     const delta = clock.getDelta();
+
     if(mixer) { //makes sure mixer is not updated when no animation is running
         mixer.update( delta );
     }
 
     if (camera.getObjectByName('cameraRectLight')) { camera.rectLight.rotation.z += delta/10; }
-    if (link === '#location' && !camera.getObjectByName('cameraRectLight')) { scene.backdrop.rotateZ(-delta/100); }
+
+    if (link === '#services' && !camera.getObjectByName('shutters')) {
+        timeCandle += delta;
+        flameMaterials[0].uniforms.time.value = timeCandle;
+        camera.pointLightServices.position.x = Math.sin(timeCandle * Math.PI) * 0.04;
+        camera.pointLightServices.position.z = Math.cos(timeCandle * Math.PI * 0.5) * 0.04;
+        camera.pointLightServices.intensity = ( Math.random() * 10 ) + 30;  //from 50 to 60
+
+        if (mouseEvent) { //only execute on mousemove/down;
+      	    raycaster.setFromCamera( mouse, camera );
+            const intersects = raycaster.intersectObjects( targetListServices );
+
+            if (mouseEvent ==='mousedown') {
+                if ( intersects.length > 0 ) {
+                      document.body.style.cursor = 'grabbing';
+                      window.removeEventListener( 'mousemove', onMouse, false );
+                      window.removeEventListener( 'mousedown', onMouse, false );
+                      menu__logo.removeEventListener('click', closeOpenMenu);
+                      playAnimation(scene.gltfServices.scene, scene.gltfServices.animations);
+                      mixer.addEventListener( 'finished', ( e ) => {
+                          if (mixer) {
+                              mixer = null;
+                              services__mg.classList.add("magnify__glass--animate");
+                              changeMGOpacity().then(() => { menu__logo.addEventListener('click', closeOpenMenu); });
+                              services__mg_remove.addEventListener( 'mousedown', removeMG, false );
+                              document.body.style.cursor = 'default';
+                              scene.pages.rotation.y = 0;
+                          }
+                      });
+                }
+            } else if (mouseEvent ==='mousemove') {
+                if ( intersects.length > 0 ) {
+                      if (INTERSECTED != intersects[ 0 ].object.parent ) {
+                        if ( INTERSECTED ) { INTERSECTED.scale.set(INTERSECTED.currentScale.x, INTERSECTED.currentScale.y, INTERSECTED.currentScale.z);  }
+                        INTERSECTED = intersects[ 0 ].object.parent;
+                        INTERSECTED.currentScale = { x:INTERSECTED.scale.x, y:INTERSECTED.scale.y, z:INTERSECTED.scale.z };
+
+                        INTERSECTED.scale.set( INTERSECTED.scale.x + 0.05, INTERSECTED.scale.y + 0.05, INTERSECTED.scale.z + 0.05 );
+                        document.body.style.cursor = 'grab';
+                      }
+                } else {
+                      if ( INTERSECTED ) { INTERSECTED.scale.set(INTERSECTED.currentScale.x, INTERSECTED.currentScale.y, INTERSECTED.currentScale.z); }
+                      INTERSECTED = null;
+                      document.body.style.cursor = 'default';
+                }
+            }
+            mouseEvent = null;
+        }
+
+        !services__mg.classList.contains("magnify__glass--animate") ? (scene.pages.rotation.y -= 0.01) : magnifyRenderer.render( scene, magnifyCamera );
+    }
+
     if (link === '#lawyers' && !camera.getObjectByName('shutters')) {
         camera.pointLightLawyer0.position.x = Math.sin( time * 0.7 ) * .8; //cos() & sin() go from -1 to +1;
         camera.pointLightLawyer0.position.y = Math.cos( time * 0.5 ) * .5;
@@ -372,7 +522,7 @@ function render() {
         if (mouseEvent) { //only execute on mousemove/down;
 
       	    raycaster.setFromCamera( mouse, camera );
-            const intersects = raycaster.intersectObjects( targetList );
+            const intersects = raycaster.intersectObjects( targetListLawyers );
 
             if (mouseEvent ==='mousedown') {  //execute only for mousedown;
                 if ( intersects.length > 0 ) {
@@ -382,7 +532,7 @@ function render() {
                               INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex );
                               INTERSECTEDsibling.material.opacity = INTERSECTEDsibling.currentOpacity;
                           }
-                          lawyers__about.classList.remove("lawyers__about--animate"); //remove the text
+                          lawyers__about.classList.remove("lawyers__about--animate"); //remove the text; this adding & removing of classes makes the animation jumpy!
 
                           INTERSECTEDsibling = intersects[ 0 ].object.parent.getObjectByName(`tv${intersects[ 0 ].object.parent.name}lamp`);
                           lawyers__about = document.querySelector(`.lawyers__about--${intersects[ 0 ].object.parent.name}`); //save reference to the text DOM element
@@ -393,12 +543,9 @@ function render() {
                           INTERSECTEDsibling.add( camera.rectLightLawyer );
                           INTERSECTEDsibling.material.emissive.setHex( 0xffffff );
                           INTERSECTEDsibling.material.opacity = 1;
-                          lawyers__about.classList.add("lawyers__about--animate");
+                          lawyers__about.classList.add("lawyers__about--animate");  //this adding & removing of classes makes the animation jumpy!
                       }
-                } //else {  //executed only when clicking outside of the screens;
-                //       if ( INTERSECTEDsibling ) { INTERSECTEDsibling.material.emissive.setHex( INTERSECTEDsibling.currentHex ); }
-                //       INTERSECTEDsibling = null;
-                // }
+                }
                 window.addEventListener( 'mousemove', onMouse, false );
             } else if (mouseEvent ==='mousemove') {  //execute only for mousemove;
                 if ( intersects.length > 0 ) {
@@ -410,19 +557,21 @@ function render() {
                         INTERSECTED = intersects[ 0 ].object;
                         INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
                         INTERSECTED.material.color.setHex( 0x1a1a1a );
+                        document.body.style.cursor = 'pointer';
                       }
                 } else {
                       if ( INTERSECTED ) { INTERSECTED.material.color.setHex( INTERSECTED.currentHex ); }
                       INTERSECTED = null;
                       mixer = null; //so the animation can be played again;
+                      document.body.style.cursor = 'default';
                 }
             }
-
             mouseEvent = null;
         }
-
     }
-    //controls.update( delta );
+
+    if (link === '#location' && !camera.getObjectByName('cameraRectLight')) { scene.backdrop.rotateZ(-delta/100); }
+
     renderer.render( scene, camera );
 }
 
@@ -446,28 +595,12 @@ function playAnimation(model, clips, loop, clipName){
                         }
         }
 
-
     });
 }
 
-function openMenu() {
-    if (link === '#home') { scene.remove( scene.spotLightHome0, scene.spotLightHome1, scene.spotLightHome2 ); }
-    if (link === '#location') {
-        document.querySelector('.location').classList.remove("location--animate");
-    }
-    if (link === "#lawyers") {
-        camera.remove(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
-        document.querySelector('.lawyers').classList.remove("lawyers--animate");
-        window.removeEventListener( 'mousemove', onMouse, false );
-        window.removeEventListener( 'mousedown', onMouse, false );
-    }
-
-    const shuttersModel = camera.gltfShutters.scene;
-    const shuttersClips = camera.gltfShutters.animations;
-    mixer = new THREE.AnimationMixer( shuttersModel );
-    camera.add( camera.spotLightShutters, camera.spotLightShutters.target, shuttersModel );
-    //play animation:
-    shuttersClips.forEach((clip) => {
+function playAnimationBackwards(model, clips, loop, clipName) {
+    mixer = new THREE.AnimationMixer( model );
+    clips.forEach((clip) => {
         const action = mixer.clipAction( clip );
         if(action.time === 0) {
             action.time = clip.duration;
@@ -477,6 +610,32 @@ function openMenu() {
         action.play();
         action.clampWhenFinished = true;    //prevents animation from finishing on keyframe 0
     });
+}
+
+function openMenu() {
+    menu__logo.removeEventListener('click', closeOpenMenu);
+
+    if (link === '#home') { scene.remove( scene.spotLightHome0, scene.spotLightHome1, scene.spotLightHome2 ); }
+    if (link === "#lawyers") {
+        camera.remove(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+        scene.video.pause();
+        document.querySelector('.lawyers').classList.remove("lawyers--animate");
+        window.removeEventListener( 'mousemove', onMouse, false );
+        window.removeEventListener( 'mousedown', onMouse, false );
+    }
+    if (link === '#services') {
+        scene.gltfServices.scene.getObjectByName('candleHolder').remove(camera.pointLightServices, scene.flame);
+        scene.remove(scene.rectLightServices);
+        window.removeEventListener( 'mousemove', onMouse, false );
+        window.removeEventListener( 'mousedown', onMouse, false );
+    }
+    if (link === '#location') {
+        document.querySelector('.location').classList.remove("location--animate");
+    }
+
+    camera.add( camera.spotLightShutters, camera.spotLightShutters.target, camera.gltfShutters.scene );
+
+    playAnimationBackwards(camera.gltfShutters.scene, camera.gltfShutters.animations);
     //when animation finishes:
     mixer.addEventListener( 'finished', ( e ) => {
         if (mixer) {
@@ -486,15 +645,17 @@ function openMenu() {
             document.querySelectorAll('.menu__item').forEach((item) => {
                item.classList.add("menu__item--animate");
             });
+            menu__logo.addEventListener('click', closeOpenMenu);
         }
     });
 }
 
-function closeMenu(){
+function closeMenu() {
     //close the menu:
     document.querySelectorAll('.menu__item').forEach((item) => {
         item.classList.remove("menu__item--animate");
     });
+    menu__logo.removeEventListener('click', closeOpenMenu);
 
     camera.remove( camera.rectLight );
 
@@ -506,7 +667,46 @@ function closeMenu(){
         if (mixer) {
             mixer = null;
             camera.remove( camera.spotLightShutters, camera.spotLightShutters.target, shuttersModel );
+            menu__logo.addEventListener('click', closeOpenMenu);
+
             if (link === '#home') { scene.add( scene.spotLightHome0, scene.spotLightHome1, scene.spotLightHome2 ); }
+
+            if (link === '#lawyers' && scene.gltfTV.scene.getObjectByName('tvMMscreen').scale.z === 0.001) {
+                camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+                turnOnTV('tvMMscreen')
+                .then(() => { return turnOnTV('tvDMscreen'); })
+                .then(() => { return turnOnTV('tvBTscreen'); })
+                .then(() => {
+                    turnOnTV('tvEPscreen');
+                    if(!camera.getObjectByName('shutters')) { //make sure next lines are executed only if Menu hasnt been clicked meanwhile
+                        scene.video.play();
+                        document.querySelector('.lawyers').classList.add("lawyers--animate");
+                        window.addEventListener( 'mousemove', onMouse, false );
+                        window.addEventListener( 'mousedown', onMouse, false );
+                    }
+                })
+            } else if (link === '#lawyers') {
+                camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+                scene.video.play();
+                document.querySelector('.lawyers').classList.add("lawyers--animate");
+                window.addEventListener( 'mousemove', onMouse, false );
+                window.addEventListener( 'mousedown', onMouse, false );
+            }
+
+            if (link === '#services') {
+                if (!scene.flame) {
+                    createFlame();
+                }
+                scene.add(scene.rectLightServices);
+                scene.gltfServices.scene.getObjectByName('candleHolder').add(camera.pointLightServices, scene.flame);
+                document.querySelector('.instruction').classList.add("instruction--animate");
+                document.querySelector('.instruction__remove').addEventListener( 'mousedown', () => {
+                    document.querySelector('.instruction').classList.remove("instruction--animate");
+                    window.addEventListener( 'mousemove', onMouse, false );
+                    window.addEventListener( 'mousedown', onMouse, false );
+                }, false );
+            }
+
             //play the animation only the first time location is loaded:
             if (link === '#location' && !document.getElementById('googleMap')) {    //when location is chosen and the script to load google maps is not yet created
                 playAnimation(scene.gltfBook.scene, scene.gltfBook.animations);
@@ -525,24 +725,6 @@ function closeMenu(){
             } else if (link === '#location' && document.getElementById('googleMap') && document.querySelector('.location__map').firstChild) { //when location is chosen and the script to load google maps is created and the map was created
                 document.querySelector('.location').classList.add("location--animate");
             }
-            if (link === '#lawyers' && scene.gltfTV.scene.getObjectByName('tvMMscreen').scale.z === 0.001) {
-                camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
-                turnOnTV('tvMMscreen')
-                .then(() => { return turnOnTV('tvDMscreen'); })
-                .then(() => { return turnOnTV('tvBTscreen'); })
-                .then(() => {
-                  turnOnTV('tvEPscreen');
-                  scene.video.play();
-                  document.querySelector('.lawyers').classList.add("lawyers--animate");
-                  window.addEventListener( 'mousemove', onMouse, false );
-                  window.addEventListener( 'mousedown', onMouse, false );
-                })
-            } else if (link === '#lawyers') {
-                camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
-                document.querySelector('.lawyers').classList.add("lawyers--animate");
-                window.addEventListener( 'mousemove', onMouse, false );
-                window.addEventListener( 'mousedown', onMouse, false );
-            }
         }
     });
 }
@@ -558,79 +740,142 @@ function turnOnTV (which) {
     });
 }
 
-document.querySelector('.menu__logo').addEventListener('click', () => {
+function changeMGOpacity () {
+    return new Promise((resolve,reject) => {
+        (function change () {
+            scene.glassMG.material.opacity = Math.round( (scene.glassMG.material.opacity - 0.1) * 1000) / 1000;
+            if( scene.glassMG.material.opacity > 0 ) {
+                setTimeout( change, 22 );
+            } else { resolve(); }
+        })();
+    });
+}
+function changeBackMGOpacity () {
+    return new Promise((resolve,reject) => {
+        (function changeBack () {
+            scene.glassMG.material.opacity = Math.round( (scene.glassMG.material.opacity + 0.1) * 1000) / 1000;
+            if ( scene.glassMG.material.opacity < 0.9 ) {
+                setTimeout( changeBack, 22 );
+            } else { resolve(); }
+        })();
+    });
+}
+
+menu__logo.addEventListener('click', closeOpenMenu);
+function closeOpenMenu () {
+    if (services__mg.classList.contains("magnify__glass--animate")) {
+        removeMG(null, 'open menu');
+        return false;
+    }
+
     (camera.getObjectByName('shutters') && !mixer) ? (closeMenu(link)) : !mixer ? (openMenu(link)) : null;
-});
+}
+
 //choose which 'scene' to show from menu
 document.querySelectorAll('.menu__link').forEach((anchorLink) => {
     anchorLink.addEventListener("mouseup", (e) => { //so it doesnt duplicate the mousedown event listener in #lawyers!
         switch (e.target.hash) {
           case '#home':
-            if (link !== '#home') {
-                link = '#home';
-                camera.rotation.set(0, 90*Math.PI/180, 0);
-                scene.backdrop.position.set(-29.72, 6.17, 0);
-                scene.backdrop.rotation.set( 0.03490658503988659,0,0 );
-                scene.backdrop.material.roughness = 0.1;
-                scene.backdrop.material.bumpScale = 0.005;
-                // scene.backdrop.rotateOnAxis( new THREE.Vector3( 1, 0, 0 ), 2*Math.PI/180 ); //makes the texture vertical
-                book.repeat.set( 40, 1 );
-                camera.pointLight.color.setHex(0x000d1a);
-                camera.pointLight.position.set( -30, 0, -9 );
-                camera.pointLight.intensity = 5;
-            }
-            closeMenu(link);
-            break;
+              if (link !== '#home') {
+                  link = '#home';
+                  camera.rotation.set(0, 90*Math.PI/180, 0);
+                  scene.backdrop.position.set(-29.72, 6.17, 0);
+                  scene.backdrop.rotation.set( 0.03490658503988659,0,0 );
+                  scene.backdrop.material.roughness = 0.1;
+                  scene.backdrop.material.metalness = 1;
+                  scene.backdrop.material.bumpScale = 0.005;
+                  // scene.backdrop.rotateOnAxis( new THREE.Vector3( 1, 0, 0 ), 2*Math.PI/180 ); //makes the texture vertical
+                  book.repeat.set( 40, 1 );
+                  camera.pointLight.color.setHex(0x000d1a);
+                  camera.pointLight.position.set( -30, 0, -9 );
+                  camera.pointLight.intensity = 5;
+              }
+              closeMenu(link);
+              break;
           case '#lawyers':
-            if (link !== '#lawyers') {
-                link = '#lawyers';
-                camera.rotation.set(0, 162*Math.PI/180, 0);
-                scene.backdrop.position.set(-4, 6.17, 35.4);
-                scene.backdrop.rotation.set( 0.11252859437824148, 1.2566370614359175, 0 );
-                scene.backdrop.material.roughness = 0.2;
-                scene.backdrop.material.bumpScale = 0.005;
-                book.repeat.set( 1, 40 );
-                camera.pointLight.color.setHex(0x000d1a);
-                camera.pointLight.position.set( 0, 0, 7 );
-                camera.pointLight.intensity = 5;
-            }
-            closeMenu(link);
-            break;
+              if (link !== '#lawyers') {
+                  link = '#lawyers';
+                  camera.rotation.set(0, 162*Math.PI/180, 0);
+                  scene.backdrop.position.set(-4, 6.17, 35.4);
+                  scene.backdrop.rotation.set( 0.11252859437824148, 1.2566370614359175, 0 );
+                  scene.backdrop.material.roughness = 0.2;
+                  scene.backdrop.material.metalness = 1;
+                  scene.backdrop.material.bumpScale = 0.005;
+                  book.repeat.set( 1, 40 );
+                  camera.pointLight.color.setHex(0x000d1a);
+                  camera.pointLight.position.set( 0, 0, 7 );
+                  camera.pointLight.intensity = 5;
+              }
+              closeMenu(link);
+              break;
           case '#services':
-            if (link !== '#services') {
-              link = '#services';
-            }
-            console.log('services');
-            break;
+              if (link !== '#services') {
+                  link = '#services';
+                  camera.rotation.set(0, 234*Math.PI/180, 0);
+                  scene.backdrop.position.set(37.61, 6.17 , 21.88);
+                  scene.backdrop.rotation.set( 0.03490658503988659, 0.6283185307179586, -3.141592653589793 ); // scene.backdrop.rotateOnAxis( new THREE.Vector3( 0, 1, 0 ), 144*Math.PI/180 );
+                  scene.backdrop.material.roughness = 0.1;
+                  scene.backdrop.material.metalness = 0.9;
+                  scene.backdrop.material.bumpScale = 0.005;
+                  book.repeat.set( 100, 100 );
+                  camera.pointLight.color.setHex(0x000d1a);
+                  camera.pointLight.position.set( -20, 0, -7 );
+                  camera.pointLight.intensity = 5;
+                  camera.lookAt(new THREE.Vector3(12,7.33,3.27)); //7.33 to have the page in the middle of the magnifying glass
+
+                  magnifyCamera.position.copy(camera.position);
+                  magnifyCamera.rotation.copy(camera.rotation);
+              }
+              closeMenu(link);
+              break;
           case '#news':
-            if (link !== '#news') {
-              link = '#news';
-            }
-            console.log('news');
-            break;
+              if (link !== '#news') {
+                link = '#news';
+              }
+              console.log('news');
+              break;
           case '#location':
-            if (link !== '#location') {
-                link = '#location';
-                camera.rotation.set(0, 18*Math.PI/180, 0);
-                scene.backdrop.position.set(-4, 6.17, -35.4);
-                scene.backdrop.rotation.set(0.11252859437824148, -1.2566370614359175, 0); //scene.backdrop.rotateOnAxis( new THREE.Vector3( 0, 1, 0 ), -72*Math.PI/180 );
-                scene.backdrop.material.roughness = 0;
-                scene.backdrop.material.bumpScale = 0.1;
-                book.repeat.set( 40, 1 );
-                camera.pointLight.color.setHex(0xffffff);
-                camera.pointLight.position.set( 1.4, 0, 0.2 );
-                camera.pointLight.intensity = 20;
-            }
-            closeMenu(link);
-            break;
-          default:
-            console.log('default');
+              if (link !== '#location') {
+                  link = '#location';
+                  camera.rotation.set(0, 18*Math.PI/180, 0);
+                  scene.backdrop.position.set(-4, 6.17, -35.4);
+                  scene.backdrop.rotation.set(0.11252859437824148, -1.2566370614359175, 0); //scene.backdrop.rotateOnAxis( new THREE.Vector3( 0, 1, 0 ), -72*Math.PI/180 );
+                  scene.backdrop.material.roughness = 0;
+                  scene.backdrop.material.metalness = 1;
+                  scene.backdrop.material.bumpScale = 0.1;
+                  book.repeat.set( 40, 1 );
+                  camera.pointLight.color.setHex(0xffffff);
+                  camera.pointLight.position.set( 1.4, 0, 0.2 );
+                  camera.pointLight.intensity = 20;
+              }
+              closeMenu(link);
+              break;
         }
     });
 });
 //close menu on ESC press:
 window.addEventListener( 'keydown', (e) => {
     if( camera.getObjectByName('shutters') && !mixer && e.keyCode === 27 ) { closeMenu(link); }
+    if(link === '#services') {
+        switch (e.keyCode) {
+            case 37: //left arrow
+                e.preventDefault();
+                scene.pages.rotation.y += 15*Math.PI/180;
+                break;
+            case 38: //up arrow
+                e.preventDefault();
+                // scene.pages.translateZ( -0.05 );
+                break;
+            case 39: //right arrow
+                e.preventDefault();
+                scene.pages.rotation.y -= 15*Math.PI/180;
+                break;
+            case 40: //down arrow
+                e.preventDefault();
+                // scene.pages.translateZ( +0.05 );
+                break;
+        }
+    }
 }, false );
 
 window.addEventListener( 'resize', onWindowResize, false );
@@ -638,7 +883,6 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;  //doesn't work with WIDTH/HEIGHT !
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight ); //doesn't work with WIDTH/HEIGHT !
-    //controls.handleResize();
 }
 
 function addGoogleMapScript( src, callback) {
@@ -720,12 +964,122 @@ function googleMapInit() {
 }
 
 function onMouse( event ) {
-  mouseEvent = event.type;
-  if (mouseEvent === 'mousedown') {
-      window.removeEventListener( 'mousemove', onMouse, false );
-  }
-  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    mouseEvent = event.type;
+    if (mouseEvent === 'mousedown' && link === '#lawyers') {
+        window.removeEventListener( 'mousemove', onMouse, false );
+    }
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+}
+
+function removeMG (e, openMenu) {
+    services__mg_remove.removeEventListener( 'mousedown', removeMG, false );
+    changeBackMGOpacity().then(() => { services__mg.classList.remove("magnify__glass--animate"); })
+    playAnimationBackwards(scene.gltfServices.scene, scene.gltfServices.animations);
+    mixer.addEventListener( 'finished', ( e ) => {
+        if (mixer) {
+            mixer = null;
+            window.addEventListener( 'mousedown', onMouse, false );
+            window.addEventListener( 'mousemove', onMouse, false );
+            if(openMenu) { closeOpenMenu(); } //when menu is clicked but the magnifying glass is still used
+        }
+    });
+}
+
+function createFlame() {
+    const flameGeo = new THREE.SphereBufferGeometry(0.5, 8, 8);  //size of flame and smoothness
+    flameGeo.translate(0, .5, 0);  //changes the tip of the flame
+    const flameMat = getFlameMaterial();
+    flameMaterials.push(flameMat);
+    scene.flame = new THREE.Mesh(flameGeo, flameMat); //need to add the flame to the required mesh to which we want to attach the flame
+    scene.flame.position.set(0, 3.1, 0);
+    scene.flame.rotation.y = THREE.Math.degToRad(-45);
+    scene.flame.scale.set(0.2, 0.2, 0.2);
+    return this; //so we can chain the calls
+}
+
+function getFlameMaterial() {
+    const side =  THREE.FrontSide;
+    return new THREE.ShaderMaterial({
+        uniforms: {
+          time: {value: 0}
+        },
+        vertexShader: `
+          uniform float time;
+          varying vec2 vUv;
+          varying float hValue;
+
+          //https://thebookofshaders.com/11/
+          // 2D Random
+          float random (in vec2 st) {
+              return fract(sin(dot(st.xy,
+                                   vec2(12.9898,78.233)))
+                           * 43758.5453123);
+          }
+
+          // 2D Noise based on Morgan McGuire @morgan3d
+          // https://www.shadertoy.com/view/4dS3Wd
+          float noise (in vec2 st) {
+              vec2 i = floor(st);
+              vec2 f = fract(st);
+
+              // Four corners in 2D of a tile
+              float a = random(i);
+              float b = random(i + vec2(1.0, 0.0));
+              float c = random(i + vec2(0.0, 1.0));
+              float d = random(i + vec2(1.0, 1.0));
+
+              // Smooth Interpolation
+
+              // Cubic Hermine Curve.  Same as SmoothStep()
+              vec2 u = f*f*(3.0-2.0*f);
+              // u = smoothstep(0.,1.,f);
+
+              // Mix 4 coorners percentages
+              return mix(a, b, u.x) +
+                      (c - a)* u.y * (1.0 - u.x) +
+                      (d - b) * u.x * u.y;
+          }
+
+          void main() {
+              vUv = uv;
+              vec3 pos = position;
+
+              pos *= vec3(0.8, 2, 0.725);
+              hValue = position.y;
+              //float sinT = sin(time * 2.) * 0.5 + 0.5;
+              float posXZlen = length(position.xz);
+
+              pos.y *= 1. + (cos((posXZlen + 0.25) * 3.1415926) * 0.25 + noise(vec2(0, time)) * 0.125 + noise(vec2(position.x + time, position.z + time)) * 0.5) * position.y; // flame height
+
+              pos.x += noise(vec2(time * 2., (position.y - time) * 4.0)) * hValue * 0.0312; // flame trembling
+              pos.z += noise(vec2((position.y - time) * 4.0, time * 2.)) * hValue * 0.0312; // flame trembling
+
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.0);
+          }
+        `,
+        fragmentShader: `
+          varying float hValue;
+          varying vec2 vUv;
+
+          // honestly stolen from https://www.shadertoy.com/view/4dsSzr
+          vec3 heatmapGradient(float t) {
+            return clamp((pow(t, 1.5) * 0.8 + 0.2) * vec3(smoothstep(0.0, 0.35, t) + t * 0.5, smoothstep(0.5, 1.0, t), max(1.0 - t * 1.7, t * 7.0 - 6.0)), 0.0, 1.0);
+          }
+
+          void main() {
+            float v = abs(smoothstep(0.0, 0.4, hValue) - 1.);
+            float alpha = (1. - v) * 0.99; // bottom transparency
+            alpha -= 1. - smoothstep(1.0, 0.97, hValue); // tip transparency
+            gl_FragColor = vec4(heatmapGradient(smoothstep(0.0, 0.3, hValue)) * vec3(0.95,0.95,0.4), alpha) ;
+            gl_FragColor.rgb = mix(vec3(0,0,1), gl_FragColor.rgb, smoothstep(0.0, 0.3, hValue)); // blueish for bottom
+            gl_FragColor.rgb += vec3(1, 0.9, 0.5) * (1.25 - vUv.y); // make the midst brighter
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(0.66, 0.32, 0.03), smoothstep(0.95, 1., hValue)); // tip
+          }
+        `,
+        transparent: true,
+        side: side
+    });
 }
 
 init()

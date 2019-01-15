@@ -21,6 +21,10 @@
         cursor: url(../img/mallet45.svg), auto;
         padding: .5rem 0;
         border-radius: 100rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; /*so the text cant be selected*/
 
         &:hover {
             animation: pulsate 2s infinite;
