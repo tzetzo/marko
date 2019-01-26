@@ -13,7 +13,7 @@
     background-image: radial-gradient(circle at center, rgba($color-black,1) 0rem, rgba($color-black,1) 15rem, rgba($color-dark,1) 35rem, rgba($color-black,1) 75rem, rgba($color-black,1) 100rem);
     background-position: 50% 50%;
     //clip-path: polygon(6rem 0, 100% 0, 100% 100%, 0 100%, 0 6rem, 6rem 6rem);
-    z-index: 100;
+    z-index: 10000;
 
     &__text {
         grid-area: 2/2/3/3;
@@ -21,7 +21,7 @@
         grid-template-columns: repeat(7, min-content);
         align-items: center;
 
-        z-index:101;
+        z-index:10001;
     }
 
     &__letter {

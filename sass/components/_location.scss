@@ -2,7 +2,7 @@
     position: fixed;
     top:0;
     width: 100vw;
-    z-index: 500;
+    z-index: 100;
 
     display: grid;
     grid-template-rows: 7vh 44vh 44vh 7vh;
@@ -17,7 +17,7 @@
 
     &--animate {
         opacity: 1;
-        visibility: visible;
+        visibility: visible !important; //!important necessary - see index.html style tag
     }
 
     &__map {

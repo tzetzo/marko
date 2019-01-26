@@ -2,10 +2,20 @@
     position: fixed;
     top:0;
     width: 100%;
+    z-index: 10;
 
     display: grid;
     grid-template-rows: 3vh 94vh 3vh;
     grid-template-columns: 1fr 94vh 1fr;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all .2s;
+
+    &--animate {
+        opacity: 1;
+        visibility: visible !important;  //!important necessary - see index.html style tag
+    }
 
     &__glass {
         grid-column: 2/3;
@@ -17,15 +27,6 @@
         grid-template-columns: 1fr 5rem;
         justify-items: center;
         align-items: center;
-
-        opacity: 0;
-        visibility: hidden;
-        transition: all .2s;
-
-        &--animate {
-            opacity: 1;
-            visibility: visible;
-        }
 
         &-remove {
             grid-column: 2/3;

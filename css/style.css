@@ -39,12 +39,14 @@ body {
   box-sizing: border-box;
   /* make use of inheritance - 2 steps see * above! */
   background-color: #000000;
-  overflow: hidden; }
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 @font-face {
   body {
     font-family: 'Palatino Linotype';
-    src: url("PalatinoLinotype.woff") format("woff"), url("PalatinoLinotype.ttf") format("truetype"), url("PalatinoLinotype.svg#svgFontName") format("svg");
+    src: url("PalatinoLinotype.woff") format("woff"), url("PalatinoLinotype.ttf") format("truetype"), url("PalatinoLinotype.svg#PalatinoLinotype") format("svg");
     /* Legacy iOS */ } }
 
 ::selection {
@@ -97,10 +99,10 @@ body {
   -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   visibility: hidden;
-  transition: all .5s; }
+  transition: all .2s; }
   .instruction--animate {
     opacity: 1;
-    visibility: visible; }
+    visibility: visible !important; }
   .instruction__container {
     grid-column: 2/3;
     grid-row: 2/3;
@@ -189,13 +191,13 @@ body {
   height: 100vh;
   background-image: radial-gradient(circle at center, black 0rem, black 15rem, #1a0d00 35rem, black 75rem, black 100rem);
   background-position: 50% 50%;
-  z-index: 100; }
+  z-index: 10000; }
   .loading__text {
     grid-area: 2/2/3/3;
     display: grid;
     grid-template-columns: repeat(7, min-content);
     align-items: center;
-    z-index: 101; }
+    z-index: 10001; }
   .loading__letter {
     display: inline-block;
     cursor: url(../img/mallet45.svg), auto;
@@ -241,7 +243,7 @@ body {
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 500;
+  z-index: 100;
   display: grid;
   grid-template-rows: 7vh 44vh 44vh 7vh;
   grid-template-columns: 1fr minmax(18rem, 57vh) 6vh minmax(18rem, 57vh) 1fr;
@@ -253,7 +255,7 @@ body {
   transition: all 2s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
   .location--animate {
     opacity: 1;
-    visibility: visible; }
+    visibility: visible !important; }
   .location__map {
     grid-column: 2/3;
     grid-row: 2/4;
@@ -332,9 +334,16 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 10;
   display: grid;
   grid-template-rows: 3vh 94vh 3vh;
-  grid-template-columns: 1fr 94vh 1fr; }
+  grid-template-columns: 1fr 94vh 1fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s; }
+  .magnify--animate {
+    opacity: 1;
+    visibility: visible !important; }
   .magnify__glass {
     grid-column: 2/3;
     grid-row: 2/3;
@@ -343,13 +352,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 5rem;
     justify-items: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .2s; }
-    .magnify__glass--animate {
-      opacity: 1;
-      visibility: visible; }
+    align-items: center; }
     .magnify__glass-remove {
       grid-column: 2/3;
       grid-row: 1/2;
@@ -445,3 +448,52 @@ body {
     outline: none; }
   .menu__link:hover {
     animation: pulsate 2s infinite; }
+
+.news {
+  position: fixed;
+  top: 0;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s;
+  z-index: 10; }
+  .news--animate {
+    opacity: 1;
+    visibility: visible; }
+  .news__element {
+    width: 34rem;
+    height: 34rem;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+    justify-items: center;
+    grid-row-gap: 1rem;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 255, 255, 0.5);
+    border: 0.1rem solid rgba(127, 255, 255, 0.25);
+    transition: all .4s; }
+    .news__element:hover {
+      box-shadow: 0rem 0rem 2rem rgba(0, 255, 255, 0.75);
+      border: 0.1rem solid rgba(127, 255, 255, 0.75);
+      background: linear-gradient(to right, #000000 0%, #000000 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px); }
+    .news__element:hover > .news__element-text {
+      filter: blur(0); }
+    .news__element-heading {
+      letter-spacing: .1rem; }
+    .news__element-image {
+      width: 35%;
+      border-radius: 100%; }
+    .news__element-text {
+      text-indent: 2rem;
+      text-align: justify;
+      padding-bottom: 1rem;
+      filter: blur(0.3rem); }
+      .news__element-text > p:first-letter {
+        text-transform: capitalize;
+        font-size: 140%; }
+
+#webGLcontainer {
+  background: linear-gradient(to bottom, #1e4877 0%, #4584b4 50%, #1e4877 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }

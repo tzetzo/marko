@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Palatino+Linotype:400,700"> -->
-  <!-- <link rel="stylesheet" href="css/reset.min.css"> -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="image/png" href="img/ico.png">
 
   <title>Markovski Lawyers LLP</title>
+	<style>
+		/**
+		* You coud do this in a regular stylesheet, but be aware tha the browser hidden DOM elements may be visible
+		* briefly until styles kick in. Wrapping these rules in a style tag here ensures that never happens.
+		**/
+    .instruction, .lawyers, .location, .magnify, .menu { visibility:hidden }
+	</style>
 </head>
 
 <body class="container">
@@ -29,16 +34,6 @@
     </nav>
   </div>
 
-  <div class="instruction">
-      <div class="instruction__container">
-        <p class="instruction__text">
-            <span>Grab the Magnifying glass to read about our services.</span>
-            <span>Use &larr; and &rarr; on keyboard to go to next service description.</span>
-        </p>
-        <span class="instruction__remove"></span>
-      </div>
-  </div>
-
   <div class="loading">
     	<div class="loading__text">
       		<span class="loading__letter">L</span>
@@ -53,6 +48,8 @@
   </div>
 
   <div id="webGLcontainer"></div>
+
+  <div class="news"></div>
 
   <section class="location">
       <div class="location__map"></div>
@@ -235,7 +232,26 @@
       </div>
   </section>
 
+  <div class="instruction instruction-services">
+      <div class="instruction__container">
+        <p class="instruction__text">
+            <span>Grab the Magnifying glass to read about our services.</span>
+            <span>Use &larr; and &rarr; on keyboard to go to next service description.</span>
+        </p>
+        <span class="instruction__remove"></span>
+      </div>
+  </div>
   <div class="magnify"><div class="magnify__glass"><span class="magnify__glass-remove"></span></div></div>
+
+  <div class="instruction instruction-news">
+      <div class="instruction__container">
+        <p class="instruction__text">
+            <span>Use the scroll wheel to zoom in/out.</span>
+            <span>Use &larr; &rarr; &uarr; &darr; on keyboard to move left, right, up and down.</span>
+        </p>
+        <span class="instruction__remove"></span>
+      </div>
+  </div>
 
   <script src="./js/three.min.js"></script>
   <script src="./js/WebGL.js"></script>
@@ -243,6 +259,35 @@
   <script src="./js/Reflector.js"></script>
   <script src="./js/tween.min.js"></script>
   <script src="./js/RectAreaLightUniformsLib.js"></script>
+  <script src="./js/CSS3DRenderer.js"></script>
+  <!-- used by the clouds in NEWS scene-->
+  <script id="vs" type="x-shader/x-vertex">
+      varying vec2 vUv;
+
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+      }
+  </script>
+  <!-- used by the clouds in NEWS scene-->
+  <script id="fs" type="x-shader/x-fragment">
+      uniform sampler2D map;
+
+      uniform vec3 fogColor;
+      uniform float fogNear;
+      uniform float fogFar;
+
+      varying vec2 vUv;
+
+      void main() {
+        float depth = gl_FragCoord.z / gl_FragCoord.w;
+        float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+        gl_FragColor = texture2D( map, vUv );
+        gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+        gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+      }
+  </script>
   <script src="./js/main.js"></script>   <!-- ?<?php echo time(); ?> -->
 </body>
 </html>

@@ -36,7 +36,7 @@ body {
       font-family: 'Palatino Linotype';
       src: url('PalatinoLinotype.woff') format('woff'), /* Modern Browsers */
            url('PalatinoLinotype.ttf')  format('truetype'), /* Safari, Android, iOS */
-           url('PalatinoLinotype.svg#svgFontName') format('svg'); /* Legacy iOS */
+           url('PalatinoLinotype.svg#PalatinoLinotype') format('svg'); /* Legacy iOS */
     }
     font-family: 'Palatino Linotype', serif;
     box-sizing: border-box; /* make use of inheritance - 2 steps see * above! */
@@ -45,6 +45,8 @@ body {
     //font-weight: 400;
     //line-height: 1.7;
     //color: $color-grey-medium;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 //changes the style of selected text:
