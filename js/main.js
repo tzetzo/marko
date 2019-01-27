@@ -73,7 +73,6 @@ THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal
   	if (itemsLoaded === 43) {
       //remove the loading screen:
       document.body.removeChild(document.querySelector('.loading'));
-      playAnimation(camera.gltfShutters.scene, camera.gltfShutters.animations);
   	}
 };
 
@@ -276,7 +275,7 @@ function init() {
             //remove the loading screen:
             // document.body.removeChild(document.querySelector('.loading'));
 
-            // playAnimation(camera.gltfShutters.scene, camera.gltfShutters.animations);
+            playAnimation(camera.gltfShutters.scene, camera.gltfShutters.animations);
 
             mixer.addEventListener( 'finished', (e) => {
                 if(camera.getObjectByName('shutters')) {
