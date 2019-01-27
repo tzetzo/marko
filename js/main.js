@@ -69,7 +69,7 @@ const news_objects_container = new THREE.Object3D();
 const percentage = document.querySelector('.loading__percent > span');
 THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
     // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-  	percentage.innerText = Math.floor(itemsLoaded*100/43) + ' %'; //make sure 43 is the number of items equal to the biggest itemsTotal number by using above console.log()
+  	percentage.innerText = `${Math.floor(itemsLoaded*100/43)}%`; //make sure 43 is the number of items equal to the biggest itemsTotal number by using above console.log()
   	if (itemsLoaded === 43) {
       //remove the loading screen:
       document.body.removeChild(document.querySelector('.loading'));
@@ -831,7 +831,7 @@ function closeMenu() {
                 document.querySelectorAll('.news__element').forEach((element) => {
                     element.addEventListener("wheel", preventNewsScrolling);
                     //different color for each news element each time the #news is opened:
-                    element.style.backgroundColor = 'rgba(' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + ( Math.random() * 0.4 + 0.2 ) + ')';  //from 0.25 to 0.75 opacity; generate number b/n 0 & 255 for each value of the color
+                    element.style.backgroundColor = `rgba(${Math.floor(Math.random() * 200)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.random() * 0.4 + 0.2})`;  //from 0.25 to 0.75 opacity; generate number b/n 0 & 255 for each value of the color
                 });
                 document.addEventListener( 'mousemove', newsMouseMove, false );
                 //different color for the plane each time the #news is opened:
@@ -1315,8 +1315,6 @@ function newsLoad() {
             news.forEach((newsSingle, index) => {
                 const element = document.createElement( 'div' );
                 element.className = 'news__element';
-                // element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';  //from 0.25 to 0.75 opacity
-                element.style.backgroundColor = 'rgba(' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + ( Math.random() * 0.4 + 0.2 ) + ')';  //from 0.25 to 0.75 opacity; generate number b/n 0 & 255 for each value of the color
                 element.style.zIndex = 10 - index; //necessary for Chrome; otherwise produces artifacts;
 
                 const heading = document.createElement( 'h2' );
