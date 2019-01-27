@@ -280,8 +280,8 @@ function init() {
                             animateLights();
                             //show the logo for the menu access:
                             document.querySelector('.menu').style.visibility = 'visible';
-                            document.querySelector('.volume').style.visibility = 'visible';
                             scene.music.play().fadeIn(30000, function(){ scene.music.fadeOut(30000); });
+                            document.querySelector('.volume').style.visibility = 'visible';
                         }
                     });
                 }
@@ -903,18 +903,6 @@ function closeOpenMenu () {
 
     (camera.getObjectByName('shutters') && !mixer) ? (closeMenu(link)) : !mixer ? (openMenu(link)) : null;
 }
-menu__volume.addEventListener('click', muteUnmute);
-function muteUnmute () {
-    if (!scene.music.isMuted() || !scene.musicMenu.isMuted()){
-        scene.music.mute();
-        scene.musicMenu.mute();
-        document.querySelector('.volume-icon').setAttribute('href', "./img/sprite.svg#volume-x");
-    } else {
-        scene.musicMenu.unmute();
-        scene.music.unmute();
-        document.querySelector('.volume-icon').setAttribute('href', "./img/sprite.svg#volume");
-    }
-}
 
 //choose which 'scene' to show from menu
 document.querySelectorAll('.menu__link').forEach((anchorLink) => {
@@ -1435,19 +1423,31 @@ function getRandomColor() {
 
 function musicLoad(){ //http://buzz.jaysalvat.com/documentation/sound/
   	scene.music = new buzz.sound("./audio/music", {
-    		formats: [ "mp3", "ogg" ],
+    		formats: [ "ogg", "mp3" ],
     		preload: true,
     		autoplay: false,
     		loop: false,
     		volume: 100
     });
     scene.musicMenu = new buzz.sound("./audio/musicMenu", {
-    		formats: [ "mp3", "ogg" ],
+    		formats: [ "ogg", "mp3" ],
     		preload: true,
     		autoplay: false,
     		loop: true,
     		volume: 100
     });
+}
+menu__volume.addEventListener('click', muteUnmute);
+function muteUnmute () {
+    if (!scene.music.isMuted() || !scene.musicMenu.isMuted()){
+        scene.music.mute();
+        scene.musicMenu.mute();
+        document.querySelector('.volume-icon').setAttribute('href', "./img/sprite.svg#volume-x");
+    } else {
+        scene.musicMenu.unmute();
+        scene.music.unmute();
+        document.querySelector('.volume-icon').setAttribute('href', "./img/sprite.svg#volume");
+    }
 }
 
 init()
