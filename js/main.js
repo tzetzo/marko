@@ -65,6 +65,18 @@ const news_objects_container = new THREE.Object3D();
 //   'img/posz.jpg', 'img/negz.jpg'
 // ]);
 
+//showing loading progress:
+const percentage = document.querySelector('.loading__percent > span');
+THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+    // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+  	percentage.innerText = Math.floor(itemsLoaded*100/43) + ' %'; //make sure 43 is the number of items equal to the biggest itemsTotal number by using above console.log()
+  	if (itemsLoaded === 43) {
+      //remove the loading screen:
+      document.body.removeChild(document.querySelector('.loading'));
+      playAnimation(camera.gltfShutters.scene, camera.gltfShutters.animations);
+  	}
+};
+
 function init() {
     return new Promise((resolve,reject) => {
         //renderer.physicallyCorrectLights = true; renderer.gammaInput = true; renderer.shadowMap.bias = 0.0001; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -262,9 +274,9 @@ function init() {
             scene.add(homeModel);
 
             //remove the loading screen:
-            document.body.removeChild(document.querySelector('.loading'));
+            // document.body.removeChild(document.querySelector('.loading'));
 
-            playAnimation(camera.gltfShutters.scene, camera.gltfShutters.animations);
+            // playAnimation(camera.gltfShutters.scene, camera.gltfShutters.animations);
 
             mixer.addEventListener( 'finished', (e) => {
                 if(camera.getObjectByName('shutters')) {
