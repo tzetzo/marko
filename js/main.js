@@ -11,6 +11,7 @@ let mixer,
     mouseEvent = null,
     targetListLawyers = [],
     menu__logo = document.querySelector('.menu__logo'),
+    menu__volume = document.querySelector('.volume > svg'),
     lawyers__about = document.querySelector('.lawyers__about--us'),
     services__mg = document.querySelector('.magnify'),
     services__mg_remove = document.querySelector('.magnify__glass-remove'),
@@ -174,6 +175,7 @@ function init() {
         camera.rectLight.rotation.set( 0, 180*Math.PI/180, 0 );
         camera.rectLight.position.set( 0, 0, -1 );
 
+        musicLoad();
         onWindowResize();
 
         loadGltf(loader, 'shutters')
@@ -278,6 +280,8 @@ function init() {
                             animateLights();
                             //show the logo for the menu access:
                             document.querySelector('.menu').style.visibility = 'visible';
+                            document.querySelector('.volume').style.visibility = 'visible';
+                            scene.music.play().fadeIn(30000, function(){ scene.music.fadeOut(30000); });
                         }
                     });
                 }
@@ -653,6 +657,8 @@ function render() {
 
     if (link === '#location' && !camera.getObjectByName('cameraRectLight')) { scene.backdrop.rotateZ(-delta/100); }
 
+    if(scene.music.isEnded()) { scene.music.play().fadeIn(30000, function(){ scene.music.fadeOut(30000); }); }
+
     renderer.render( scene, camera );
 }
 
@@ -695,6 +701,8 @@ function playAnimationBackwards(model, clips, loop, clipName) {
 
 function openMenu() {
     menu__logo.removeEventListener('click', closeOpenMenu);
+
+    scene.music.fadeWith(scene.musicMenu, 1000);
 
     if (link === '#home') { scene.remove( scene.spotLightHome0, scene.spotLightHome1, scene.spotLightHome2 ); }
     if (link === "#lawyers") {
@@ -755,6 +763,8 @@ function closeMenu() {
     menu__logo.removeEventListener('click', closeOpenMenu);
 
     camera.remove( camera.rectLight );
+
+    scene.musicMenu.fadeWith(scene.music, 1000);
 
     const shuttersModel = camera.gltfShutters.scene;
     playAnimation(shuttersModel, camera.gltfShutters.animations);
@@ -892,6 +902,18 @@ function closeOpenMenu () {
     if (link === '#news' && document.querySelector('.news').classList.contains("news--animate")) { mixer = null; }
 
     (camera.getObjectByName('shutters') && !mixer) ? (closeMenu(link)) : !mixer ? (openMenu(link)) : null;
+}
+menu__volume.addEventListener('click', muteUnmute);
+function muteUnmute () {
+    if (!scene.music.isMuted() || !scene.musicMenu.isMuted()){
+        scene.music.mute();
+        scene.musicMenu.mute();
+        document.querySelector('.volume-icon').setAttribute('href', "./img/sprite.svg#volume-x");
+    } else {
+        scene.musicMenu.unmute();
+        scene.music.unmute();
+        document.querySelector('.volume-icon').setAttribute('href', "./img/sprite.svg#volume");
+    }
 }
 
 //choose which 'scene' to show from menu
@@ -1392,7 +1414,6 @@ function newsCloudsLoad() {
 
         plane.updateMatrix();  //Make sure the matrix has been updated before merging
         geometry.merge( plane.geometry, plane.matrix );
-
     }
 
     scene.newsClouds = new THREE.Mesh( geometry, material );
@@ -1410,6 +1431,23 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}
+
+function musicLoad(){ //http://buzz.jaysalvat.com/documentation/sound/
+  	scene.music = new buzz.sound("./audio/music", {
+    		formats: [ "mp3", "ogg" ],
+    		preload: true,
+    		autoplay: false,
+    		loop: false,
+    		volume: 100
+    });
+    scene.musicMenu = new buzz.sound("./audio/musicMenu", {
+    		formats: [ "mp3", "ogg" ],
+    		preload: true,
+    		autoplay: false,
+    		loop: true,
+    		volume: 100
+    });
 }
 
 init()

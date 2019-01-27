@@ -1,0 +1,8 @@
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#cca876" stroke-linecap="round" stroke-linejoin="round" id="volume-x">
+    <path d="M11 5L6 9H2v6h4l5 4V5zm12 4l-6 6m0-6l6 6"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#cca876" stroke-linecap="round" stroke-linejoin="round" id="volume">
+    <path d="M11 5L6 9H2v6h4l5 4V5zm8.07-.07a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+  </symbol>
+</svg>

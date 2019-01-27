@@ -20,18 +20,21 @@
 <body class="container">
 
   <div class="menu">
-    <div class="menu__logo">
-        <img src="./img/M.svg" alt="Logo"><span>enu</span>
-    </div>
-    <nav class="menu__nav">
-        <ul class="menu__list">
-            <li class="menu__item menu__item--1"><a class="menu__link" href="#home">Home</a></li>
-            <li class="menu__item menu__item--2"><a class="menu__link" href="#lawyers">Lawyers</a></li>
-            <li class="menu__item menu__item--3"><a class="menu__link" href="#services">Services</a></li>
-            <li class="menu__item menu__item--4"><a class="menu__link" href="#news">News</a></li>
-            <li class="menu__item menu__item--5"><a class="menu__link" href="#location">Location</a></li>
-        </ul>
-    </nav>
+      <div class="menu__logo">
+          <img src="./img/M.svg" alt="Logo"><span>enu</span>
+      </div>
+      <nav class="menu__nav">
+          <ul class="menu__list">
+              <li class="menu__item menu__item--1"><a class="menu__link" href="#home">Home</a></li>
+              <li class="menu__item menu__item--2"><a class="menu__link" href="#lawyers">Lawyers</a></li>
+              <li class="menu__item menu__item--3"><a class="menu__link" href="#services">Services</a></li>
+              <li class="menu__item menu__item--4"><a class="menu__link" href="#news">News</a></li>
+              <li class="menu__item menu__item--5"><a class="menu__link" href="#location">Location</a></li>
+          </ul>
+      </nav>
+  </div>
+  <div class="volume">
+      <svg><use class="volume-icon" href="./img/sprite.svg#volume"></use></svg>
   </div>
 
   <div class="loading">
@@ -260,6 +263,7 @@
   <script src="./js/tween.min.js"></script>
   <script src="./js/RectAreaLightUniformsLib.js"></script>
   <script src="./js/CSS3DRenderer.js"></script>
+  <script src="./js/buzz.min.js"></script>
   <!-- used by the clouds in NEWS scene-->
   <script id="vs" type="x-shader/x-vertex">
       varying vec2 vUv;
