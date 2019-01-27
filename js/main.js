@@ -211,7 +211,6 @@ function init() {
             //rotate model around its own axis:
             bookModel.rotateOnAxis( new THREE.Vector3( 0, 1, 0 ), 18*Math.PI/180 ); //rotate 18 degrees around Y axis
             bookModel.rotateOnAxis( new THREE.Vector3( 1, 0, 0 ), 90*Math.PI/180 );
-            scene.add(bookModel);
 
             return loadGltf(loader, 'services');
         })
@@ -255,8 +254,6 @@ function init() {
             scene.video.muted = 'muted';
             //make E.P. show TV static signal
             tvModel.getObjectByName('tvEPscreen').material.map = new THREE.VideoTexture( scene.video );
-
-            scene.add(tvModel);
 
             targetListLawyers = [tvModel.getObjectByName('tvMMframe'), tvModel.getObjectByName('tvDMframe'), tvModel.getObjectByName('tvBTframe'), tvModel.getObjectByName('tvEPframe')];
 
@@ -742,9 +739,7 @@ function openMenu() {
         scene.remove( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene );
     }
 
-    if (link === '#location') {
-        document.querySelector('.location').classList.remove("location--animate");
-    }
+    if (link === '#location') { document.querySelector('.location').classList.remove("location--animate"); }
 
     camera.add( camera.spotLightShutters, camera.spotLightShutters.target, camera.gltfShutters.scene );
 
@@ -759,9 +754,9 @@ function openMenu() {
                item.classList.add("menu__item--animate");
             });
             menu__logo.addEventListener('click', closeOpenMenu);
-            if (link === '#news') {
-              document.querySelector('.news').classList.remove("news--animate");
-            }
+            if (link === '#news') { document.querySelector('.news').classList.remove("news--animate"); }
+            if (link === '#location') { scene.remove(scene.gltfBook.scene); }
+            if (link === '#lawyers') { scene.remove(scene.gltfTV.scene); }
         }
     });
 }
@@ -772,6 +767,9 @@ function closeMenu() {
         item.classList.remove("menu__item--animate");
     });
     menu__logo.removeEventListener('click', closeOpenMenu);
+
+    if (link === '#location') { scene.add(scene.gltfBook.scene); }
+    if (link === '#lawyers') { scene.add(scene.gltfTV.scene); }
 
     camera.remove( camera.rectLight );
 
