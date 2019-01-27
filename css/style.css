@@ -473,6 +473,36 @@ body {
     .volume svg:hover {
       transform: scale(1.4); }
 
+.designer {
+  font-size: 150%;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  padding: 2.75rem;
+  transform: translateY(-100%);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: grid;
+  justify-items: center; }
+  .designer--animate {
+    transform: translateY(0%); }
+  .designer p {
+    height: 2.25rem; }
+  .designer a, .designer a:link, .designer a:visited {
+    color: #cca876;
+    border-radius: 100rem;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: url(../img/mallet45.svg), auto;
+    outline: none; }
+  .designer a:hover {
+    animation: pulsate 2s infinite; }
+
 .news {
   position: fixed;
   top: 0;

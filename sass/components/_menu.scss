@@ -110,7 +110,7 @@
     visibility: hidden;
     z-index: 1000;
 
-    display:grid;
+    display: grid;
     justify-items: center;
 
     padding: 2.75rem 6.75rem 2.75rem 2.75rem;
@@ -128,6 +128,51 @@
 
         &:hover {
             transform:scale(1.4);
+        }
+    }
+}
+
+.designer {
+    font-size: 150%;
+    color: $color-white;
+    position: absolute;
+    top:0;
+    width: 100vw;
+    padding: 2.75rem;
+    transform: translateY(-100%);
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    &--animate {
+        transform: translateY(0%);
+    }
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    display: grid;
+    justify-items: center;
+
+    p {
+        height: 2.25rem;
+    }
+
+    a {
+        &,
+        &:link,
+        &:visited {
+            color: $color-gold;
+            border-radius: 100rem;
+            padding: .5rem 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: url(../img/mallet45.svg), auto;
+            outline: none;
+        }
+
+        &:hover {
+            animation: pulsate 2s infinite;
         }
     }
 }

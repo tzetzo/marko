@@ -1053,6 +1053,10 @@ window.addEventListener( 'keydown', (e) => {
                 break;
         }
     }
+    if(e.shiftKey && e.which === 84){
+        document.querySelector('.designer').classList.add("designer--animate");
+    }
+    if(e.keyCode === 27) { document.querySelector('.designer').classList.remove("designer--animate"); }
 }, false );
 
 function zoom(e) {
