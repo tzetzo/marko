@@ -1462,8 +1462,11 @@ function muteUnmute () {
     }
 }
 
-init()
-.then(() => {
-    render();
-})
-.catch((e) => { console.log(e); })
+//run the app only if CSS grid is supported:
+if( getComputedStyle(document.querySelector('.cssGrid-not-supported')).getPropertyValue('display') == 'none' ) {
+    init()
+    .then(() => {
+        render();
+    })
+    .catch((e) => { alert('Initializing the app failed'); console.log(e); });
+}
