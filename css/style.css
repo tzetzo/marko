@@ -381,7 +381,6 @@ body {
   font-size: 150%;
   color: #cca876;
   padding: 2.25rem;
-  visibility: hidden;
   text-transform: uppercase;
   z-index: 1000; }
   .menu__logo {
@@ -454,7 +453,6 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  visibility: hidden;
   z-index: 1000;
   display: grid;
   justify-items: center;

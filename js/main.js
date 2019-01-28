@@ -290,6 +290,7 @@ function init() {
                             document.querySelector('.menu').style.visibility = 'visible';
                             scene.music.play().fadeIn(30000, function(){ scene.music.fadeOut(30000); });
                             document.querySelector('.volume').style.visibility = 'visible';
+                            document.querySelector('.designer').style.visibility = 'visible';
                         }
                     });
                 }

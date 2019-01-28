@@ -7,7 +7,6 @@
     font-size: 150%;
     color: $color-gold;
     padding: 2.25rem;
-    visibility: hidden;
     text-transform: uppercase;
     z-index: 1000;
 
@@ -107,7 +106,6 @@
     position: absolute;
     top:0;
     right:0;
-    visibility: hidden;
     z-index: 1000;
 
     display: grid;
