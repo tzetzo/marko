@@ -14,10 +14,15 @@
 		* briefly until styles kick in. Wrapping these rules in a style tag here ensures that never happens.
 		**/
     .instruction, .lawyers, .location, .magnify, .menu, .volume, .designer { visibility:hidden; }
+    /*ensure browser supporting CSS grid is used*/
+    @supports (display: grid) {
+      .cssGrid-not-supported { display: none; }
+    }
 	</style>
 </head>
 
 <body class="container">
+  <div class="cssGrid-not-supported"><p><span>Please update your browser.</span></p></div>
 
   <div class="menu">
       <div class="menu__logo">

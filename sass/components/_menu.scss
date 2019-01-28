@@ -174,3 +174,36 @@
         }
     }
 }
+
+.cssGrid-not-supported {
+    position: fixed;
+    top:0;
+    height: 100%;
+    width: 100%;
+    background: $color-black;
+    z-index: 10000;
+
+    p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 1rem;
+        overflow: hidden;
+        width: 32rem;
+        height: 16rem;
+        background: url('../img/paper.jpg') no-repeat;
+        background-size: 100% 100%;
+
+        span {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: rgba($color-ink, .8);
+            width: 100%;
+            text-align: center;
+            text-shadow: -1px -1px 0 $color-gold, -1px 0 0 $color-gold, 1px -1px 0 $color-gold, 1px 0 0 $color-gold, -1px 1px 0 $color-gold, 1px 1px 0 $color-gold, 0 -1px 0 $color-gold, 0 1px 0 $color-gold, 0 1px 0 rgba(0, 0, 0, 0.2);
+        }
+    }
+}

@@ -95,8 +95,8 @@ body {
   grid-template-columns: 1fr 32rem 1fr;
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
   opacity: 0;
   visibility: hidden;
   transition: all .2s; }
@@ -123,7 +123,7 @@ body {
     display: grid;
     align-items: center;
     text-align: center;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: rgba(0, 0, 204, 0.8);
     padding: 3rem 0 3rem 3rem; }
   .instruction__remove {
@@ -195,7 +195,7 @@ body {
     display: grid;
     grid-template-columns: repeat(7, min-content);
     align-items: center;
-    z-index: 10001; }
+    z-index: 1001; }
   .loading__letter {
     display: inline-block;
     cursor: url(../img/mallet45.svg), auto;
@@ -500,6 +500,34 @@ body {
     outline: none; }
   .designer a:hover {
     animation: pulsate 2s infinite; }
+
+.cssGrid-not-supported {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  z-index: 10000; }
+  .cssGrid-not-supported p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 32rem;
+    height: 16rem;
+    background: url("../img/paper.jpg") no-repeat;
+    background-size: 100% 100%; }
+    .cssGrid-not-supported p span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: rgba(0, 0, 204, 0.8);
+      width: 100%;
+      text-align: center;
+      text-shadow: -1px -1px 0 #cca876, -1px 0 0 #cca876, 1px -1px 0 #cca876, 1px 0 0 #cca876, -1px 1px 0 #cca876, 1px 1px 0 #cca876, 0 -1px 0 #cca876, 0 1px 0 #cca876, 0 1px 0 rgba(0, 0, 0, 0.2); }
 
 .news {
   position: fixed;

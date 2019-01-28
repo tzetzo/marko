@@ -10,8 +10,8 @@
 
     z-index: 1000;
     background-color: rgba($color-black, .5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
 
     opacity: 0;
     visibility: hidden;
@@ -47,7 +47,7 @@
         display: grid;
         align-items: center;
         text-align: center;
-        font-size: 18px;
+        font-size: 1.8rem;
         color: rgba($color-ink, .8);
         padding: 3rem 0 3rem 3rem;
     }
