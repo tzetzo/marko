@@ -42,7 +42,7 @@ const gold = new THREE.TextureLoader().load("./img/gold_roughness.jpg", (map) =>
 const wood = new THREE.TextureLoader().load("./img/wood_roughness.jpg");
 const sofia = new THREE.TextureLoader().load("./models/gltf/sofia.jpg");
 const book = new THREE.TextureLoader().load("./img/bookCover_roughness.jpg");
-const booksN = new THREE.TextureLoader().load("./img/booksN.png");
+const booksN = new THREE.TextureLoader().load("./img/booksN.jpg");
 book.wrapS = THREE.MirroredRepeatWrapping;  //horizontal
 book.wrapT = THREE.MirroredRepeatWrapping;  //THREE.RepeatWrapping, THREE.MirroredRepeatWrapping, THREE.ClampToEdgeWrapping
 book.repeat.set( 40, 1 ); //40,1
