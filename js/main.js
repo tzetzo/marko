@@ -296,7 +296,7 @@ function init() {
                             animateLights();
                             //show the logo for the menu access:
                             document.querySelector('.menu').style.visibility = 'visible';
-                            scene.music.play().fadeIn(30000, function(){ scene.music.fadeOut(30000); });
+                            scene.music.play().fadeIn(16000, function(){ scene.music.fadeOut(16000); });
                             document.querySelector('.volume').style.visibility = 'visible';
                             document.querySelector('.designer').style.visibility = 'visible';
                         }
@@ -674,7 +674,7 @@ function render() {
 
     if (link === '#location' && !camera.getObjectByName('cameraRectLight')) { scene.backdrop.rotateZ(-delta/100); }
 
-    if(scene.music.isEnded()) { scene.music.play().fadeIn(30000, function(){ scene.music.fadeOut(30000); }); }
+    if(scene.music.isEnded()) { scene.music.play().fadeIn(16000, function(){ scene.music.fadeOut(16000); }); }
 
     renderer.render( scene, camera );
 }
@@ -719,7 +719,7 @@ function playAnimationBackwards(model, clips, loop, clipName) {
 function openMenu() {
     menu__logo.removeEventListener('click', closeOpenMenu);
 
-    scene.music.fadeWith(scene.musicMenu, 1000);
+    scene.music.fadeWith(scene.musicMenu, 3000);
 
     if (link === '#home') { scene.remove( scene.spotLightHome0, scene.spotLightHome1, scene.spotLightHome2 ); }
     if (link === "#lawyers") {
@@ -782,7 +782,7 @@ function closeMenu() {
 
     camera.remove( camera.rectLight );
 
-    scene.musicMenu.fadeWith(scene.music, 1000);
+    scene.musicMenu.fadeWith(scene.music, 3000);
 
     const shuttersModel = camera.gltfShutters.scene;
     playAnimation(shuttersModel, camera.gltfShutters.animations);
