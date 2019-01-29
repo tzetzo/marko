@@ -54,3 +54,12 @@ body {
   background-color: rgba($color-black,1);
   color: $color-gold;
 }
+
+//for all elements that will be clickable:
+.clickable {
+    cursor: url(../img_desktop/mallet45.svg) 20 16, auto;
+
+    &:active {
+        cursor: url(../img_desktop/mallet.svg) 24 10, auto;
+    }
+}

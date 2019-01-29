@@ -53,6 +53,11 @@ body {
   background-color: black;
   color: #cca876; }
 
+.clickable {
+  cursor: url(../img_desktop/mallet45.svg) 20 16, auto; }
+  .clickable:active {
+    cursor: url(../img_desktop/mallet.svg) 24 10, auto; }
+
 /*make the initial & visited state the same*/
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
@@ -66,8 +71,7 @@ body {
   backface-visibility: hidden;
   border: none;
   height: 3rem;
-  background-color: transparent;
-  cursor: url("../img_desktop/mallet45.svg"), auto; }
+  background-color: transparent; }
 
 .btn:hover {
   transform: translateY(-0.3rem);
@@ -136,8 +140,7 @@ body {
     clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
     transition: all .2s; }
     .instruction__remove:hover {
-      background-color: rgba(0, 0, 204, 0.5);
-      cursor: url("../img_desktop/mallet45.svg"), auto; }
+      background-color: rgba(0, 0, 204, 0.5); }
 
 .lawyers {
   color: #cca876;
@@ -197,7 +200,6 @@ body {
     z-index: 1001; }
   .loading__letter {
     display: inline-block;
-    cursor: url("../img_desktop/mallet45.svg"), auto;
     transition: all .1s ease-in 0s; }
     .loading__letter:nth-child(1) {
       animation: blur-text 1s 0s infinite linear alternate backwards; }
@@ -219,7 +221,6 @@ body {
       .loading__letter:hover {
         transform: scale(2); } }
     .loading__letter:active {
-      cursor: url("../img_desktop/mallet.svg"), auto;
       transform: translateY(5rem); }
   .loading__percent {
     grid-area: 2/2/3/3;
@@ -364,8 +365,7 @@ body {
       clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
       transition: all .2s; }
       .magnify__glass-remove:hover {
-        background-color: #cca876;
-        cursor: url("../img_desktop/mallet45.svg"), auto; }
+        background-color: #cca876; }
     .magnify__glass > canvas {
       width: 100%;
       height: 100%;
@@ -387,7 +387,6 @@ body {
     grid-column-end: 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    cursor: url("../img_desktop/mallet45.svg"), auto;
     padding: .5rem 0;
     border-radius: 100rem;
     -webkit-user-select: none;
@@ -443,7 +442,6 @@ body {
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    cursor: url("../img_desktop/mallet45.svg"), auto;
     outline: none; }
   .menu__link:hover {
     animation: pulsate 2s infinite; }
@@ -465,7 +463,6 @@ body {
     height: 2.25rem;
     width: 2.25rem;
     transform: scale(1.3);
-    cursor: url("../img_desktop/mallet45.svg"), auto;
     transition: all .2s; }
     .volume svg:hover {
       transform: scale(1.4); }
@@ -495,7 +492,6 @@ body {
     padding: .5rem 1rem;
     text-decoration: none;
     text-transform: uppercase;
-    cursor: url("../img_desktop/mallet45.svg"), auto;
     outline: none; }
   .designer a:hover {
     animation: pulsate 2s infinite; }

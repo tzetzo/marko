@@ -24,7 +24,6 @@
 
     &__letter {
         display: inline-block; //so it can be animated!
-        cursor: url("../img_desktop/mallet45.svg"), auto;
         transition: all .1s ease-in 0s;
 
         @for $i from 0 through 6 {
@@ -39,7 +38,7 @@
         @media not all and (hover: none) {
             &:hover { transform: scale(2); }
         }
-        &:active { cursor: url("../img_desktop/mallet.svg"), auto; transform: translateY(5rem); }
+        &:active { transform: translateY(5rem); }
     }
 
     &__percent {

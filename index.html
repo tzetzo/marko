@@ -26,32 +26,32 @@
   <div class="cssGrid-not-supported"><p><span>Please update your browser.</span></p></div>
 
   <div class="menu">
-      <div class="menu__logo">
+      <div class="menu__logo clickable">
           <img src="./img_desktop/M.svg" alt="Logo"><span>enu</span>
       </div>
       <nav class="menu__nav">
           <ul class="menu__list">
-              <li class="menu__item menu__item--1"><a class="menu__link" href="#home">Home</a></li>
-              <li class="menu__item menu__item--2"><a class="menu__link" href="#lawyers">Lawyers</a></li>
-              <li class="menu__item menu__item--3"><a class="menu__link" href="#services">Services</a></li>
-              <li class="menu__item menu__item--4"><a class="menu__link" href="#news">News</a></li>
-              <li class="menu__item menu__item--5"><a class="menu__link" href="#location">Location</a></li>
+              <li class="menu__item menu__item--1"><a class="menu__link clickable" href="#home">Home</a></li>
+              <li class="menu__item menu__item--2"><a class="menu__link clickable" href="#lawyers">Lawyers</a></li>
+              <li class="menu__item menu__item--3"><a class="menu__link clickable" href="#services">Services</a></li>
+              <li class="menu__item menu__item--4"><a class="menu__link clickable" href="#news">News</a></li>
+              <li class="menu__item menu__item--5"><a class="menu__link clickable" href="#location">Location</a></li>
           </ul>
       </nav>
   </div>
   <div class="volume">
-      <svg><use class="volume-icon" href="./img_desktop/sprite.svg#volume"></use></svg>
+      <svg class="clickable"><use class="volume-icon" href="./img_desktop/sprite.svg#volume"></use></svg>
   </div>
 
   <div class="loading">
     	<div class="loading__text">
-      		<span class="loading__letter">L</span>
-      		<span class="loading__letter">O</span>
-      		<span class="loading__letter">A</span>
-      		<span class="loading__letter">D</span>
-      		<span class="loading__letter">I</span>
-      		<span class="loading__letter">N</span>
-      		<span class="loading__letter">G</span>
+      		<span class="loading__letter clickable">L</span>
+      		<span class="loading__letter clickable">O</span>
+      		<span class="loading__letter clickable">A</span>
+      		<span class="loading__letter clickable">D</span>
+      		<span class="loading__letter clickable">I</span>
+      		<span class="loading__letter clickable">N</span>
+      		<span class="loading__letter clickable">G</span>
     	</div>
       <div class="loading__percent"><span></span></div>
       <div class="loading__circle"><img src="./img_desktop/circle.svg" alt=""></div>
@@ -91,7 +91,7 @@
                   <label for="lable_59" class="location__form-label">Request (max 250 characters)</label>
               </div>
               <div class="location__form-group">
-                  <button class="btn">Send</button><!--we need button here since forms understand buttons and not links-->
+                  <button class="btn clickable">Send</button><!--we need button here since forms understand buttons and not links-->
               </div>
           </form>
           <ul class="location__lawyer-list">
@@ -248,10 +248,10 @@
             <span>Grab the Magnifying glass to read about our services.</span>
             <span>Use &larr; and &rarr; on keyboard to go to next service description.</span>
         </p>
-        <span class="instruction__remove"></span>
+        <span class="instruction__remove clickable"></span>
       </div>
   </div>
-  <div class="magnify"><div class="magnify__glass"><span class="magnify__glass-remove"></span></div></div>
+  <div class="magnify"><div class="magnify__glass"><span class="magnify__glass-remove clickable"></span></div></div>
 
   <div class="instruction instruction-news">
       <div class="instruction__container">
@@ -259,12 +259,12 @@
             <span>Use the scroll wheel to zoom in/out.</span>
             <span>Use &larr; &rarr; &uarr; &darr; on keyboard to move left, right, up and down.</span>
         </p>
-        <span class="instruction__remove"></span>
+        <span class="instruction__remove clickable"></span>
       </div>
   </div>
 
   <div class="designer">
-      <p>Designed and developed by </p><a href="https://www.linkedin.com/in/tzvetan-marinov">Tzvetan Marinov</a>
+      <p>Designed and developed by </p><a class="clickable" href="https://www.linkedin.com/in/tzvetan-marinov">Tzvetan Marinov</a>
   </div>
 
   <script src="./js/three.min.js"></script>

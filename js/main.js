@@ -11,7 +11,7 @@ function mobileAndTabletcheck() {
     return check;
 };
 mobileAndTabletcheck()? (device = 'mobile') : (device = 'desktop');
-alert(device);
+
 let mixer,
     link = '#home',
     INTERSECTED,

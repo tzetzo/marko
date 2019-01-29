@@ -17,7 +17,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
 
-        cursor: url("../img_desktop/mallet45.svg"), auto;
         padding: .5rem 0;
         border-radius: 100rem;
         -webkit-user-select: none;
@@ -25,9 +24,7 @@
         -ms-user-select: none;
         user-select: none; /*so the text cant be selected*/
 
-        &:hover {
-            animation: pulsate 2s infinite;
-        }
+        &:hover { animation: pulsate 2s infinite; }
 
         img {
             grid-column-start:1;
@@ -92,7 +89,6 @@
             color: $color-white;
             text-decoration: none;
             text-transform: uppercase;
-            cursor: url("../img_desktop/mallet45.svg"), auto;
             outline: none;
         }
 
@@ -121,7 +117,6 @@
         height: 2.25rem;
         width: 2.25rem;
         transform:scale(1.3);
-        cursor: url("../img_desktop/mallet45.svg"), auto;
         transition: all .2s;
 
         &:hover {
@@ -165,7 +160,6 @@
             padding: .5rem 1rem;
             text-decoration: none;
             text-transform: uppercase;
-            cursor: url("../img_desktop/mallet45.svg"), auto;
             outline: none;
         }
 
