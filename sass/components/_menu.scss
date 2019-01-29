@@ -147,6 +147,18 @@
     display: grid;
     justify-items: center;
 
+    div {
+        border-radius: 1rem;
+        overflow: hidden;
+        background: url(../img_desktop/paper.jpg) no-repeat;
+        background-size: 100% 100%;
+        padding: 1rem;
+        text-shadow: -1px -1px 0 #cca876, -1px 0 0 #cca876, 1px -1px 0 #cca876, 1px 0 0 #cca876, -1px 1px 0 #cca876, 1px 1px 0 #cca876, 0 -1px 0 #cca876, 0 1px 0 #cca876, 0 1px 0 rgba(0, 0, 0, 0.2);
+        color: rgba(0, 0, 204, 0.8);
+        display: grid;
+        justify-items: center;
+    }
+
     p {
         height: 2.25rem;
     }
@@ -155,16 +167,19 @@
         &,
         &:link,
         &:visited {
-            color: $color-gold;
+            color: rgba(0, 0, 204, 0.8);
             border-radius: 100rem;
-            padding: .5rem 1rem;
             text-decoration: none;
             text-transform: uppercase;
             outline: none;
+            display: inline-block;
+            height: 2.25rem;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         &:hover {
-            animation: pulsate 2s infinite;
+            transform: scale(1.2);
+            // animation: pulsate 2s infinite;
         }
     }
 }
