@@ -1,15 +1,17 @@
 node_modules/
 models/temp/
 playground/
-img/archive/
 id_rsa_kefche1
 id_rsa_kefche1.pub
-img/[Originals]/
 candle.html
 New Text Document.txt
 js/main16jan.js
 js/main22jan.js
 maps.html
-models/gltf/[Originals]/
 clouds.html
 table.html
+img_desktop/archive/
+img_desktop/[Originals]/
+img_mobile/[Originals]/
+models/gltf_mobile/[Originals]/
+models/gltf_desktop/[Originals]/
