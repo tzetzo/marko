@@ -27,7 +27,7 @@
         grid-row: 2/3;
         border-radius: 1rem;
         overflow: hidden;
-        background: url('../img/paper.jpg') no-repeat;
+        background: url("../img_desktop/paper.jpg") no-repeat;
         background-size: 100% 100%;
 
         display: grid;
@@ -52,7 +52,7 @@
         padding: 3rem 0 3rem 3rem;
     }
 
-    &__remove { background-color: yellow;
+    &__remove {
         grid-column: 2/3;
         grid-row: 1/2;
         height: 3rem;
@@ -64,7 +64,7 @@
 
         &:hover {
             background-color: rgba($color-ink, .5);
-            cursor: url(../img/mallet45.svg), auto;
+            cursor: url("../img_desktop/mallet45.svg"), auto;
         }
     }
 }

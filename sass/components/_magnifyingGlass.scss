@@ -26,7 +26,7 @@
         display: grid;
         grid-template-columns: 1fr 5rem;
         justify-items: center;
-        align-items: center;
+        align-items: center; 
 
         &-remove {
             grid-column: 2/3;
@@ -41,7 +41,7 @@
 
             &:hover {
                 background-color: $color-gold;
-                cursor: url(../img/mallet45.svg), auto;
+                cursor: url("../img_desktop/mallet45.svg"), auto;
             }
         }
 
