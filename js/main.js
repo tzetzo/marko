@@ -152,23 +152,11 @@ function init() {
 
         //used in the #services scene:
         camera.pointLightServices = new THREE.PointLight( 0xff6600, 3, 5.5, 2 );
-        camera.pointLightServices.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 0.02, 16, 8 ), new THREE.MeshStandardMaterial( { emissive: 0xff6600, emissiveIntensity: 100, color: 0xff6600 } ) ) );
         camera.pointLightServices.position.set( 0, 3.3, 0 );  //1.14*4 -> 0.25 scale in Blender
-        camera.pointLightServices.castShadow = true;
-        camera.pointLightServices.power = 600;  //375Lumen = 25 Watt bulb
-        camera.pointLightServices.shadow.radius = 2.5;  //blur
-      	camera.pointLightServices.shadow.camera.near = .45;
-      	camera.pointLightServices.shadow.camera.far = 8;
-        camera.pointLightServices.shadow.mapSize.height = 2000;  //makes the shadow finer; makes it appear
-      	camera.pointLightServices.shadow.mapSize.width = 2000;
 
         scene.rectLightServices = new THREE.RectAreaLight( 0x1ab2ff, 10,  7, 2 );
         scene.rectLightServices.position.set( 3, 10, 2 );
         scene.rectLightServices.lookAt(new THREE.Vector3(12,6.5,3.27)); //looking exactly in the middle of the scene
-        var rectLightServicesMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshStandardMaterial( { emissive: 0x66ccff, emissiveIntensity: 100, color: 0x66ccff, side: THREE.FrontSide } ) );
-				rectLightServicesMesh.scale.x = scene.rectLightServices.width;
-				rectLightServicesMesh.scale.y = scene.rectLightServices.height;
-				scene.rectLightServices.add( rectLightServicesMesh );
 
         //used in the #news scene:
         scene.newsLight = new THREE.DirectionalLight( 0xCC7A29, 1);
@@ -822,7 +810,7 @@ function closeMenu() {
                 if (!scene.flame) {
                     createFlame();
                 }
-                scene.add(scene.rectLightServices);
+                scene.add(scene.rectLightServices); //rectLights dont work in mobile
                 scene.gltfServices.scene.getObjectByName('candleHolder').add(camera.pointLightServices, scene.flame);
                 //show instructions:
                 document.querySelector('.instruction-services').classList.add("instruction--animate");
