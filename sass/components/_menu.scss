@@ -99,13 +99,9 @@
 }
 
 .volume {
-    position: absolute;
-    top:0;
+    position: fixed;
     right:0;
     z-index: 1000;
-
-    display: grid;
-    justify-items: center;
 
     padding: 2.75rem 6.75rem 2.75rem 2.75rem;
     -webkit-user-select: none;

@@ -159,9 +159,12 @@ body {
   .lawyers--animate {
     opacity: 1;
     visibility: visible; }
+  @media only screen and (max-width: 56.25em) {
+    .lawyers {
+      font-size: .65rem; } }
   @media only screen and (max-width: 43.75em) {
     .lawyers {
-      font-size: 100%; } }
+      font-size: .55rem; } }
   .lawyers__about {
     grid-row: 2/3;
     grid-column: 2/3;
@@ -182,6 +185,12 @@ body {
       /*so it is in the same line with the MENU*/ }
 
 .loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
   display: grid;
   grid-template-rows: 1fr 30rem 1fr;
   grid-template-columns: 1fr 30rem 1fr;
@@ -189,8 +198,6 @@ body {
   align-items: center;
   font-size: 2rem;
   color: #cca876;
-  width: 100%;
-  height: 100vh;
   z-index: 10000; }
   .loading__text {
     grid-area: 2/2/3/3;
@@ -243,7 +250,8 @@ body {
 .location {
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   z-index: 100;
   display: grid;
   grid-template-rows: 7vh 44vh 44vh 7vh;
@@ -254,6 +262,9 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
+  @media only screen and (max-width: 56.25em) {
+    .location {
+      font-size: 0.9rem; } }
   .location--animate {
     opacity: 1;
     visibility: visible !important; }
@@ -335,6 +346,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 100%;
   z-index: 10;
   display: grid;
   grid-template-rows: 3vh 94vh 3vh;
@@ -447,12 +459,9 @@ body {
     animation: pulsate 2s infinite; }
 
 .volume {
-  position: absolute;
-  top: 0;
+  position: fixed;
   right: 0;
   z-index: 1000;
-  display: grid;
-  justify-items: center;
   padding: 2.75rem 6.75rem 2.75rem 2.75rem;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -539,6 +548,8 @@ body {
 .news {
   position: fixed;
   top: 0;
+  width: 100%;
+  height: 100%;
   color: #fff;
   opacity: 0;
   visibility: hidden;
@@ -582,5 +593,6 @@ body {
         font-size: 140%; }
 
 #webGLcontainer {
+  position: fixed;
   background: linear-gradient(to bottom, #1e4877 0%, #4584b4 50%, #1e4877 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
