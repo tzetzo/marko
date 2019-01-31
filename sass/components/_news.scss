@@ -65,6 +65,41 @@
     }
 }
 
+.zoom {
+    position: fixed;
+    right: 5.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    display: grid;
+    grid-template-rows: repeat(2, 4.25rem);
+    grid-row-gap: 3rem;
+
+    &--in, &--out {
+        border: 1px solid $color-gold;
+        border-radius: 100%;
+        padding: 1rem;
+    }
+
+    &--plus {
+        height: 2.25rem;
+        width: 2.25rem;
+        background: $color-gold;
+        //PLUS sign:
+        -webkit-clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
+        clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
+    }
+    &--minus {
+        height: 2.25rem;
+        width: 2.25rem;
+        background: $color-gold;
+        //MINUS sign:
+        -webkit-clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
+        clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
+    }
+}
+
 #webGLcontainer {
     position: fixed;
     background: linear-gradient(to bottom, rgba(30,72,119,1) 0%,rgba(69,132,180,1) 50%,rgba(30,72,119,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */

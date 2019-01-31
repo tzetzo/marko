@@ -53,6 +53,10 @@
         grid-row-gap: 2.25rem;
 
         list-style: none;
+
+        @include respond(phone) {
+            grid-row-gap: 1.5rem;
+        }
     }
 
     &__item {
