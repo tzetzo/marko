@@ -55,7 +55,7 @@
         list-style: none;
 
         @include respond(phone) {
-            grid-row-gap: 1.5rem;
+            grid-row-gap: 1.25rem;
         }
     }
 

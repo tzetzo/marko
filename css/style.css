@@ -132,15 +132,17 @@ body {
     padding: 3rem 0 3rem 3rem; }
   .instruction__remove {
     grid-column: 2/3;
-    grid-row: 1/2;
-    height: 3rem;
-    width: 3rem;
-    background-color: rgba(102, 102, 102, 0.5);
-    -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-    transition: all .2s; }
-    .instruction__remove:hover {
+    grid-row: 1/2; }
+    .instruction__remove:hover > .instruction__remove-x {
       background-color: rgba(0, 0, 204, 0.5); }
+    .instruction__remove-x {
+      height: 3rem;
+      width: 3rem;
+      display: inline-block;
+      background-color: rgba(102, 102, 102, 0.5);
+      -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      transition: all .2s; }
 
 .lawyers {
   color: #cca876;
@@ -385,7 +387,7 @@ body {
     list-style: none; }
     @media only screen and (max-width: 43.75em) {
       .menu__list {
-        grid-row-gap: 1.5rem; } }
+        grid-row-gap: 1.25rem; } }
   .menu__item {
     display: grid;
     position: relative;
