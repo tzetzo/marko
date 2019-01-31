@@ -595,31 +595,82 @@ body {
         text-transform: capitalize;
         font-size: 140%; }
 
-.zoom {
+.control-panel {
   position: fixed;
-  right: 5.75rem;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 6.75rem;
+  bottom: 6.75rem;
   z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .5s;
   display: grid;
-  grid-template-rows: repeat(2, 4.25rem);
-  grid-row-gap: 3rem; }
-  .zoom--in, .zoom--out {
-    border: 1px solid #cca876;
+  grid-template-rows: repeat(4, 4.25rem);
+  grid-template-columns: repeat(3, 4.25rem); }
+  .control-panel--animate {
+    opacity: 1;
+    visibility: visible; }
+  @media only screen and (max-width: 43.75em) {
+    .control-panel {
+      right: .5rem;
+      bottom: .5rem; } }
+  .control-panel .move-up, .control-panel .move-left, .control-panel .move-right, .control-panel .move-down, .control-panel .zoom-in, .control-panel .zoom-out {
+    border: 1px solid #333;
     border-radius: 100%;
     padding: 1rem; }
-  .zoom--plus {
-    height: 2.25rem;
-    width: 2.25rem;
-    background: #cca876;
-    -webkit-clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
-    clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%); }
-  .zoom--minus {
-    height: 2.25rem;
-    width: 2.25rem;
-    background: #cca876;
-    -webkit-clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
-    clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%); }
+  .control-panel .move-up {
+    grid-row: 1/2;
+    grid-column: 2/3; }
+    .control-panel .move-up .up {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #333;
+      -webkit-clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%);
+      clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%); }
+  .control-panel .move-left {
+    grid-row: 2/3;
+    grid-column: 1/2; }
+    .control-panel .move-left .left {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #333;
+      -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+      clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%); }
+  .control-panel .move-right {
+    grid-row: 2/3;
+    grid-column: 3/4; }
+    .control-panel .move-right .right {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #333;
+      -webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+      clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%); }
+  .control-panel .move-down {
+    grid-row: 3/4;
+    grid-column: 2/3; }
+    .control-panel .move-down .down {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #333;
+      -webkit-clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0);
+      clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0); }
+  .control-panel .zoom-in {
+    grid-row: 4/5;
+    grid-column: 1/2; }
+    .control-panel .zoom-in .plus {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #333;
+      -webkit-clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
+      clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%); }
+  .control-panel .zoom-out {
+    grid-row: 4/5;
+    grid-column: 3/4; }
+    .control-panel .zoom-out .minus {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #333;
+      -webkit-clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
+      clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%); }
 
 #webGLcontainer {
   position: fixed;

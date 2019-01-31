@@ -726,9 +726,14 @@ function openMenu() {
 
     if (link === '#news') {
         transformNews( newsSphereTransforms, 1000 );
-        //remove zoom
-        document.querySelector('.zoom--in').removeEventListener( 'mousedown', zoomIn, false );
-        document.querySelector('.zoom--out').removeEventListener( 'mousedown', zoomOut, false );
+
+        document.querySelector('.control-panel').classList.remove("control-panel--animate");
+        document.querySelector('.zoom-in').removeEventListener( 'mousedown', zoomIn, false );
+        document.querySelector('.zoom-out').removeEventListener( 'mousedown', zoomOut, false );
+        document.querySelector('.move-up').removeEventListener( 'mousedown', moveUp, false );
+        document.querySelector('.move-left').removeEventListener( 'mousedown', moveLeft, false );
+        document.querySelector('.move-right').removeEventListener( 'mousedown', moveRight, false );
+        document.querySelector('.move-down').removeEventListener( 'mousedown', moveDown, false );
 
         document.querySelectorAll('.news__element').forEach((element) => {
             element.removeEventListener("wheel", preventNewsScrolling);
@@ -825,8 +830,12 @@ function closeMenu() {
 
             if (link === '#news') {
                 //zoom
-                document.querySelector('.zoom--in').addEventListener( 'mousedown', zoomIn, false );
-                document.querySelector('.zoom--out').addEventListener( 'mousedown', zoomOut, false );
+                document.querySelector('.zoom-in').addEventListener( 'mousedown', zoomIn, false );
+                document.querySelector('.zoom-out').addEventListener( 'mousedown', zoomOut, false );
+                document.querySelector('.move-up').addEventListener( 'mousedown', moveUp, false );
+                document.querySelector('.move-left').addEventListener( 'mousedown', moveLeft, false );
+                document.querySelector('.move-right').addEventListener( 'mousedown', moveRight, false );
+                document.querySelector('.move-down').addEventListener( 'mousedown', moveDown, false );
                 //prevent default text scrolling; use only the scroll bars
                 document.querySelectorAll('.news__element').forEach((element) => {
                     element.addEventListener("wheel", preventNewsScrolling);
@@ -842,6 +851,7 @@ function closeMenu() {
                 document.querySelector('.instruction-news .instruction__remove').addEventListener( 'mousedown', () => {
                     document.querySelector('.instruction-news').classList.remove("instruction--animate");
                     document.querySelector('.news').classList.add("news--animate");
+                    document.querySelector('.control-panel').classList.add("control-panel--animate");
                     transformNews( newsGridTransforms, 2000 );
                     scene.add( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene );
                     playAnimation(scene.gltfPlane.scene, scene.gltfPlane.animations, 'loop');
@@ -1029,27 +1039,19 @@ window.addEventListener( 'keydown', (e) => {
         switch (e.keyCode) {
             case 37: //left arrow
                 e.preventDefault();
-                if(news_objects_container.position.x > -400){
-                    news_objects_container.translateX( -200 );
-                }
+                moveLeft();
                 break;
             case 38: //up arrow
                 e.preventDefault();
-                if(news_objects_container.position.y < 400){
-                    news_objects_container.translateY( 200 );
-                }
+                moveUp();
                 break;
             case 39: //right arrow
                 e.preventDefault();
-                if(news_objects_container.position.x < 400){
-                    news_objects_container.translateX( 200 );
-                }
+                moveRight();
                 break;
             case 40: //down arrow
                 e.preventDefault();
-                if(news_objects_container.position.y > -400){
-                    news_objects_container.translateY( -200 );
-                }
+                moveDown();
                 break;
         }
     }
@@ -1067,6 +1069,26 @@ function zoomIn() {
 function zoomOut() {
     if (news_objects_container.position.z > 600) {
         news_objects_container.translateZ( -150 );
+    }
+}
+function moveUp() {
+    if(news_objects_container.position.y < 400){
+        news_objects_container.translateY( 200 );
+    }
+}
+function moveLeft() {
+    if(news_objects_container.position.x > -400){
+        news_objects_container.translateX( -200 );
+    }
+}
+function moveRight() {
+    if(news_objects_container.position.x < 400){
+        news_objects_container.translateX( 200 );
+    }
+}
+function moveDown() {
+    if(news_objects_container.position.y > -400){
+        news_objects_container.translateY( -200 );
     }
 }
 function preventNewsScrolling(e) {
