@@ -53,3 +53,58 @@
         }
     }
 }
+
+.services-control-panel {
+    position: fixed;
+    top: 7.75rem;
+    right: 3rem;
+    z-index: 11;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+
+    &--animate {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(2, 4.25rem);
+    grid-column-gap: 1rem;
+
+    @include respond(phone) {
+        right: .5rem;
+    }
+
+    .services-rotate-left, .services-rotate-right {
+        border: 1px solid $color-gold;
+        border-radius: 100%;
+        padding: 1rem;
+    }
+
+    .services-rotate-left {
+        grid-column: 1/2;
+
+        .left {
+            height: 2.25rem;
+            width: 2.25rem;
+            background: $color-gold;
+            //LEFT sign:
+            -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+            clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+        }
+    }
+    .services-rotate-right {
+        grid-column: 2/3;
+
+        .right {
+            height: 2.25rem;
+            width: 2.25rem;
+            background: $color-gold;
+            //RIGHT sign:
+            -webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+            clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+        }
+    }
+}

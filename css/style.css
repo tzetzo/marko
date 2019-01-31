@@ -342,48 +342,6 @@ body {
     .location__lawyer-list li {
       text-align: center; }
 
-.magnify {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  display: grid;
-  grid-template-rows: 3vh 94vh 3vh;
-  grid-template-columns: 1fr 94vh 1fr;
-  opacity: 0;
-  visibility: hidden;
-  transition: all .2s; }
-  .magnify--animate {
-    opacity: 1;
-    visibility: visible !important; }
-  .magnify__glass {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    border-radius: 100%;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 5rem;
-    justify-items: center;
-    align-items: center; }
-    .magnify__glass-remove {
-      grid-column: 2/3;
-      grid-row: 1/2;
-      height: 3rem;
-      width: 3rem;
-      background-color: #666;
-      opacity: 0.5;
-      -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-      transition: all .2s; }
-      .magnify__glass-remove:hover {
-        background-color: #cca876; }
-    .magnify__glass > canvas {
-      width: 100%;
-      height: 100%;
-      grid-column: 1/3;
-      grid-row: 1/2; }
-
 .menu {
   display: grid;
   grid-template-columns: 8rem 8rem;
@@ -676,3 +634,83 @@ body {
   position: fixed;
   background: linear-gradient(to bottom, #1e4877 0%, #4584b4 50%, #1e4877 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+
+.magnify {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: grid;
+  grid-template-rows: 3vh 94vh 3vh;
+  grid-template-columns: 1fr 94vh 1fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s; }
+  .magnify--animate {
+    opacity: 1;
+    visibility: visible !important; }
+  .magnify__glass {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-radius: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 5rem;
+    justify-items: center;
+    align-items: center; }
+    .magnify__glass-remove {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      height: 3rem;
+      width: 3rem;
+      background-color: #666;
+      opacity: 0.5;
+      -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      transition: all .2s; }
+      .magnify__glass-remove:hover {
+        background-color: #cca876; }
+    .magnify__glass > canvas {
+      width: 100%;
+      height: 100%;
+      grid-column: 1/3;
+      grid-row: 1/2; }
+
+.services-control-panel {
+  position: fixed;
+  top: 7.75rem;
+  right: 3rem;
+  z-index: 11;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .5s;
+  display: grid;
+  grid-template-columns: repeat(2, 4.25rem);
+  grid-column-gap: 1rem; }
+  .services-control-panel--animate {
+    opacity: 1;
+    visibility: visible; }
+  @media only screen and (max-width: 43.75em) {
+    .services-control-panel {
+      right: .5rem; } }
+  .services-control-panel .services-rotate-left, .services-control-panel .services-rotate-right {
+    border: 1px solid #cca876;
+    border-radius: 100%;
+    padding: 1rem; }
+  .services-control-panel .services-rotate-left {
+    grid-column: 1/2; }
+    .services-control-panel .services-rotate-left .left {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #cca876;
+      -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+      clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%); }
+  .services-control-panel .services-rotate-right {
+    grid-column: 2/3; }
+    .services-control-panel .services-rotate-right .right {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #cca876;
+      -webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+      clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%); }

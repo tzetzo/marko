@@ -722,6 +722,9 @@ function openMenu() {
         scene.remove(scene.rectLightServices);
         window.removeEventListener( 'mousemove', onMouse, false );
         window.removeEventListener( 'mousedown', onMouse, false );
+        document.querySelector('.services-control-panel').classList.remove("services-control-panel--animate");
+        document.querySelector('.services-rotate-left').removeEventListener( 'mousedown', servicesRotateLeft, false );
+        document.querySelector('.services-rotate-right').removeEventListener( 'mousedown', servicesRotateRight, false );
     }
 
     if (link === '#news') {
@@ -823,6 +826,9 @@ function closeMenu() {
                 document.querySelector('.instruction-services').classList.add("instruction--animate");
                 document.querySelector('.instruction-services .instruction__remove').addEventListener( 'mousedown', () => {
                     document.querySelector('.instruction-services').classList.remove("instruction--animate");
+                    document.querySelector('.services-control-panel').classList.add("services-control-panel--animate");
+                    document.querySelector('.services-rotate-left').addEventListener( 'mousedown', servicesRotateLeft, false );
+                    document.querySelector('.services-rotate-right').addEventListener( 'mousedown', servicesRotateRight, false );
                     window.addEventListener( 'mousemove', onMouse, false );
                     window.addEventListener( 'mousedown', onMouse, false );
                 }, false );
@@ -1027,11 +1033,11 @@ window.addEventListener( 'keydown', (e) => {
         switch (e.keyCode) {
             case 37: //left arrow
                 e.preventDefault();
-                scene.pages.rotation.y += 15*Math.PI/180;
+                servicesRotateLeft();
                 break;
             case 39: //right arrow
                 e.preventDefault();
-                scene.pages.rotation.y -= 15*Math.PI/180;
+                servicesRotateRight();
                 break;
         }
     }
@@ -1093,6 +1099,12 @@ function moveDown() {
 }
 function preventNewsScrolling(e) {
     e.preventDefault();
+}
+function servicesRotateLeft() {
+    scene.pages.rotation.y -= 15*Math.PI/180;
+}
+function servicesRotateRight() {
+    scene.pages.rotation.y += 15*Math.PI/180;
 }
 
 function transformNews( newsTransforms, duration ) {
