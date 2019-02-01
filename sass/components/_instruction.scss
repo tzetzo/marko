@@ -13,7 +13,7 @@
     backdrop-filter: blur(1rem);
     -webkit-backdrop-filter: blur(1rem);
 
-    opacity: 0;
+    opacity: 0; 
     visibility: hidden;
     transition: all .2s;
 
@@ -55,6 +55,8 @@
     &__remove {
         grid-column: 2/3;
         grid-row: 1/2;
+
+        display: grid;
 
         &:hover > &-x {
             background-color: rgba($color-ink, .5);

@@ -132,7 +132,8 @@ body {
     padding: 3rem 0 3rem 3rem; }
   .instruction__remove {
     grid-column: 2/3;
-    grid-row: 1/2; }
+    grid-row: 1/2;
+    display: grid; }
     .instruction__remove:hover > .instruction__remove-x {
       background-color: rgba(0, 0, 204, 0.5); }
     .instruction__remove-x {
@@ -664,15 +665,19 @@ body {
     .magnify__glass-remove {
       grid-column: 2/3;
       grid-row: 1/2;
-      height: 3rem;
-      width: 3rem;
-      background-color: #666;
-      opacity: 0.5;
-      -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-      transition: all .2s; }
-      .magnify__glass-remove:hover {
+      display: grid;
+      z-index: 1; }
+      .magnify__glass-remove:hover > .magnify__glass-remove-x {
         background-color: #cca876; }
+      .magnify__glass-remove-x {
+        height: 3rem;
+        width: 3rem;
+        background-color: #666;
+        opacity: 0.5;
+        display: inline-block;
+        -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+        clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+        transition: all .2s; }
     .magnify__glass > canvas {
       width: 100%;
       height: 100%;
