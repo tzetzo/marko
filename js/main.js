@@ -6,7 +6,7 @@ history.pushState ? history.pushState(null, null, '#home') : location.hash = '#h
 
 //check if mobile or desktop device is used:
 function mobileAndTabletcheck() {
-    var check = false;
+    let check = false;
     (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
     return check;
 };
@@ -313,7 +313,7 @@ function loadGltf(gltfLoader, model) {
 function meshSetup (mesh) {
         const m = mesh.material;
         const material = new THREE.MeshPhysicalMaterial({ map: m.map }); //{map:m.map} necessary if you provide reflection etc for the image applied as material
-        if (/^gold/.test(m.name)){
+        if ( m.name.startsWith("gold") ){  // /^gold/.test(m.name)
             //mesh setup:
             mesh.castShadow = true; //default=false;
             mesh.receiveShadow = true; //default=false;
@@ -322,7 +322,7 @@ function meshSetup (mesh) {
             material.metalness = 1; //default=0.5; material.metalnessMap can be also provided;1
             material.roughness = 0.3; //default=0.5; 0 means a smooth mirror reflection;0.3
             material.roughnessMap = gold;
-        } else if (/^textWhite/.test(m.name)){
+        } else if ( m.name.startsWith("textWhite") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = false;
@@ -330,7 +330,7 @@ function meshSetup (mesh) {
             material.color.setHex(0xb3ffff);
             material.metalness = 1;
             material.roughness = .3;
-        } else if (/^textGold/.test(m.name)){
+        } else if ( m.name.startsWith("textGold") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = false;
@@ -338,7 +338,7 @@ function meshSetup (mesh) {
             material.color.setHex(0x993300);
             material.metalness = 1;
             material.roughness = .3;
-        } else if (/^wood/.test(m.name)){
+        } else if ( m.name.startsWith("wood") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = true;
@@ -348,7 +348,7 @@ function meshSetup (mesh) {
             // material.reflectivity = .5;    //default=0.5; no effect when metalness=1;
             // material.roughness = 0.5;
             material.roughnessMap = wood;
-        } else if (/^backdrop/.test(m.name)){
+        } else if ( m.name.startsWith("backdrop") ){
             //mesh setup:
             mesh.castShadow = false;
             mesh.receiveShadow = true;
@@ -359,7 +359,7 @@ function meshSetup (mesh) {
 
             material.bumpMap = book;
             material.bumpScale = 0.005;
-        } else if (/^glass/.test(m.name)){
+        } else if ( m.name.startsWith("glass") ){
             //mesh setup:
             mesh.castShadow = false;
             mesh.receiveShadow = true;
@@ -370,7 +370,7 @@ function meshSetup (mesh) {
             material.roughness = 1;
             material.opacity  = .2;
             material.transparent = true;
-        } else if (/^book/.test(m.name)){
+        } else if ( m.name.startsWith("book") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = true;
@@ -380,7 +380,7 @@ function meshSetup (mesh) {
             material.reflectivity = 0;
             material.roughness = 1;  //more than 1 introduces artifacts
             material.roughnessMap = book;
-        }  else if (/^paper/.test(m.name)){
+        }  else if ( m.name.startsWith("paper") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = true;
@@ -389,7 +389,7 @@ function meshSetup (mesh) {
             material.metalness = 0.2;
             material.reflectivity = 0.1;
             material.roughness = .5;  //more than 1 introduces artifacts
-        } else if (/^shutter/.test(m.name)){
+        } else if ( m.name.startsWith("shutter") ){
             //mesh setup:
             mesh.castShadow = false; //default=false;
             mesh.receiveShadow = false; //default=false;
@@ -398,7 +398,7 @@ function meshSetup (mesh) {
             material.metalness = 1;
             material.roughness = .4;
             material.roughnessMap = gold;
-        } else if (/^tv/.test(m.name)){
+        } else if ( m.name.startsWith("tv") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = false;
@@ -410,7 +410,7 @@ function meshSetup (mesh) {
             material.shininess = 5;
             material.transparent = false;
             material.opacity = 1;
-        } else if (/^black/.test(m.name)){
+        } else if ( m.name.startsWith("black") ){
             //mesh setup:
             mesh.castShadow = true; //default=false;
             mesh.receiveShadow = false; //default=false;
@@ -419,7 +419,7 @@ function meshSetup (mesh) {
             material.metalness = 0;
             material.roughness = 0;
             material.reflectivity = 50;
-        } else if (/^candle/.test(m.name)){
+        } else if ( m.name.startsWith("candle") ){
             //mesh setup:
             mesh.castShadow = true; //default=false;
             mesh.receiveShadow = true; //default=false;
@@ -430,7 +430,7 @@ function meshSetup (mesh) {
             material.reflectivity = 1;
             material.transparent = false;
             material.opacity = 1;
-        } else if (/^stone/.test(m.name)){
+        } else if ( m.name.startsWith("stone") ){
             //mesh setup:
             mesh.castShadow = false; //default=false;
             mesh.receiveShadow = true; //default=false;
@@ -441,13 +441,13 @@ function meshSetup (mesh) {
             material.reflectivity = 1;  //10
             material.transparent = true;
             material.opacity = .2;
-        } else if (/^page/.test(m.name)){ //for pageCriminal, pageAdmin, pageCivil & pageCorporate
+        } else if ( m.name.startsWith("page") ){ //for pageCriminal, pageAdmin, pageCivil & pageCorporate
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = true;
             //material setup:
             material.color.setHex(0x262626);
-        } else if (/^textureBooks/.test(m.name)){
+        } else if ( m.name.startsWith("textureBooks") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = true;
@@ -456,13 +456,13 @@ function meshSetup (mesh) {
             material.normalMapType = THREE.TangentSpaceNormalMap;
             material.normalScale = new THREE.Vector2( 5, 5 );
             material.normalMap.flipY = false; //needed to make the normal map apply UV the right way
-        } else if (/^MGlass/.test(m.name)){
+        } else if ( m.name.startsWith("MGlass") ){
             //material setup:
             material.color.setHex(0xffffff);
             material.reflectivity = 100000;
             material.opacity  = 1;
             material.transparent = true;
-        } else if (/^sofia/.test(m.name)){
+        } else if ( m.name.startsWith("sofia") ){
           //mesh setup:
           mesh.castShadow = true; //default=false;
           mesh.receiveShadow = true; //default=false;
@@ -471,7 +471,7 @@ function meshSetup (mesh) {
           material.metalness = 0; //default=0.5; material.metalnessMap can be also provided;1
           material.roughness = 1; //default=0.5; 0 means a smooth mirror reflection;0.3
           material.roughnessMap =  sofia;
-        } else if (/^white/.test(m.name)){
+        } else if ( m.name.startsWith("white") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = false;
@@ -479,7 +479,7 @@ function meshSetup (mesh) {
             material.color.setHex(0xb3ffff);
             material.metalness = 1;
             material.roughness = .3;
-        } else if (/^color/.test(m.name)){
+        } else if ( m.name.startsWith("color") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = false;
@@ -487,7 +487,7 @@ function meshSetup (mesh) {
             material.color.setHex(0x00334d);
             material.metalness = 1;
             material.roughness = .3;
-        } else if (/^metal/.test(m.name)){
+        } else if ( m.name.startsWith("metal") ){
             //mesh setup:
             mesh.castShadow = true;
             mesh.receiveShadow = false;
@@ -1132,7 +1132,7 @@ function onWindowResize() {
     const height = window.innerHeight;
 
     if(width/height > 3) return;  //so it doesnt show surrounding models when screen too wide and not high enough;
-  
+
     camera.aspect = width/height;  //doesn't work with WIDTH/HEIGHT !
     camera.updateProjectionMatrix();
     renderer.setSize( width, height ); //doesn't work with WIDTH/HEIGHT !
@@ -1140,7 +1140,7 @@ function onWindowResize() {
 }
 
 function addGoogleMapScript( src, callback) {
-    var s = document.createElement( 'script' );
+    const s = document.createElement( 'script' );
     s.setAttribute( 'src', src );
     s.setAttribute( 'id', 'googleMap' );
     s.onload = callback;
@@ -1148,8 +1148,8 @@ function addGoogleMapScript( src, callback) {
 }
 
 function googleMapInit() {
-    var locationSofia = {lat: 42.6948648, lng: 23.3197577};
-    var map = new google.maps.Map(document.querySelector('.location__map'), {
+    const locationSofia = {lat: 42.6948648, lng: 23.3197577};
+    const map = new google.maps.Map(document.querySelector('.location__map'), {
         zoom: 16,
         center: locationSofia,
         gestureHandling: 'cooperative',  //greedy, cooperative;
@@ -1207,7 +1207,7 @@ function googleMapInit() {
           }
         ]
     });
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
         position: locationSofia,
         map: map,
         title: 'Markovski Lawyers LLP',
@@ -1401,11 +1401,11 @@ function newsLoad() {
                 newsGridTransforms.push( grid_transform_object );
             }
             // sphere arrangement to be used when opening the Menu:
-            var vector = new THREE.Vector3();
-            for ( var i = 0, l = newsObjects.length; i < l; i ++ ) {
-                var phi = Math.acos( - 1 + ( 2 * i ) / l );
-                var theta = Math.sqrt( l * Math.PI ) * phi;
-                var sphere_transform_object = new THREE.Object3D();
+            const vector = new THREE.Vector3();
+            for ( let i = 0, l = newsObjects.length; i < l; i ++ ) {
+                const phi = Math.acos( - 1 + ( 2 * i ) / l );
+                const theta = Math.sqrt( l * Math.PI ) * phi;
+                const sphere_transform_object = new THREE.Object3D();
                 sphere_transform_object.position.setFromSphericalCoords( 800000, phi, theta );
                 vector.copy( sphere_transform_object.position ).multiplyScalar( 2 );
                 sphere_transform_object.lookAt( vector );
@@ -1423,11 +1423,11 @@ function newsMouseMove( e ) {
 function newsCloudsLoad() {
     geometry = new THREE.Geometry();
 
-    var texture = new THREE.TextureLoader().load(`./img_${device}/cloud.png`);
+    const texture = new THREE.TextureLoader().load(`./img_${device}/cloud.png`);
     texture.magFilter = THREE.LinearFilter;
     texture.minFilter = THREE.LinearFilter;
 
-    var fog = new THREE.Fog( 0x4584b4, - 10, 2000 ); //corresponds to the color in the background
+    const fog = new THREE.Fog( 0x4584b4, - 10, 2000 ); //corresponds to the color in the background
 
     material = new THREE.ShaderMaterial({
       uniforms: {
@@ -1443,9 +1443,9 @@ function newsCloudsLoad() {
       transparent: true
     });
 
-    var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );  //decrease for smaller clouds
+    const plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );  //decrease for smaller clouds
 
-    for ( var i = 0; i < 999; i++ ) { //increase numbers and change X & Z position for scene.newsClouds
+    for ( let i = 0; i < 999; i++ ) { //increase numbers and change X & Z position for scene.newsClouds
 
         plane.position.x = Math.random() * 2000 - 1000;  //from -1000 to 1000
         plane.position.y = - Math.random() * Math.random() * 35 - 30;  //goes from -35 to -30; -30 is how much from middle of screen should be offset; exchange - with + to get clouds in upper screen;
@@ -1466,9 +1466,9 @@ function newsCloudsLoad() {
 }
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '0x';
-  for (var i = 0; i < 6; i++) {
+  const letters = '0123456789ABCDEF';
+  let color = '0x';
+  for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
