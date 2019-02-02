@@ -9,6 +9,11 @@
     grid-template-rows: 7vh 44vh 44vh 7vh;
     grid-template-columns: 1fr minmax(18rem, 57vh) 6vh minmax(18rem, 57vh) 1fr;
 
+    @include respond(phone) {
+        grid-template-rows: 5vh 40vh 40vh 15vh;
+        grid-template-columns: 1fr minmax(5rem, 47vh) 6vh minmax(5rem, 47vh) 1fr;
+    }
+
     -webkit-perspective: 150rem; /* Safari 4-8 */
     perspective: 150rem;
 
@@ -16,8 +21,8 @@
     visibility: hidden;
     transition: all .5s cubic-bezier(.44,-0.77,.57,1.89);
 
-    @include respond(tab-port) {
-        font-size: 0.9rem;
+    @include respond(phone) {
+        font-size: 0.7rem;
     }
 
     &--animate {
@@ -93,8 +98,9 @@
         justify-items: center;
         align-items: center;
 
-        @include respond(tab-port) {
-            font-size: 100%;
+        @include respond(phone) {
+            font-size: 0.7rem;
+            align-items: initial;
         }
     }
 
@@ -114,6 +120,10 @@
 
         display: grid;
         grid-row-gap: 1rem;
+
+        @include respond(phone) {
+            grid-row-gap: 0;
+        }
 
         & textarea { resize: none; width: 100%; }
 
@@ -146,7 +156,7 @@
             }
 
             @include respond(tab-port) {
-                font-size: 100%;
+                font-size: 0.7rem;
             }
         }
 
@@ -160,10 +170,6 @@
             opacity: 0;  //can be animated
             visibility: hidden;  //needed so the element is hidden
             transform: translateY(-2rem);
-        }
-
-        @include respond(tab-port) {
-            grid-row-gap: .3rem;
         }
     }
 

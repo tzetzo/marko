@@ -1128,10 +1128,15 @@ function transformNews( newsTransforms, duration ) {
 
 window.addEventListener( 'resize', onWindowResize, false );
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;  //doesn't work with WIDTH/HEIGHT !
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    if(width/height > 3) return;  //so it doesnt show surrounding models when screen too wide and not high enough;
+  
+    camera.aspect = width/height;  //doesn't work with WIDTH/HEIGHT !
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight ); //doesn't work with WIDTH/HEIGHT !
-    cssRenderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( width, height ); //doesn't work with WIDTH/HEIGHT !
+    cssRenderer.setSize( width, height );
 }
 
 function addGoogleMapScript( src, callback) {
