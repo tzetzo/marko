@@ -1,0 +1,195 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 99846,
+            "max" : [
+                17752
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 17753,
+            "max" : [
+                0.09976480156183243,
+                0.030966898426413536,
+                0.10377030819654465
+            ],
+            "min" : [
+                -0.10023525357246399,
+                -0.016776474192738533,
+                -0.10003625601530075
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 17753,
+            "max" : [
+                0.9294412136077881,
+                1.0,
+                0.9594103693962097
+            ],
+            "min" : [
+                -0.9442121386528015,
+                0.049531541764736176,
+                -0.8710592985153198
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 17753,
+            "max" : [
+                -0.3239697813987732,
+                0.9409258961677551,
+                0.8748987913131714,
+                1.0
+            ],
+            "min" : [
+                -1.0,
+                -0.9439270496368408,
+                -0.4190216660499573,
+                1.0
+            ],
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 17753,
+            "max" : [
+                1.433011770248413,
+                0.9999914765357971
+            ],
+            "min" : [
+                -0.25423550605773926,
+                0.00014090538024902344
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 199692,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 213036,
+            "byteOffset" : 199692,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 213036,
+            "byteOffset" : 412728,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 284048,
+            "byteOffset" : 625764,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 142024,
+            "byteOffset" : 909812,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 1051836,
+            "uri" : "sofia.bin"
+        }
+    ],
+    "images" : [
+        {
+            "name" : "sofia",
+            "uri" : "sofia.jpg"
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "sofia",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Plane",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TANGENT" : 3,
+                        "TEXCOORD_0" : 4
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "sofia",
+            "rotation" : [
+                0.04361938312649727,
+                0.0,
+                -0.0,
+                0.9990482330322266
+            ],
+            "scale" : [
+                150.00003051757812,
+                50.0000114440918,
+                50.0000114440918
+            ],
+            "translation" : [
+                0.03528454154729843,
+                -999.9926147460938,
+                -7.114688873291016
+            ]
+        }
+    ],
+    "samplers" : [
+        {}
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ]
+}

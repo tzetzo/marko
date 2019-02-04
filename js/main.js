@@ -230,7 +230,15 @@ function init() {
 
             const planeModel = scene.gltfPlane.scene;
             planeModel.traverse((child) => { if ( child.isMesh ) meshSetup(child); } );
-            scene.planeColor = scene.gltfPlane.scene.children[0].children[1].material.color;
+            scene.planeColor = planeModel.children[0].children[1].material.color;
+
+            return loadGltf(loader, 'sofia');
+        })
+        .then((gltfSofia) => {
+            scene.gltfSofia = gltfSofia;
+
+            const sofiaModel = scene.gltfSofia.scene;
+            sofiaModel.traverse((child) => { if ( child.isMesh ) meshSetup(child); } );
 
             return loadGltf(loader, 'tv');
         })
@@ -743,7 +751,7 @@ function openMenu() {
         });
         document.removeEventListener( 'mousemove', newsMouseMove, false );
 
-        scene.remove( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene );
+        scene.remove( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene, scene.gltfSofia.scene );
     }
 
     if (link === '#location') { document.querySelector('.location').classList.remove("location--animate"); }
@@ -827,7 +835,7 @@ function closeMenu() {
                     document.querySelector('.lawyers').classList.add("lawyers--animate");
                     window.addEventListener( 'mousemove', onMouse, false );
                     window.addEventListener( 'mousedown', onMouse, false );
-                    
+
                 }, false );
 
             }
@@ -875,7 +883,7 @@ function closeMenu() {
                     document.querySelector('.news').classList.add("news--animate");
                     document.querySelector('.control-panel').classList.add("control-panel--animate");
                     transformNews( newsGridTransforms, 2000 );
-                    scene.add( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene );
+                    scene.add( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene, scene.gltfSofia.scene );
                     playAnimation(scene.gltfPlane.scene, scene.gltfPlane.animations, 'loop');
                 }, false );
             }

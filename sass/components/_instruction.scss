@@ -9,7 +9,7 @@
     grid-template-columns: 1fr 32rem 1fr;
 
     z-index: 1000;
-    background-color: rgba($color-black, .5);
+    background-color: rgba($color-black, .7);
     backdrop-filter: blur(1rem);
     -webkit-backdrop-filter: blur(1rem);
 
@@ -66,14 +66,14 @@
         display: grid;
 
         &:hover > &-x {
-            background-color: rgba($color-ink, .5);
+            background-color: rgba($color-ink, .7);
         }
 
         &-x {
             height: 3rem;
             width: 3rem;
             display: inline-block;
-            background-color: rgba($color-grey-medium, .5);
+            background-color: rgba($color-grey-medium, .7);
             -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
             clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
             transition: all .2s;
