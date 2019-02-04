@@ -78,7 +78,7 @@ const percentage = document.querySelector('.loading__percent > span');
 THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
     // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
   	percentage.innerText = `${Math.floor(itemsLoaded*100/43)}%`; //make sure 43 is the number of items equal to the biggest itemsTotal number by using above console.log()
-  	if (itemsLoaded === 43) {
+  	if (itemsLoaded === 46) {  //46 is itemsTotal
       //remove the loading screen:
       document.body.removeChild(document.querySelector('.loading'));
   	}
