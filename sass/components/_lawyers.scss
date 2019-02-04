@@ -26,7 +26,7 @@
         grid-template-columns: 1fr minmax(16rem, 50vh) 1fr;
     }
     @include respond(phone) {
-        grid-template-rows: 2.25rem 80vh 2.25rem;
+        // grid-template-rows: 2.25rem 80vh 2.25rem;
         grid-template-columns: 1fr minmax(14rem, 45vh) 1fr;
         font-size: 1rem;
     }

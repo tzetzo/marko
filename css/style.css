@@ -130,6 +130,11 @@ body {
     font-size: 1.8rem;
     color: rgba(0, 0, 204, 0.8);
     padding: 3rem 0 3rem 3rem; }
+    .instruction__text--mobile {
+      display: none; }
+      @media only screen and (max-width: 43.75em) {
+        .instruction__text--mobile {
+          display: inline; } }
   .instruction__remove {
     grid-column: 2/3;
     grid-row: 1/2;
@@ -167,7 +172,6 @@ body {
       grid-template-columns: 1fr minmax(16rem, 50vh) 1fr; } }
   @media only screen and (max-width: 43.75em) {
     .lawyers {
-      grid-template-rows: 2.25rem 80vh 2.25rem;
       grid-template-columns: 1fr minmax(14rem, 45vh) 1fr;
       font-size: 1rem; } }
   .lawyers__about {

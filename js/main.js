@@ -795,25 +795,41 @@ function closeMenu() {
             if (link === '#home') { scene.add( scene.spotLightHome0, scene.spotLightHome1, scene.spotLightHome2 ); }
 
             if (link === '#lawyers' && scene.gltfTV.scene.getObjectByName('tvMMscreen').scale.z === 0.001) {
-                camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
-                turnOnTV('tvMMscreen')
-                .then(() => { return turnOnTV('tvDMscreen'); })
-                .then(() => { return turnOnTV('tvBTscreen'); })
-                .then(() => {
-                    turnOnTV('tvEPscreen');
-                    if(!camera.getObjectByName('shutters')) { //make sure next lines are executed only if Menu hasnt been clicked meanwhile
-                        scene.video.play();
-                        document.querySelector('.lawyers').classList.add("lawyers--animate");
-                        window.addEventListener( 'mousemove', onMouse, false );
-                        window.addEventListener( 'mousedown', onMouse, false );
-                    }
-                })
+              //show instructions:
+              document.querySelector('.instruction-lawyers').classList.add("instruction--animate");
+              document.querySelector('.instruction-lawyers .instruction__remove').addEventListener( 'mousedown', () => {
+                  document.querySelector('.instruction-lawyers').classList.remove("instruction--animate");
+
+                  camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+                  turnOnTV('tvMMscreen')
+                  .then(() => { return turnOnTV('tvDMscreen'); })
+                  .then(() => { return turnOnTV('tvBTscreen'); })
+                  .then(() => {
+                      turnOnTV('tvEPscreen');
+                      if(!camera.getObjectByName('shutters')) { //make sure next lines are executed only if Menu hasnt been clicked meanwhile
+                          scene.video.play();
+                          document.querySelector('.lawyers').classList.add("lawyers--animate");
+                          window.addEventListener( 'mousemove', onMouse, false );
+                          window.addEventListener( 'mousedown', onMouse, false );
+                      }
+                  });
+
+              }, false );
+
             } else if (link === '#lawyers') {
-                camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
-                scene.video.play();
-                document.querySelector('.lawyers').classList.add("lawyers--animate");
-                window.addEventListener( 'mousemove', onMouse, false );
-                window.addEventListener( 'mousedown', onMouse, false );
+                //show instructions:
+                document.querySelector('.instruction-lawyers').classList.add("instruction--animate");
+                document.querySelector('.instruction-lawyers .instruction__remove').addEventListener( 'mousedown', () => {
+                    document.querySelector('.instruction-lawyers').classList.remove("instruction--animate");
+
+                    camera.add(camera.pointLightLawyer0, camera.pointLightLawyer1, camera.pointLightLawyer2);
+                    scene.video.play();
+                    document.querySelector('.lawyers').classList.add("lawyers--animate");
+                    window.addEventListener( 'mousemove', onMouse, false );
+                    window.addEventListener( 'mousedown', onMouse, false );
+                    
+                }, false );
+
             }
 
             if (link === '#services') {
