@@ -23,6 +23,7 @@ let mixer,
     lawyers__about = document.querySelector('.lawyers__about--us'),
     services__mg = document.querySelector('.magnify'),
     services__mg_remove = document.querySelector('.magnify__glass-remove'),
+    portrait = document.querySelector('.portrait'),
     timeCandle = 0,
     targetListServices = [];
 
@@ -31,7 +32,6 @@ const HEIGHT = window.innerHeight;
 const windowHalfX = window.innerWidth / 2;
 const windowHalfY = window.innerHeight / 2;
 const WIDTH_MG = HEIGHT_MG = document.querySelector(".magnify__glass").clientHeight;
-
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 40, WIDTH/HEIGHT, 0.1, 3000 ); //camera.setLens(24); camera.setFov(40); camera.setZoom(1);
@@ -1132,11 +1132,17 @@ function onWindowResize() {
     const height = window.innerHeight;
 
     if(width/height > 3) return;  //so it doesnt show surrounding models when screen too wide and not high enough;
+    if(width < height) {
+        portrait.style.zIndex = 10000;
+        return;
+    }
 
+    portrait.style.zIndex = -100;
     camera.aspect = width/height;  //doesn't work with WIDTH/HEIGHT !
     camera.updateProjectionMatrix();
     renderer.setSize( width, height ); //doesn't work with WIDTH/HEIGHT !
     cssRenderer.setSize( width, height );
+
 }
 
 function addGoogleMapScript( src, callback) {
@@ -1504,7 +1510,7 @@ function muteUnmute () {
 }
 
 //run the app only if CSS grid is supported:
-if( getComputedStyle(document.querySelector('.cssGrid-not-supported')).getPropertyValue('display') == 'none' ) {
+if( getComputedStyle(document.querySelector('.cssGrid-not-supported')).getPropertyValue('display') == 'none') {
     init()
     .then(() => {
         render();

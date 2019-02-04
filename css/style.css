@@ -164,18 +164,24 @@ body {
     visibility: visible; }
   @media only screen and (max-width: 56.25em) {
     .lawyers {
-      font-size: .65rem; } }
+      grid-template-columns: 1fr minmax(16rem, 50vh) 1fr; } }
   @media only screen and (max-width: 43.75em) {
     .lawyers {
-      font-size: .55rem; } }
+      grid-template-rows: 2.25rem 80vh 2.25rem;
+      grid-template-columns: 1fr minmax(14rem, 45vh) 1fr;
+      font-size: 1rem; } }
   .lawyers__about {
     grid-row: 2/3;
     grid-column: 2/3;
     display: grid;
     grid-row-gap: 1rem;
+    overflow: auto;
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
+    @media only screen and (max-width: 56.25em) {
+      .lawyers__about {
+        grid-row-gap: 0; } }
     .lawyers__about--animate {
       opacity: 1;
       visibility: visible;
@@ -186,6 +192,9 @@ body {
       text-transform: uppercase;
       padding: .5rem 0;
       /*so it is in the same line with the MENU*/ }
+      @media only screen and (max-width: 43.75em) {
+        .lawyers__about > h2 {
+          font-size: 1.2rem; } }
 
 .loading {
   position: fixed;
@@ -486,14 +495,14 @@ body {
   .designer a:hover {
     transform: scale(1.2); }
 
-.cssGrid-not-supported {
+.cssGrid-not-supported, .portrait {
   position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
   background: #000000;
   z-index: 10000; }
-  .cssGrid-not-supported p {
+  .cssGrid-not-supported p, .portrait p {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -504,7 +513,7 @@ body {
     height: 16rem;
     background: url("../img_desktop/paper.jpg") no-repeat;
     background-size: 100% 100%; }
-    .cssGrid-not-supported p span {
+    .cssGrid-not-supported p span, .portrait p span {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
