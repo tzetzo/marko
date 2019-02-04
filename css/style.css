@@ -214,7 +214,11 @@ body {
   align-items: center;
   font-size: 2rem;
   color: #cca876;
-  z-index: 10000; }
+  z-index: 10000;
+  transition: all 0.5s cubic-bezier(0.44, -0.77, 0.57, 1.89); }
+  .loading--animate {
+    opacity: 0;
+    visibility: hidden; }
   .loading__text {
     grid-area: 2/2/3/3;
     display: grid;
@@ -593,7 +597,7 @@ body {
       right: .5rem;
       bottom: .5rem; } }
   .control-panel .move-up, .control-panel .move-left, .control-panel .move-right, .control-panel .move-down, .control-panel .zoom-in, .control-panel .zoom-out {
-    border: 1px solid #333;
+    border: 1px solid #cca876;
     border-radius: 100%;
     padding: 1rem; }
   .control-panel .move-up {
@@ -602,7 +606,7 @@ body {
     .control-panel .move-up .up {
       height: 2.25rem;
       width: 2.25rem;
-      background: #333;
+      background: #cca876;
       -webkit-clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%);
       clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%); }
   .control-panel .move-left {
@@ -611,7 +615,7 @@ body {
     .control-panel .move-left .left {
       height: 2.25rem;
       width: 2.25rem;
-      background: #333;
+      background: #cca876;
       -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
       clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%); }
   .control-panel .move-right {
@@ -620,7 +624,7 @@ body {
     .control-panel .move-right .right {
       height: 2.25rem;
       width: 2.25rem;
-      background: #333;
+      background: #cca876;
       -webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
       clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%); }
   .control-panel .move-down {
@@ -629,7 +633,7 @@ body {
     .control-panel .move-down .down {
       height: 2.25rem;
       width: 2.25rem;
-      background: #333;
+      background: #cca876;
       -webkit-clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0);
       clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0); }
   .control-panel .zoom-in {
@@ -638,7 +642,7 @@ body {
     .control-panel .zoom-in .plus {
       height: 2.25rem;
       width: 2.25rem;
-      background: #333;
+      background: #cca876;
       -webkit-clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
       clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%); }
   .control-panel .zoom-out {
@@ -647,14 +651,13 @@ body {
     .control-panel .zoom-out .minus {
       height: 2.25rem;
       width: 2.25rem;
-      background: #333;
+      background: #cca876;
       -webkit-clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
       clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%); }
 
-#webGLcontainer {
+.webGLcontainer {
   position: fixed;
-  background: linear-gradient(to bottom, #1e4877 0%, #4584b4 50%, #1e4877 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+  background: linear-gradient(to bottom, #1e4877 0%, #4584b4 50%, #1e4877 100%); }
 
 .magnify {
   position: fixed;

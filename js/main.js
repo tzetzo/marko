@@ -18,6 +18,7 @@ let mixer,
     INTERSECTEDsibling,
     mouseEvent = null,
     targetListLawyers = [],
+    loading = document.querySelector('.loading'),
     menu__logo = document.querySelector('.menu__logo'),
     menu__volume = document.querySelector('.volume > svg'),
     lawyers__about = document.querySelector('.lawyers__about--us'),
@@ -42,7 +43,7 @@ const cssRenderer = new THREE.CSS3DRenderer();
 const loader = new THREE.GLTFLoader();
 
 const clock = new THREE.Clock(); //used by the animation mixer;
-const webGLcontainer = document.getElementById( 'webGLcontainer' );
+const webGLcontainer = document.querySelector( '.webGLcontainer' );
 const magnifyWebGLcontainer = document.querySelector('.magnify__glass');
 const newsContainer = document.querySelector('.news');
 
@@ -75,12 +76,12 @@ const news_objects_container = new THREE.Object3D();
 
 //showing loading progress:
 const percentage = document.querySelector('.loading__percent > span');
-THREE.DefaultLoadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+THREE.DefaultLoadingManager.onProgress = ( url, itemsLoaded, itemsTotal ) => {
     // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-  	percentage.innerText = `${Math.floor(itemsLoaded*100/43)}%`; //make sure 43 is the number of items equal to the biggest itemsTotal number by using above console.log()
-  	if (itemsLoaded === 46) {  //46 is itemsTotal
-      //remove the loading screen:
-      document.body.removeChild(document.querySelector('.loading'));
+  	percentage.innerText = `${Math.floor(itemsLoaded*100/46)}%`; //make sure 46 is the number of items equal to the biggest itemsTotal number by using above console.log()
+  	if (itemsLoaded === 46) {  //make sure 46 is the number of items equal to the biggest itemsTotal number by using above console.log()
+        //remove the loading screen:
+        loading.classList.add('loading--animate');
   	}
 };
 
@@ -742,6 +743,7 @@ function openMenu() {
         transformNews( newsSphereTransforms, 1000 );
 
         document.querySelector('.control-panel').classList.remove("control-panel--animate");
+
         document.querySelector('.zoom-in').removeEventListener( 'mousedown', zoomIn, false );
         document.querySelector('.zoom-out').removeEventListener( 'mousedown', zoomOut, false );
         document.querySelector('.move-up').removeEventListener( 'mousedown', moveUp, false );
@@ -875,7 +877,7 @@ function closeMenu() {
                 document.querySelectorAll('.news__element').forEach((element) => {
                     element.addEventListener("wheel", preventNewsScrolling);
                     //different color for each news element each time the #news is opened:
-                    element.style.backgroundColor = `rgba(${Math.floor(Math.random() * 200)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.random() * 0.4 + 0.2})`;  //from 0.25 to 0.75 opacity; generate number b/n 0 & 255 for each value of the color
+                    element.style.backgroundColor = `rgba(${Math.floor(Math.random() * 100)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.random() * 0.4 + 0.2})`;  //from 0.25 to 0.75 opacity; generate number b/n 0 & 255 for each value of the color
                 });
                 document.addEventListener( 'mousemove', newsMouseMove, false );
                 //different color for the plane each time the #news is opened:

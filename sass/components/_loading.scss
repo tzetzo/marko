@@ -18,6 +18,13 @@
     // background-position: 50% 50%;
     z-index: 10000;
 
+    transition: all .5s cubic-bezier(.44,-0.77,.57,1.89);
+
+    &--animate {
+        opacity: 0;
+        visibility: hidden;
+    }
+
     &__text {
         grid-area: 2/2/3/3;
         display: grid;

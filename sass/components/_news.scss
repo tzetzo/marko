@@ -90,7 +90,7 @@
     }
 
     .move-up, .move-left, .move-right, .move-down, .zoom-in, .zoom-out {
-        border: 1px solid $color-grey-dark;
+        border: 1px solid $color-gold;
         border-radius: 100%;
         padding: 1rem;
     }
@@ -101,7 +101,7 @@
         .up {
             height: 2.25rem;
             width: 2.25rem;
-            background: $color-grey-dark;
+            background: $color-gold;
             //UP sign:
             -webkit-clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%);
             clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%);
@@ -114,7 +114,7 @@
         .left {
             height: 2.25rem;
             width: 2.25rem;
-            background: $color-grey-dark;
+            background: $color-gold;
             //LEFT sign:
             -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
             clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
@@ -127,7 +127,7 @@
         .right {
             height: 2.25rem;
             width: 2.25rem;
-            background: $color-grey-dark;
+            background: $color-gold;
             //RIGHT sign:
             -webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
             clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
@@ -140,7 +140,7 @@
         .down {
             height: 2.25rem;
             width: 2.25rem;
-            background: $color-grey-dark;
+            background: $color-gold;
             //DOWN sign:
             -webkit-clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0);
             clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0);
@@ -153,7 +153,7 @@
         .plus {
             height: 2.25rem;
             width: 2.25rem;
-            background: $color-grey-dark;
+            background: $color-gold;
             //PLUS sign:
             -webkit-clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
             clip-path: polygon(0 33%, 33% 33%, 33% 0, 66% 0, 66% 33%, 100% 33%, 100% 66%, 66% 66%, 66% 100%, 33% 100%, 33% 66%, 0 66%);
@@ -166,7 +166,7 @@
         .minus {
             height: 2.25rem;
             width: 2.25rem;
-            background: $color-grey-dark;
+            background: $color-gold;
             //MINUS sign:
             -webkit-clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
             clip-path: polygon(0 34%, 100% 34%, 100% 67%, 0 67%);
@@ -174,7 +174,7 @@
     }
 }
 
-#webGLcontainer {
+.webGLcontainer {
     position: fixed;
-    background: linear-gradient(to bottom, rgba(30,72,119,1) 0%,rgba(69,132,180,1) 50%,rgba(30,72,119,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to bottom, rgba(30,72,119,1) 0%,rgba(69,132,180,1) 50%,rgba(30,72,119,1) 100%);
 }
