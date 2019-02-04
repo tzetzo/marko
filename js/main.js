@@ -35,7 +35,7 @@ const WIDTH_MG = HEIGHT_MG = document.querySelector(".magnify__glass").clientHei
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 40, WIDTH/HEIGHT, 0.1, 3000 ); //camera.setLens(24); camera.setFov(40); camera.setZoom(1);
-const magnifyCamera = new THREE.PerspectiveCamera( 17, WIDTH_MG/HEIGHT_MG, 0.1, 100 );
+const magnifyCamera = new THREE.PerspectiveCamera( 12, WIDTH_MG/HEIGHT_MG, 0.1, 100 );
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 const magnifyRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 const cssRenderer = new THREE.CSS3DRenderer();
@@ -627,6 +627,7 @@ function render() {
                       mixer.addEventListener( 'finished', ( e ) => {
                           if (mixer) {
                               mixer = null;
+                              scene.pages.position.y = 7.14;
                               services__mg.classList.add("magnify--animate");
                               changeMGOpacity().then(() => { menu__logo.addEventListener('click', closeOpenMenu); });
                               services__mg_remove.addEventListener( 'mousedown', removeMG, false );
@@ -733,6 +734,8 @@ function openMenu() {
         document.querySelector('.services-control-panel').classList.remove("services-control-panel--animate");
         document.querySelector('.services-rotate-left').removeEventListener( 'mousedown', servicesRotateLeft, false );
         document.querySelector('.services-rotate-right').removeEventListener( 'mousedown', servicesRotateRight, false );
+        document.querySelector('.services-move-up').removeEventListener( 'mousedown', servicesMoveUp, false );
+        document.querySelector('.services-move-down').removeEventListener( 'mousedown', servicesMoveDown, false );
     }
 
     if (link === '#news') {
@@ -853,6 +856,8 @@ function closeMenu() {
                     document.querySelector('.services-control-panel').classList.add("services-control-panel--animate");
                     document.querySelector('.services-rotate-left').addEventListener( 'mousedown', servicesRotateLeft, false );
                     document.querySelector('.services-rotate-right').addEventListener( 'mousedown', servicesRotateRight, false );
+                    document.querySelector('.services-move-up').addEventListener( 'mousedown', servicesMoveUp, false );
+                    document.querySelector('.services-move-down').addEventListener( 'mousedown', servicesMoveDown, false );
                     window.addEventListener( 'mousemove', onMouse, false );
                     window.addEventListener( 'mousedown', onMouse, false );
                 }, false );
@@ -1059,9 +1064,17 @@ window.addEventListener( 'keydown', (e) => {
                 e.preventDefault();
                 servicesRotateLeft();
                 break;
+            case 38: //up arrow
+                e.preventDefault();
+                servicesMoveUp();
+                break;
             case 39: //right arrow
                 e.preventDefault();
                 servicesRotateRight();
+                break;
+            case 40: //down arrow
+                e.preventDefault();
+                servicesMoveDown();
                 break;
         }
     }
@@ -1129,6 +1142,16 @@ function servicesRotateLeft() {
 }
 function servicesRotateRight() {
     scene.pages.rotation.y += 15*Math.PI/180;
+}
+function servicesMoveUp() {
+    if(scene.pages.position.y > 7.04) {
+        scene.pages.position.y -= .1;
+    }
+}
+function servicesMoveDown() {
+    if(scene.pages.position.y < 7.8) {
+        scene.pages.position.y += .1;
+    }
 }
 
 function transformNews( newsTransforms, duration ) {
@@ -1258,6 +1281,7 @@ function onMouse( event ) {
 
 function removeMG (e, openMenu) {
     services__mg_remove.removeEventListener( 'mousedown', removeMG, false );
+    scene.pages.position.set(12, 7.35, 3.27);
     changeBackMGOpacity().then(() => {
         services__mg.classList.remove("magnify--animate");
         playAnimationBackwards(scene.gltfServices.scene, scene.gltfServices.animations);

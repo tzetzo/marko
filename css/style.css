@@ -690,8 +690,8 @@ body {
       .magnify__glass-remove-x {
         height: 3rem;
         width: 3rem;
-        background-color: #666;
-        opacity: 0.5;
+        background-color: #333;
+        opacity: 0.7;
         display: inline-block;
         -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
         clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
@@ -711,7 +711,8 @@ body {
   visibility: hidden;
   transition: all .5s;
   display: grid;
-  grid-template-columns: repeat(2, 4.25rem);
+  grid-template-rows: repeat(3, 4.25rem);
+  grid-template-columns: repeat(3, 4.25rem);
   grid-column-gap: 1rem; }
   .services-control-panel--animate {
     opacity: 1;
@@ -719,11 +720,21 @@ body {
   @media only screen and (max-width: 43.75em) {
     .services-control-panel {
       right: .5rem; } }
-  .services-control-panel .services-rotate-left, .services-control-panel .services-rotate-right {
+  .services-control-panel .services-move-up, .services-control-panel .services-rotate-left, .services-control-panel .services-rotate-right, .services-control-panel .services-move-down {
     border: 1px solid #cca876;
     border-radius: 100%;
     padding: 1rem; }
+  .services-control-panel .services-move-up {
+    grid-row: 1/2;
+    grid-column: 2/3; }
+    .services-control-panel .services-move-up .up {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #cca876;
+      -webkit-clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%);
+      clip-path: polygon(20% 100%, 20% 40%, 0 40%, 50% 0, 100% 40%, 80% 40%, 80% 100%); }
   .services-control-panel .services-rotate-left {
+    grid-row: 2/3;
     grid-column: 1/2; }
     .services-control-panel .services-rotate-left .left {
       height: 2.25rem;
@@ -732,10 +743,20 @@ body {
       -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
       clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%); }
   .services-control-panel .services-rotate-right {
-    grid-column: 2/3; }
+    grid-row: 2/3;
+    grid-column: 3/4; }
     .services-control-panel .services-rotate-right .right {
       height: 2.25rem;
       width: 2.25rem;
       background: #cca876;
       -webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
       clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%); }
+  .services-control-panel .services-move-down {
+    grid-row: 3/4;
+    grid-column: 2/3; }
+    .services-control-panel .services-move-down .down {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: #cca876;
+      -webkit-clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0);
+      clip-path: polygon(80% 0, 80% 60%, 100% 60%, 50% 100%, 0 60%, 20% 60%, 20% 0); }
