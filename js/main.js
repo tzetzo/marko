@@ -1138,10 +1138,10 @@ function preventNewsScrolling(e) {
     e.preventDefault();
 }
 function servicesRotateLeft() {
-    scene.pages.rotation.y -= 15*Math.PI/180;
+    scene.pages.rotation.y -= 90*Math.PI/180;
 }
 function servicesRotateRight() {
-    scene.pages.rotation.y += 15*Math.PI/180;
+    scene.pages.rotation.y += 90*Math.PI/180;
 }
 function servicesMoveUp() {
     if(scene.pages.position.y > 7.04) {
