@@ -1140,9 +1140,11 @@ function preventNewsScrolling(e) {
     e.preventDefault();
 }
 function servicesRotateLeft() {
+    scene.pages.position.y = 7.14;
     scene.pages.rotation.y -= 90*Math.PI/180;
 }
 function servicesRotateRight() {
+    scene.pages.position.y = 7.14;
     scene.pages.rotation.y += 90*Math.PI/180;
 }
 function servicesMoveUp() {
