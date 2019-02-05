@@ -41,48 +41,6 @@
         & > div {
             background-color: transparent !important;
         }
-
-        // //overriding Google Maps default styles:
-        // & .gm-fullscreen-control {
-        //     @include respond(phone) {
-        //       height: 30px !important;
-        //       width: 30px !important;
-        //       margin: 0 !important;
-        //     }
-        // }
-        //
-        // //overriding Google Maps default styles:
-        // & .gm-bundled-control {
-        //     @include respond(phone) {
-        //         margin: 0 !important;
-        //         right: 30px !important;
-        //     }
-        //
-        //     & > div {
-        //         @include respond(phone) {
-        //             height: 30px !important;
-        //             width: 30px !important;
-        //         }
-        //     }
-        // }
-        //
-        // //overriding Google Maps default styles:
-        // & .gmnoprint {
-        //     @include respond(phone) {
-        //         right: 0 !important;
-        //         left: auto !important;
-        //     }
-        // }
-        //
-        // //overriding Google Maps default styles:
-        // & .gm-style-mtc > [role=button] {
-        //     @include respond(phone) {
-        //         height: 30px !important;
-        //         font-size: 12px !important;
-        //         padding: 0 !important;
-        //     }
-        // }
-
     }
 
     &__details {

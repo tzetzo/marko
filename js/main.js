@@ -80,6 +80,7 @@ THREE.DefaultLoadingManager.onProgress = ( url, itemsLoaded, itemsTotal ) => {
     // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
   	percentage.innerText = `${Math.floor(itemsLoaded*100/46)}%`; //make sure 46 is the number of items equal to the biggest itemsTotal number by using above console.log()
   	if (itemsLoaded === 46) {  //make sure 46 is the number of items equal to the biggest itemsTotal number by using above console.log()
+        webGLcontainer.style.visibility = 'visible';
         //remove the loading screen:
         loading.classList.add('loading--animate');
   	}
@@ -1184,11 +1185,11 @@ function onWindowResize() {
 
     if(width/height > 3) return;  //so it doesnt show surrounding models when screen too wide and not high enough;
     if(width < height) {
-        portrait.style.zIndex = 10000;
+        portrait.style.visibility = "visible";
         return;
     }
 
-    portrait.style.zIndex = -100;
+    portrait.style.visibility = "hidden";
     camera.aspect = width/height;  //doesn't work with WIDTH/HEIGHT !
     camera.updateProjectionMatrix();
     renderer.setSize( width, height ); //doesn't work with WIDTH/HEIGHT !
