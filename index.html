@@ -16,7 +16,7 @@
 		* You coud do this in a regular stylesheet, but be aware tha the browser hidden DOM elements may be visible
 		* briefly until styles kick in. Wrapping these rules in a style tag here ensures that never happens.
 		**/
-    .webGLcontainer, .instruction, .lawyers, .location, .magnify, .menu, .volume, .designer, .portrait, .control-panel, .services-control-panel { visibility:hidden; }
+    .webGLcontainer, .instruction, .lawyers, .location, .magnify, .menu, .contact, .designer, .portrait, .control-panel, .services-control-panel { visibility:hidden; }
     /*ensure browser supporting CSS grid is used*/
     /*check the display property in main.js to run the init()*/
     @supports (display: grid) {
@@ -43,8 +43,11 @@
           </ul>
       </nav>
   </div>
-  <div class="volume">
-      <svg class="clickable"><use class="volume-icon" href="./img_desktop/sprite.svg#volume"></use></svg>
+  <div class="contact">
+      <a href="tel:+35929877970" class="contact__dial clickable"><svg><use class="contact__dial-icon" href="./img_desktop/sprite.svg#phone"></use></svg></a>
+      <a href="mailto:marin@markovski.bg" class="contact__email clickable"><svg><use class="contact__email-icon" href="./img_desktop/sprite.svg#email"></use></svg></a>
+      <svg class="contact__address clickable"><use class="contact__address-icon" href="./img_desktop/sprite.svg#address"></use></svg>
+      <svg class="volume clickable"><use class="volume-icon" href="./img_desktop/sprite.svg#volume"></use></svg>
   </div>
 
   <div class="loading">

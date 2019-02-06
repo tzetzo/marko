@@ -20,7 +20,7 @@ let mixer,
     targetListLawyers = [],
     loading = document.querySelector('.loading'),
     menu__logo = document.querySelector('.menu__logo'),
-    menu__volume = document.querySelector('.volume > svg'),
+    volume = document.querySelector('.volume'),
     lawyers__about = document.querySelector('.lawyers__about--us'),
     services__mg = document.querySelector('.magnify'),
     services__mg_remove = document.querySelector('.magnify__glass-remove'),
@@ -295,7 +295,7 @@ function init() {
                             //show the logo for the menu access:
                             document.querySelector('.menu').style.visibility = 'visible';
                             scene.music.play().fadeIn(10000);
-                            document.querySelector('.volume').style.visibility = 'visible';
+                            document.querySelector('.contact').style.visibility = 'visible';
                             document.querySelector('.designer').style.visibility = 'visible';
                         }
                     });
@@ -1549,7 +1549,7 @@ function musicLoad(){ //http://buzz.jaysalvat.com/documentation/sound/
     		volume: 100
     });
 }
-menu__volume.addEventListener('click', muteUnmute);
+volume.addEventListener('click', muteUnmute);
 function muteUnmute () {
     if (!scene.music.isMuted() || !scene.musicMenu.isMuted()){
         scene.music.mute();

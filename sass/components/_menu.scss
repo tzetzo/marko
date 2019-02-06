@@ -102,25 +102,80 @@
     }
 }
 
-.volume {
+.contact {
     position: fixed;
     right:0;
     z-index: 1000;
 
-    padding: 2.75rem 6.75rem 2.75rem 2.75rem;
+    padding: 2.75rem 5.75rem 0 0;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; /*so the text cant be selected*/
 
-    svg {
-        height: 2.25rem;
-        width: 2.25rem;
-        transform:scale(1.3);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 3rem;
+    justify-items: center;
+    align-items: center;
+
+    &__dial {
+        height: 3rem;
+        width: 3rem;
+
+        display:grid;
+        align-items: center;
+        justify-items: center;
+
         transition: all .2s;
 
         &:hover {
-            transform:scale(1.4);
+            transform: scale(1.1);
+        }
+
+        svg {
+            height: 2.4rem;
+            width: 2.4rem;
+        }
+    }
+
+    &__email {
+        height: 3rem;
+        width: 3rem;
+
+        display:grid;
+        align-items: center;
+        justify-items: center;
+
+        transition: all .2s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        svg {
+            height: 2.4rem;
+            width: 2.4rem;
+        }
+    }
+
+    &__address {
+        height: 2.4rem;
+        width: 2.4rem;
+        transition: all .2s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    .volume {
+        height: 3rem;
+        width: 3rem;
+        transition: all .2s;
+
+        &:hover {
+            transform: scale(1.1);
         }
     }
 }
