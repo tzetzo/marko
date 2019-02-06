@@ -294,7 +294,7 @@ function init() {
                             animateLights();
                             //show the logo for the menu access:
                             document.querySelector('.menu').style.visibility = 'visible';
-                            scene.music.play().fadeIn(16000);
+                            scene.music.play().fadeIn(10000);
                             document.querySelector('.volume').style.visibility = 'visible';
                             document.querySelector('.designer').style.visibility = 'visible';
                         }
