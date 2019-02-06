@@ -119,7 +119,7 @@
     justify-items: center;
     align-items: center;
 
-    &__dial {
+    &__dial, &__email, &__address {
         height: 3rem;
         width: 3rem;
 
@@ -138,36 +138,20 @@
             width: 2.4rem;
         }
     }
-
-    &__email {
-        height: 3rem;
-        width: 3rem;
-
-        display:grid;
-        align-items: center;
-        justify-items: center;
-
-        transition: all .2s;
-
-        &:hover {
-            transform: scale(1.1);
-        }
-
-        svg {
-            height: 2.4rem;
-            width: 2.4rem;
-        }
-    }
-
-    &__address {
-        height: 2.4rem;
-        width: 2.4rem;
-        transition: all .2s;
-
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
+    // &__dial, &__email {
+    //     display: none;
+    //
+    //     @include respond(tab-port) {
+    //         display: inline-block;
+    //     }
+    // }
+    // &__address {
+    //     @include respond(tab-port) {
+    //         &:active {
+    //
+    //         }
+    //     }
+    // }
 
     .volume {
         height: 3rem;

@@ -459,36 +459,18 @@ body {
   grid-column-gap: 3rem;
   justify-items: center;
   align-items: center; }
-  .contact__dial {
+  .contact__dial, .contact__email, .contact__address {
     height: 3rem;
     width: 3rem;
     display: grid;
     align-items: center;
     justify-items: center;
     transition: all .2s; }
-    .contact__dial:hover {
+    .contact__dial:hover, .contact__email:hover, .contact__address:hover {
       transform: scale(1.1); }
-    .contact__dial svg {
+    .contact__dial svg, .contact__email svg, .contact__address svg {
       height: 2.4rem;
       width: 2.4rem; }
-  .contact__email {
-    height: 3rem;
-    width: 3rem;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    transition: all .2s; }
-    .contact__email:hover {
-      transform: scale(1.1); }
-    .contact__email svg {
-      height: 2.4rem;
-      width: 2.4rem; }
-  .contact__address {
-    height: 2.4rem;
-    width: 2.4rem;
-    transition: all .2s; }
-    .contact__address:hover {
-      transform: scale(1.1); }
   .contact .volume {
     height: 3rem;
     width: 3rem;
