@@ -377,6 +377,10 @@ body {
   padding: 2.25rem;
   text-transform: uppercase;
   z-index: 1000; }
+  @media only screen and (max-width: 56.25em) {
+    .menu {
+      grid-template-columns: 5rem 5rem;
+      padding: 1rem; } }
   .menu__logo {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -448,7 +452,7 @@ body {
   position: fixed;
   right: 0;
   z-index: 1000;
-  padding: 2.75rem 5.75rem 0 0;
+  padding: 2.25rem 5.75rem 0 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -459,6 +463,10 @@ body {
   grid-column-gap: 3rem;
   justify-items: center;
   align-items: center; }
+  @media only screen and (max-width: 56.25em) {
+    .contact {
+      padding: 1rem 1rem 0 0;
+      grid-column-gap: .5rem; } }
   .contact__dial, .contact__email, .contact__address {
     height: 3rem;
     width: 3rem;
@@ -608,10 +616,10 @@ body {
   .control-panel--animate {
     opacity: 1 !important;
     visibility: visible !important; }
-  @media only screen and (max-width: 43.75em) {
+  @media only screen and (max-width: 56.25em) {
     .control-panel {
-      right: .5rem;
-      bottom: .5rem; } }
+      right: 1rem;
+      bottom: 1rem; } }
   .control-panel .move-up, .control-panel .move-left, .control-panel .move-right, .control-panel .move-down, .control-panel .zoom-in, .control-panel .zoom-out {
     border: 1px solid #cca876;
     border-radius: 100%;
@@ -735,9 +743,9 @@ body {
   .services-control-panel--animate {
     opacity: 1 !important;
     visibility: visible !important; }
-  @media only screen and (max-width: 43.75em) {
+  @media only screen and (max-width: 56.25em) {
     .services-control-panel {
-      right: .5rem; } }
+      right: 1rem; } }
   .services-control-panel .services-move-up, .services-control-panel .services-rotate-left, .services-control-panel .services-rotate-right, .services-control-panel .services-move-down {
     border: 1px solid #cca876;
     border-radius: 100%;

@@ -84,9 +84,9 @@
     grid-template-rows: repeat(4, 4.25rem);
     grid-template-columns: repeat(3, 4.25rem);
 
-    @include respond(phone) {
-        right: .5rem;
-        bottom: .5rem;
+    @include respond(tab-port) {
+        right: 1rem;
+        bottom: 1rem;
     }
 
     .move-up, .move-left, .move-right, .move-down, .zoom-in, .zoom-out {

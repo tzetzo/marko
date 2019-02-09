@@ -80,8 +80,8 @@
     grid-template-rows: repeat(3, 4.25rem);
     grid-template-columns: repeat(3, 4.25rem);
 
-    @include respond(phone) {
-        right: .5rem;
+    @include respond(tab-port) {
+        right: 1rem;
     }
 
     .services-move-up, .services-rotate-left, .services-rotate-right, .services-move-down {
