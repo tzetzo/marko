@@ -44,13 +44,31 @@
       </nav>
   </div>
   <div class="contact">
-      <a class="contact__dial clickable" title="+359 2 9877970" href="tel:+35929877970" target="_top">
+      <a class="contact__dial clickable" target="_top"
+          data-tippy='+359 2 9877970'
+          data-tippy-animation="perspective"
+          data-tippy-duration="[200, 500]"
+          data-tippy-arrow="true"
+          data-tippy-trigger:"mouseenter focus click"
+          href="tel:+35929877970">
           <svg><use class="contact__dial-icon" href="./img_desktop/sprite.svg#phone"></use></svg>
       </a>
-      <a class="contact__email clickable" title="marin@markovski.bg" href="mailto:marin@markovski.bg" target="_top">
+      <a class="contact__email clickable" target="_top"
+          data-tippy='marin@markovski.bg'
+          data-tippy-animation="perspective"
+          data-tippy-duration="[200, 500]"
+          data-tippy-arrow="true"
+          data-tippy-trigger:"mouseenter focus click"
+          href="mailto:marin@markovski.bg">
           <svg><use class="contact__email-icon" href="./img_desktop/sprite.svg#email"></use></svg>
       </a>
-      <a class="contact__address clickable" title='ul. "Tsar Asen" 1, Sofia' target="_blank" href="https://www.google.com/maps/place/%D0%90%D0%B4%D0%B2%D0%BE%D0%BA%D0%B0%D1%82%D1%81%D0%BA%D0%B0+%D0%BA%D0%B0%D0%BD%D1%82%D0%BE%D1%80%D0%B0+%D0%9C%D0%B0%D1%80%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8/@42.6948627,23.3175245,17z/data=!4m13!1m7!3m6!1s0x40aa856c6f38c14d:0x4965a34f8fc74c72!2z0YPQuy4g4oCe0KbQsNGAINCQ0YHQtdC9IEkt0LLQuOKAnCAxLCAxMDAwINCm0LXQvdGC0YrRgCwg0KHQvtGE0LjRjw!3b1!8m2!3d42.6948627!4d23.3197132!3m4!1s0x40aa856c6f38c14d:0x8bcfb7c67d2ddcc!8m2!3d42.6948627!4d23.3197132">
+      <a class="contact__address clickable" target="_blank"
+          data-tippy='ul. "Tsar Asen" 1, Sofia'
+          data-tippy-animation="perspective"
+          data-tippy-duration="[200, 500]"
+          data-tippy-arrow="true"
+          data-tippy-trigger:"mouseenter focus click"
+          href="https://www.google.com/maps/place/%D0%90%D0%B4%D0%B2%D0%BE%D0%BA%D0%B0%D1%82%D1%81%D0%BA%D0%B0+%D0%BA%D0%B0%D0%BD%D1%82%D0%BE%D1%80%D0%B0+%D0%9C%D0%B0%D1%80%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8/@42.6948627,23.3175245,17z/data=!4m13!1m7!3m6!1s0x40aa856c6f38c14d:0x4965a34f8fc74c72!2z0YPQuy4g4oCe0KbQsNGAINCQ0YHQtdC9IEkt0LLQuOKAnCAxLCAxMDAwINCm0LXQvdGC0YrRgCwg0KHQvtGE0LjRjw!3b1!8m2!3d42.6948627!4d23.3197132!3m4!1s0x40aa856c6f38c14d:0x8bcfb7c67d2ddcc!8m2!3d42.6948627!4d23.3197132">
           <svg><use class="contact__address-icon" href="./img_desktop/sprite.svg#address"></use></svg>
       </a>
       <svg class="volume clickable"><use class="volume-icon" href="./img_desktop/sprite.svg#volume"></use></svg>
@@ -346,6 +364,8 @@
         gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
       }
   </script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/tippy.index.all.min.js"></script>
   <script src="./js/main.js"></script>   <!-- ?<?php echo time(); ?> -->
 </body>
 </html>

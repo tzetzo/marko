@@ -1,0 +1,15 @@
+.tippy-tooltip {
+    background: url(../img_desktop/paper.jpg) no-repeat;
+    background-size: 100% 100%;
+    text-shadow: -1px -1px 0 #cca876, -1px 0 0 #cca876, 1px -1px 0 #cca876, 1px 0 0 #cca876, -1px 1px 0 #cca876, 1px 1px 0 #cca876, 0 -1px 0 #cca876, 0 1px 0 #cca876, 0 1px 0 rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 204, 0.8);
+
+    .tippy-content {
+        font-size: 150%;
+        padding: 1.25rem;
+    }
+
+    .tippy-arrow {
+        transform: scale(0); /*a hack to hide the arrow; arrow necessary so background image in .tippy-tooltip is shown*/
+    }
+}
