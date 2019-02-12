@@ -47,6 +47,8 @@ body {
     //color: $color-grey-medium;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    user-select: none; /*so the text cant be selected*/
 }
 
 //changes the style of selected text:

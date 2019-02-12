@@ -41,7 +41,9 @@ body {
   background-color: #000000;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  /*so the text cant be selected*/ }
 
 @font-face {
   body {
@@ -399,12 +401,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: .5rem 0;
-    border-radius: 100rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    /*so the text cant be selected*/ }
+    border-radius: 100rem; }
     .menu__logo:hover {
       animation: pulsate 2s infinite; }
     .menu__logo img {
@@ -465,11 +462,6 @@ body {
   right: 0;
   z-index: 1000;
   padding: 2.25rem 5.75rem 0 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /*so the text cant be selected*/
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 3rem;
@@ -507,10 +499,6 @@ body {
   padding: 2.75rem;
   transform: translateY(-100%);
   transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   display: grid;
   justify-items: center; }
   .designer--animate {

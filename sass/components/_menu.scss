@@ -24,10 +24,6 @@
 
         padding: .5rem 0;
         border-radius: 100rem;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none; /*so the text cant be selected*/
 
         &:hover { animation: pulsate 2s infinite; }
 
@@ -113,10 +109,6 @@
     z-index: 1000;
 
     padding: 2.25rem 5.75rem 0 0;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; /*so the text cant be selected*/
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -173,11 +165,6 @@
     &--animate {
         transform: translateY(0%);
     }
-
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 
     display: grid;
     justify-items: center;
