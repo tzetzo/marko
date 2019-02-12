@@ -579,7 +579,7 @@ body {
   z-index: 10; }
   .news--animate {
     opacity: 1;
-    visibility: visible; }
+    visibility: visible !important; }
   .news__element {
     width: 34rem;
     height: 34rem;

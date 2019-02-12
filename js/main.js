@@ -775,7 +775,7 @@ function openMenu() {
                item.classList.add("menu__item--animate");
             });
             menu__logo.addEventListener('click', closeOpenMenu);
-            if (link === '#news') { document.querySelector('.news').classList.remove("news--animate"); }
+            if (link === '#news') { newsContainer.classList.remove("news--animate"); }
             if (link === '#location') { scene.remove(scene.gltfBook.scene); }
             if (link === '#lawyers') { scene.remove(scene.gltfTV.scene); }
         }
@@ -888,7 +888,7 @@ function closeMenu() {
                 document.querySelector('.instruction-news').classList.add("instruction--animate");
                 document.querySelector('.instruction-news .instruction__remove').addEventListener( 'mousedown', () => {
                     document.querySelector('.instruction-news').classList.remove("instruction--animate");
-                    document.querySelector('.news').classList.add("news--animate");
+                    newsContainer.classList.add("news--animate");
                     document.querySelector('.control-panel').classList.add("control-panel--animate");
                     transformNews( newsGridTransforms, 2000 );
                     scene.add( scene.newsLight, scene.newsLight.target, scene.newsClouds, scene.newsClouds1, scene.gltfPlane.scene, scene.gltfSofia.scene );
@@ -956,7 +956,7 @@ function closeOpenMenu () {
         removeMG(null, 'open menu');
         return false;
     }
-    if (link === '#news' && document.querySelector('.news').classList.contains("news--animate")) { mixer = null; }
+    if (link === '#news' && newsContainer.classList.contains("news--animate")) { mixer = null; }
 
     (camera.getObjectByName('shutters') && !mixer) ? (closeMenu(link)) : !mixer ? (openMenu(link)) : null;
 }
