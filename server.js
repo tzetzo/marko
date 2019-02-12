@@ -5,6 +5,10 @@ const app = express(); //create express application
 
 app.use(express.static(__dirname));
 
+app.get('*', (req, res) => { //sends the user index.html by default;
+  res.sendFile(path.resolve(__dirname, 'index.html'));
+});
+
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
