@@ -65,3 +65,8 @@ body {
         cursor: url(../img_desktop/mallet.svg) 24 10, auto;
     }
 }
+
+//custom scrollbar
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, rgba($color-gold,0) 25%, rgba($color-gold,1) 50%, rgba($color-gold,0) 75%); }

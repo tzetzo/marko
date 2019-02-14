@@ -60,6 +60,15 @@ body {
   .clickable:active {
     cursor: url(../img_desktop/mallet.svg) 24 10, auto; }
 
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(204, 168, 118, 0) 25%, #cca876 50%, rgba(204, 168, 118, 0) 75%); }
+
 /*make the initial & visited state the same*/
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
