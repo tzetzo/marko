@@ -903,7 +903,7 @@ function closeMenu() {
                 mixer.addEventListener( 'finished', ( e ) => {
                     if (mixer) {
                         mixer = null;
-                        addGoogleMapScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyB-KPJ5izQ04PMgkfQwGznBFY6TVl4YR1E", googleMapInit);
+                        addGoogleMapScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8lpe3DfPfn9VBJoYnKYrOkKfVTJZEoAA", googleMapInit);
                         document.querySelector('.location').classList.add("location--animate");
                     }
                 });
